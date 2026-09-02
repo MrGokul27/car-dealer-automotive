@@ -1,0 +1,540 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Stackly Motors - Premium Automotive Dealership</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/webp" href="assets/images/stackly-logo.webp" />
+    <!-- Google Fonts (Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="assets/css/styles.css" />
+  </head>
+  <body data-page="home">
+    <!-- Header Component Placeholder -->
+    <div id="header-placeholder"></div>
+
+    <!-- Main Content -->
+    <main>
+      <!-- Hero Section -->
+      <section class="hero-section" id="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-container">
+          <div class="hero-content">
+            <span class="hero-tagline">#1 TRUSTED CAR DEALER</span>
+            <h1 class="hero-title">
+              Drive Your<br />
+              Dream <span class="highlight-red">Car</span> Today
+            </h1>
+            <p class="hero-description">
+              Wide range of premium new and used cars.<br />
+              Best prices. Easy finance. Trusted service.
+            </p>
+            <div class="hero-actions">
+              <a href="pages/cars.html" class="btn btn-hero-primary">
+                <span>Explore Cars</span>
+                <i class="fa-solid fa-arrow-right btn-arrow-icon"></i>
+              </a>
+              <a href="pages/contact.html" class="btn btn-hero-secondary">
+                <span>Book Test Drive</span>
+                <i class="fa-solid fa-calendar-days btn-calendar-icon"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Popular Cars Section -->
+      <section class="popular-cars-section" id="popular-cars">
+        <div class="popular-cars-container">
+          <div class="section-header">
+            <span class="section-badge">FEATURED CARS</span>
+            <h2 class="section-heading">Popular Cars</h2>
+            <p class="section-subtext">Handpicked for you</p>
+          </div>
+
+          <div class="cars-grid">
+            <!-- Card 1: Toyota Fortuner -->
+            <article class="car-card">
+              <div class="car-card-img-wrap">
+                <img
+                  src="assets/images/home/home-featured-cars-1.webp"
+                  alt="Toyota Fortuner"
+                  class="car-img"
+                  loading="lazy"
+                />
+                <button
+                  type="button"
+                  class="wishlist-toggle-btn"
+                  aria-label="Add Toyota Fortuner to wishlist"
+                >
+                  <i class="fa-regular fa-heart"></i>
+                </button>
+              </div>
+              <div class="car-card-body">
+                <h3 class="car-title">Toyota Fortuner</h3>
+                <div class="car-specs">
+                  <div class="spec-row">
+                    <span class="spec-label">Model</span>
+                    <span class="spec-colon">:</span>
+                    <span class="spec-value">2022</span>
+                  </div>
+                  <div class="spec-row">
+                    <span class="spec-label">KM</span>
+                    <span class="spec-colon">:</span>
+                    <span class="spec-value">24,000 Km</span>
+                  </div>
+                  <div class="spec-row">
+                    <span class="spec-label">Price</span>
+                    <span class="spec-colon">:</span>
+                    <span class="spec-value price-highlight">32,50,000</span>
+                  </div>
+                </div>
+                <div class="car-card-footer">
+                  <span class="fuel-type">Diesel</span>
+                  <a href="pages/cars.html" class="view-details-link">
+                    <span>View Details</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 2: Hyundai Creta -->
+            <article class="car-card">
+              <div class="car-card-img-wrap">
+                <img
+                  src="assets/images/home/home-featured-cars-2.webp"
+                  alt="Hyundai Creta"
+                  class="car-img"
+                  loading="lazy"
+                />
+                <button
+                  type="button"
+                  class="wishlist-toggle-btn"
+                  aria-label="Add Hyundai Creta to wishlist"
+                >
+                  <i class="fa-regular fa-heart"></i>
+                </button>
+              </div>
+              <div class="car-card-body">
+                <h3 class="car-title">Hyundai Creta</h3>
+                <div class="car-specs">
+                  <div class="spec-row">
+                    <span class="spec-label">Model</span>
+                    <span class="spec-colon">:</span>
+                    <span class="spec-value">2023</span>
+                  </div>
+                  <div class="spec-row">
+                    <span class="spec-label">KM</span>
+                    <span class="spec-colon">:</span>
+                    <span class="spec-value">16,500 Km</span>
+                  </div>
+                  <div class="spec-row">
+                    <span class="spec-label">Price</span>
+                    <span class="spec-colon">:</span>
+                    <span class="spec-value price-highlight">18,75,000</span>
+                  </div>
+                </div>
+                <div class="car-card-footer">
+                  <span class="fuel-type">Petrol</span>
+                  <a href="pages/cars.html" class="view-details-link">
+                    <span>View Details</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 3: Kia Seltos -->
+            <article class="car-card">
+              <div class="car-card-img-wrap">
+                <img
+                  src="assets/images/home/home-featured-cars-3.webp"
+                  alt="Kia Seltos"
+                  class="car-img"
+                  loading="lazy"
+                />
+                <button
+                  type="button"
+                  class="wishlist-toggle-btn"
+                  aria-label="Add Kia Seltos to wishlist"
+                >
+                  <i class="fa-regular fa-heart"></i>
+                </button>
+              </div>
+              <div class="car-card-body">
+                <h3 class="car-title">Kia Seltos</h3>
+                <div class="car-specs">
+                  <div class="spec-row">
+                    <span class="spec-label">Model</span>
+                    <span class="spec-colon">:</span>
+                    <span class="spec-value">2023</span>
+                  </div>
+                  <div class="spec-row">
+                    <span class="spec-label">KM</span>
+                    <span class="spec-colon">:</span>
+                    <span class="spec-value">20,000 Km</span>
+                  </div>
+                  <div class="spec-row">
+                    <span class="spec-label">Price</span>
+                    <span class="spec-colon">:</span>
+                    <span class="spec-value price-highlight">19,90,000</span>
+                  </div>
+                </div>
+                <div class="car-card-footer">
+                  <span class="fuel-type">Diesel</span>
+                  <a href="pages/cars.html" class="view-details-link">
+                    <span>View Details</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 4: Honda City -->
+            <article class="car-card">
+              <div class="car-card-img-wrap">
+                <img
+                  src="assets/images/home/home-featured-cars-4.webp"
+                  alt="Honda City"
+                  class="car-img"
+                  loading="lazy"
+                />
+                <button
+                  type="button"
+                  class="wishlist-toggle-btn"
+                  aria-label="Add Honda City to wishlist"
+                >
+                  <i class="fa-regular fa-heart"></i>
+                </button>
+              </div>
+              <div class="car-card-body">
+                <h3 class="car-title">Honda City</h3>
+                <div class="car-specs">
+                  <div class="spec-row">
+                    <span class="spec-label">Model</span>
+                    <span class="spec-colon">:</span>
+                    <span class="spec-value">2022</span>
+                  </div>
+                  <div class="spec-row">
+                    <span class="spec-label">KM</span>
+                    <span class="spec-colon">:</span>
+                    <span class="spec-value">15,000 Km</span>
+                  </div>
+                  <div class="spec-row">
+                    <span class="spec-label">Price</span>
+                    <span class="spec-colon">:</span>
+                    <span class="spec-value price-highlight">13,50,000</span>
+                  </div>
+                </div>
+                <div class="car-card-footer">
+                  <span class="fuel-type">Petrol</span>
+                  <a href="pages/cars.html" class="view-details-link">
+                    <span>View Details</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 5: MG Hector -->
+            <article class="car-card">
+              <div class="car-card-img-wrap">
+                <img
+                  src="assets/images/home/home-featured-cars-5.webp"
+                  alt="MG Hector"
+                  class="car-img"
+                  loading="lazy"
+                />
+                <button
+                  type="button"
+                  class="wishlist-toggle-btn"
+                  aria-label="Add MG Hector to wishlist"
+                >
+                  <i class="fa-regular fa-heart"></i>
+                </button>
+              </div>
+              <div class="car-card-body">
+                <h3 class="car-title">MG Hector</h3>
+                <div class="car-specs">
+                  <div class="spec-row">
+                    <span class="spec-label">Model</span>
+                    <span class="spec-colon">:</span>
+                    <span class="spec-value">2022</span>
+                  </div>
+                  <div class="spec-row">
+                    <span class="spec-label">KM</span>
+                    <span class="spec-colon">:</span>
+                    <span class="spec-value">12,000 Km</span>
+                  </div>
+                  <div class="spec-row">
+                    <span class="spec-label">Price</span>
+                    <span class="spec-colon">:</span>
+                    <span class="spec-value price-highlight">21,90,000</span>
+                  </div>
+                </div>
+                <div class="car-card-footer">
+                  <span class="fuel-type">Diesel</span>
+                  <a href="pages/cars.html" class="view-details-link">
+                    <span>View Details</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 6: Maruti Swift -->
+            <article class="car-card">
+              <div class="car-card-img-wrap">
+                <img
+                  src="assets/images/home/home-featured-cars-6.webp"
+                  alt="Maruti Swift"
+                  class="car-img"
+                  loading="lazy"
+                />
+                <button
+                  type="button"
+                  class="wishlist-toggle-btn"
+                  aria-label="Add Maruti Swift to wishlist"
+                >
+                  <i class="fa-regular fa-heart"></i>
+                </button>
+              </div>
+              <div class="car-card-body">
+                <h3 class="car-title">Maruti Swift</h3>
+                <div class="car-specs">
+                  <div class="spec-row">
+                    <span class="spec-label">Model</span>
+                    <span class="spec-colon">:</span>
+                    <span class="spec-value">2020</span>
+                  </div>
+                  <div class="spec-row">
+                    <span class="spec-label">KM</span>
+                    <span class="spec-colon">:</span>
+                    <span class="spec-value">40,000 Km</span>
+                  </div>
+                  <div class="spec-row">
+                    <span class="spec-label">Price</span>
+                    <span class="spec-colon">:</span>
+                    <span class="spec-value price-highlight">05,90,000</span>
+                  </div>
+                </div>
+                <div class="car-card-footer">
+                  <span class="fuel-type">Petrol</span>
+                  <a href="pages/cars.html" class="view-details-link">
+                    <span>View Details</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                  </a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Browse By Category Section -->
+      <section class="categories-section" id="categories">
+        <div class="categories-container">
+          <div class="section-header">
+            <span class="section-badge">BROWSE BY CATEGORY</span>
+            <h2 class="section-heading">Find the perfect car</h2>
+          </div>
+
+          <div class="categories-grid">
+            <!-- Category 1: SUVs -->
+            <a href="pages/cars.html" class="category-card">
+              <div class="category-img-wrap">
+                <img
+                  src="assets/images/home/home-browse-by-category-1.webp"
+                  alt="SUVs"
+                  class="category-img"
+                  loading="lazy"
+                />
+              </div>
+              <h3 class="category-name">SUVs</h3>
+              <span class="category-count">32 Cars</span>
+            </a>
+
+            <!-- Category 2: Sedans -->
+            <a href="pages/cars.html" class="category-card">
+              <div class="category-img-wrap">
+                <img
+                  src="assets/images/home/home-browse-by-category-2.webp"
+                  alt="Sedans"
+                  class="category-img"
+                  loading="lazy"
+                />
+              </div>
+              <h3 class="category-name">Sedans</h3>
+              <span class="category-count">28 Cars</span>
+            </a>
+
+            <!-- Category 3: Hatchbacks -->
+            <a href="pages/cars.html" class="category-card">
+              <div class="category-img-wrap">
+                <img
+                  src="assets/images/home/home-browse-by-category-3.webp"
+                  alt="Hatchbacks"
+                  class="category-img"
+                  loading="lazy"
+                />
+              </div>
+              <h3 class="category-name">Hatchbacks</h3>
+              <span class="category-count">18 Cars</span>
+            </a>
+
+            <!-- Category 4: Luxury Cars -->
+            <a href="pages/cars.html" class="category-card">
+              <div class="category-img-wrap">
+                <img
+                  src="assets/images/home/home-browse-by-category-4.webp"
+                  alt="Luxury Cars"
+                  class="category-img"
+                  loading="lazy"
+                />
+              </div>
+              <h3 class="category-name">Luxury Cars</h3>
+              <span class="category-count">16 Cars</span>
+            </a>
+
+            <!-- Category 5: Electric Cars -->
+            <a href="pages/cars.html" class="category-card">
+              <div class="category-img-wrap">
+                <img
+                  src="assets/images/home/home-browse-by-category-5.webp"
+                  alt="Electric Cars"
+                  class="category-img"
+                  loading="lazy"
+                />
+              </div>
+              <h3 class="category-name">Electric Cars</h3>
+              <span class="category-count">12 Cars</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Why Choose Us Section -->
+      <section class="why-choose-us-section" id="why-choose-us">
+        <div class="why-choose-us-container">
+          <div class="section-header why-choose-header">
+            <span class="section-badge-red">WHY CHOOSE US</span>
+            <h2 class="section-heading-white">Why Thousands Trust Us</h2>
+          </div>
+
+          <div class="why-choose-grid">
+            <!-- Feature 1: Best Price Guarantee -->
+            <div class="why-choose-card">
+              <div class="why-choose-icon-wrap">
+                <img
+                  src="assets/images/home/home-why-choose-us-1.webp"
+                  alt="Best Price Guarantee"
+                  class="why-choose-icon"
+                  loading="lazy"
+                />
+              </div>
+              <h3 class="why-choose-title">Best Price Guarantee</h3>
+              <p class="why-choose-desc">Get the best prices in the market..</p>
+            </div>
+
+            <!-- Feature 2: Easy Finance -->
+            <div class="why-choose-card">
+              <div class="why-choose-icon-wrap">
+                <img
+                  src="assets/images/home/home-why-choose-us-2.webp"
+                  alt="Easy Finance"
+                  class="why-choose-icon"
+                  loading="lazy"
+                />
+              </div>
+              <h3 class="why-choose-title">Easy Finance</h3>
+              <p class="why-choose-desc">
+                Flexible finance options to suit your budget..
+              </p>
+            </div>
+
+            <!-- Feature 3: Warranty Support -->
+            <div class="why-choose-card">
+              <div class="why-choose-icon-wrap">
+                <img
+                  src="assets/images/home/home-why-choose-us-3.webp"
+                  alt="Warranty Support"
+                  class="why-choose-icon"
+                  loading="lazy"
+                />
+              </div>
+              <h3 class="why-choose-title">Warranty Support</h3>
+              <p class="why-choose-desc">
+                Up to 5 years warranty on select cars.
+              </p>
+            </div>
+
+            <!-- Feature 4: 24/7 Support -->
+            <div class="why-choose-card">
+              <div class="why-choose-icon-wrap">
+                <img
+                  src="assets/images/home/home-why-choose-us-4.webp"
+                  alt="24/7 Support"
+                  class="why-choose-icon"
+                  loading="lazy"
+                />
+              </div>
+              <h3 class="why-choose-title">24/7 Support</h3>
+              <p class="why-choose-desc">We are always here to assist you.</p>
+            </div>
+
+            <!-- Feature 5: Trusted Dealer -->
+            <div class="why-choose-card">
+              <div class="why-choose-icon-wrap">
+                <img
+                  src="assets/images/home/home-why-choose-us-5.webp"
+                  alt="Trusted Dealer"
+                  class="why-choose-icon"
+                  loading="lazy"
+                />
+              </div>
+              <h3 class="why-choose-title">Trusted Dealer</h3>
+              <p class="why-choose-desc">
+                10+ years of experience in the automotive industry.
+              </p>
+            </div>
+
+            <!-- Feature 6: Certified Cars -->
+            <div class="why-choose-card">
+              <div class="why-choose-icon-wrap">
+                <img
+                  src="assets/images/home/home-why-choose-us-6.webp"
+                  alt="Certified Cars"
+                  class="why-choose-icon"
+                  loading="lazy"
+                />
+              </div>
+              <h3 class="why-choose-title">Certified Cars</h3>
+              <p class="why-choose-desc">
+                All cars are 100% certified and thoroughly inspected.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer Component Placeholder -->
+    <div id="footer-placeholder"></div>
+
+    <!-- Master Script -->
+    <script src="assets/js/script.js"></script>
+  </body>
+</html>
