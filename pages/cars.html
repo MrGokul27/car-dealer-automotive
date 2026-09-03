@@ -31,6 +31,456 @@
 
     <!-- Main Content -->
     <main>
+      <!-- Cars Hero Section -->
+      <section class="cars-hero-section" id="cars-hero">
+        <div class="cars-hero-overlay"></div>
+        <div class="cars-hero-container">
+          <!-- Top / Content Area -->
+          <div class="cars-hero-content">
+            <nav class="cars-breadcrumb" aria-label="Breadcrumb">
+              <a href="../index.html" class="breadcrumb-item">Home</a>
+              <span class="breadcrumb-separator">&gt;</span>
+              <span class="breadcrumb-item active">Cars</span>
+            </nav>
+
+            <h1 class="cars-hero-title">Cars</h1>
+
+            <p class="cars-hero-description">
+              Explore our wide range of premium new and used cars.<br />
+              Find the perfect car that matches your style and needs.
+            </p>
+          </div>
+
+          <!-- Bottom Filter Bar -->
+          <div class="cars-filter-bar">
+            <div class="filter-group">
+              <label for="filter-make" class="filter-label">Make</label>
+              <div class="custom-select-wrapper">
+                <select
+                  id="filter-make"
+                  class="filter-select"
+                  aria-label="Filter by Make"
+                >
+                  <option value="" selected>All Makes</option>
+                  <option value="Toyota">Toyota</option>
+                  <option value="Hyundai">Hyundai</option>
+                  <option value="Kia">Kia</option>
+                  <option value="Honda">Honda</option>
+                  <option value="MG">MG</option>
+                  <option value="Maruti">Maruti</option>
+                </select>
+                <i class="fa-solid fa-chevron-down select-icon"></i>
+              </div>
+            </div>
+
+            <div class="filter-group">
+              <label for="filter-model" class="filter-label">Model</label>
+              <div class="custom-select-wrapper">
+                <select
+                  id="filter-model"
+                  class="filter-select"
+                  aria-label="Filter by Model"
+                >
+                  <option value="" selected>All Models</option>
+                  <option value="Fortuner">Fortuner</option>
+                  <option value="Creta">Creta</option>
+                  <option value="Seltos">Seltos</option>
+                  <option value="City">City</option>
+                  <option value="Hector">Hector</option>
+                  <option value="Swift">Swift</option>
+                </select>
+                <i class="fa-solid fa-chevron-down select-icon"></i>
+              </div>
+            </div>
+
+            <div class="filter-group">
+              <label for="filter-price" class="filter-label">Price Range</label>
+              <div class="custom-select-wrapper">
+                <select
+                  id="filter-price"
+                  class="filter-select"
+                  aria-label="Filter by Price Range"
+                >
+                  <option value="" selected>All Price</option>
+                  <option value="0-1000000">Under ₹10 Lakh</option>
+                  <option value="1000000-2000000">₹10 Lakh - ₹20 Lakh</option>
+                  <option value="2000000-3000000">₹20 Lakh - ₹30 Lakh</option>
+                  <option value="3000000-99999999">Above ₹30 Lakh</option>
+                </select>
+                <i class="fa-solid fa-chevron-down select-icon"></i>
+              </div>
+            </div>
+
+            <div class="filter-group">
+              <label for="filter-fuel" class="filter-label">Fuel Type</label>
+              <div class="custom-select-wrapper">
+                <select
+                  id="filter-fuel"
+                  class="filter-select"
+                  aria-label="Filter by Fuel Type"
+                >
+                  <option value="" selected>All Fuel</option>
+                  <option value="Diesel">Diesel</option>
+                  <option value="Petrol">Petrol</option>
+                  <option value="Electric">Electric</option>
+                  <option value="Hybrid">Hybrid</option>
+                </select>
+                <i class="fa-solid fa-chevron-down select-icon"></i>
+              </div>
+            </div>
+
+            <div class="filter-group">
+              <label for="filter-transmission" class="filter-label"
+                >Transmission</label
+              >
+              <div class="custom-select-wrapper">
+                <select
+                  id="filter-transmission"
+                  class="filter-select"
+                  aria-label="Filter by Transmission"
+                >
+                  <option value="" selected>All Transmission</option>
+                  <option value="Automatic">Automatic</option>
+                  <option value="Manual">Manual</option>
+                </select>
+                <i class="fa-solid fa-chevron-down select-icon"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Popular Cars Section -->
+      <section class="popular-cars-section" id="popular-cars">
+        <div class="popular-cars-container">
+          <div class="section-header">
+            <span class="section-badge">FEATURED CARS</span>
+            <h2 class="section-heading">Popular Cars</h2>
+            <p class="section-subtext">Handpicked for you</p>
+          </div>
+
+          <div class="cars-grid">
+            <!-- Card 1: Toyota Fortuner -->
+            <article
+              class="car-card"
+              data-make="Toyota"
+              data-model="Fortuner"
+              data-price="3250000"
+              data-fuel="Diesel"
+              data-transmission="Automatic"
+            >
+              <div class="car-card-img-wrap">
+                <img
+                  src="../assets/images/home/home-featured-cars-1.webp"
+                  alt="Toyota Fortuner"
+                  class="car-img"
+                  loading="lazy"
+                />
+                <button
+                  type="button"
+                  class="wishlist-toggle-btn"
+                  aria-label="Add Toyota Fortuner to wishlist"
+                >
+                  <i class="fa-regular fa-heart"></i>
+                </button>
+              </div>
+              <div class="car-card-body">
+                <h3 class="car-title">Toyota Fortuner</h3>
+                <div class="car-specs">
+                  <div class="spec-row">
+                    <span class="spec-label">Model</span>
+                    <span class="spec-colon">:</span>
+                    <span class="spec-value">2022</span>
+                  </div>
+                  <div class="spec-row">
+                    <span class="spec-label">KM</span>
+                    <span class="spec-colon">:</span>
+                    <span class="spec-value">24,000 Km</span>
+                  </div>
+                  <div class="spec-row">
+                    <span class="spec-label">Price</span>
+                    <span class="spec-colon">:</span>
+                    <span class="spec-value price-highlight">32,50,000</span>
+                  </div>
+                </div>
+                <div class="car-card-footer">
+                  <span class="fuel-type">Diesel</span>
+                  <a href="#" class="view-details-link">
+                    <span>View Details</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 2: Hyundai Creta -->
+            <article
+              class="car-card"
+              data-make="Hyundai"
+              data-model="Creta"
+              data-price="1875000"
+              data-fuel="Petrol"
+              data-transmission="Manual"
+            >
+              <div class="car-card-img-wrap">
+                <img
+                  src="../assets/images/home/home-featured-cars-2.webp"
+                  alt="Hyundai Creta"
+                  class="car-img"
+                  loading="lazy"
+                />
+                <button
+                  type="button"
+                  class="wishlist-toggle-btn"
+                  aria-label="Add Hyundai Creta to wishlist"
+                >
+                  <i class="fa-regular fa-heart"></i>
+                </button>
+              </div>
+              <div class="car-card-body">
+                <h3 class="car-title">Hyundai Creta</h3>
+                <div class="car-specs">
+                  <div class="spec-row">
+                    <span class="spec-label">Model</span>
+                    <span class="spec-colon">:</span>
+                    <span class="spec-value">2023</span>
+                  </div>
+                  <div class="spec-row">
+                    <span class="spec-label">KM</span>
+                    <span class="spec-colon">:</span>
+                    <span class="spec-value">16,500 Km</span>
+                  </div>
+                  <div class="spec-row">
+                    <span class="spec-label">Price</span>
+                    <span class="spec-colon">:</span>
+                    <span class="spec-value price-highlight">18,75,000</span>
+                  </div>
+                </div>
+                <div class="car-card-footer">
+                  <span class="fuel-type">Petrol</span>
+                  <a href="#" class="view-details-link">
+                    <span>View Details</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 3: Kia Seltos -->
+            <article
+              class="car-card"
+              data-make="Kia"
+              data-model="Seltos"
+              data-price="1990000"
+              data-fuel="Diesel"
+              data-transmission="Automatic"
+            >
+              <div class="car-card-img-wrap">
+                <img
+                  src="../assets/images/home/home-featured-cars-3.webp"
+                  alt="Kia Seltos"
+                  class="car-img"
+                  loading="lazy"
+                />
+                <button
+                  type="button"
+                  class="wishlist-toggle-btn"
+                  aria-label="Add Kia Seltos to wishlist"
+                >
+                  <i class="fa-regular fa-heart"></i>
+                </button>
+              </div>
+              <div class="car-card-body">
+                <h3 class="car-title">Kia Seltos</h3>
+                <div class="car-specs">
+                  <div class="spec-row">
+                    <span class="spec-label">Model</span>
+                    <span class="spec-colon">:</span>
+                    <span class="spec-value">2023</span>
+                  </div>
+                  <div class="spec-row">
+                    <span class="spec-label">KM</span>
+                    <span class="spec-colon">:</span>
+                    <span class="spec-value">20,000 Km</span>
+                  </div>
+                  <div class="spec-row">
+                    <span class="spec-label">Price</span>
+                    <span class="spec-colon">:</span>
+                    <span class="spec-value price-highlight">19,90,000</span>
+                  </div>
+                </div>
+                <div class="car-card-footer">
+                  <span class="fuel-type">Diesel</span>
+                  <a href="#" class="view-details-link">
+                    <span>View Details</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 4: Honda City -->
+            <article
+              class="car-card"
+              data-make="Honda"
+              data-model="City"
+              data-price="1350000"
+              data-fuel="Petrol"
+              data-transmission="Manual"
+            >
+              <div class="car-card-img-wrap">
+                <img
+                  src="../assets/images/home/home-featured-cars-4.webp"
+                  alt="Honda City"
+                  class="car-img"
+                  loading="lazy"
+                />
+                <button
+                  type="button"
+                  class="wishlist-toggle-btn"
+                  aria-label="Add Honda City to wishlist"
+                >
+                  <i class="fa-regular fa-heart"></i>
+                </button>
+              </div>
+              <div class="car-card-body">
+                <h3 class="car-title">Honda City</h3>
+                <div class="car-specs">
+                  <div class="spec-row">
+                    <span class="spec-label">Model</span>
+                    <span class="spec-colon">:</span>
+                    <span class="spec-value">2022</span>
+                  </div>
+                  <div class="spec-row">
+                    <span class="spec-label">KM</span>
+                    <span class="spec-colon">:</span>
+                    <span class="spec-value">15,000 Km</span>
+                  </div>
+                  <div class="spec-row">
+                    <span class="spec-label">Price</span>
+                    <span class="spec-colon">:</span>
+                    <span class="spec-value price-highlight">13,50,000</span>
+                  </div>
+                </div>
+                <div class="car-card-footer">
+                  <span class="fuel-type">Petrol</span>
+                  <a href="#" class="view-details-link">
+                    <span>View Details</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 5: MG Hector -->
+            <article
+              class="car-card"
+              data-make="MG"
+              data-model="Hector"
+              data-price="2190000"
+              data-fuel="Diesel"
+              data-transmission="Automatic"
+            >
+              <div class="car-card-img-wrap">
+                <img
+                  src="../assets/images/home/home-featured-cars-5.webp"
+                  alt="MG Hector"
+                  class="car-img"
+                  loading="lazy"
+                />
+                <button
+                  type="button"
+                  class="wishlist-toggle-btn"
+                  aria-label="Add MG Hector to wishlist"
+                >
+                  <i class="fa-regular fa-heart"></i>
+                </button>
+              </div>
+              <div class="car-card-body">
+                <h3 class="car-title">MG Hector</h3>
+                <div class="car-specs">
+                  <div class="spec-row">
+                    <span class="spec-label">Model</span>
+                    <span class="spec-colon">:</span>
+                    <span class="spec-value">2022</span>
+                  </div>
+                  <div class="spec-row">
+                    <span class="spec-label">KM</span>
+                    <span class="spec-colon">:</span>
+                    <span class="spec-value">12,000 Km</span>
+                  </div>
+                  <div class="spec-row">
+                    <span class="spec-label">Price</span>
+                    <span class="spec-colon">:</span>
+                    <span class="spec-value price-highlight">21,90,000</span>
+                  </div>
+                </div>
+                <div class="car-card-footer">
+                  <span class="fuel-type">Diesel</span>
+                  <a href="#" class="view-details-link">
+                    <span>View Details</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                  </a>
+                </div>
+              </div>
+            </article>
+
+            <!-- Card 6: Maruti Swift -->
+            <article
+              class="car-card"
+              data-make="Maruti"
+              data-model="Swift"
+              data-price="590000"
+              data-fuel="Petrol"
+              data-transmission="Manual"
+            >
+              <div class="car-card-img-wrap">
+                <img
+                  src="../assets/images/home/home-featured-cars-6.webp"
+                  alt="Maruti Swift"
+                  class="car-img"
+                  loading="lazy"
+                />
+                <button
+                  type="button"
+                  class="wishlist-toggle-btn"
+                  aria-label="Add Maruti Swift to wishlist"
+                >
+                  <i class="fa-regular fa-heart"></i>
+                </button>
+              </div>
+              <div class="car-card-body">
+                <h3 class="car-title">Maruti Swift</h3>
+                <div class="car-specs">
+                  <div class="spec-row">
+                    <span class="spec-label">Model</span>
+                    <span class="spec-colon">:</span>
+                    <span class="spec-value">2020</span>
+                  </div>
+                  <div class="spec-row">
+                    <span class="spec-label">KM</span>
+                    <span class="spec-colon">:</span>
+                    <span class="spec-value">40,000 Km</span>
+                  </div>
+                  <div class="spec-row">
+                    <span class="spec-label">Price</span>
+                    <span class="spec-colon">:</span>
+                    <span class="spec-value price-highlight">05,90,000</span>
+                  </div>
+                </div>
+                <div class="car-card-footer">
+                  <span class="fuel-type">Petrol</span>
+                  <a href="#" class="view-details-link">
+                    <span>View Details</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                  </a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
       <!-- Newsletter & CTA Banner Section -->
       <section class="newsletter-cta-section" id="newsletter">
         <div class="newsletter-cta-container">
@@ -83,10 +533,8 @@
               </p>
             </div>
             <div class="cta-drive-actions">
-              <a href="pages/cars.html" class="btn-cta-explore">Explore Cars</a>
-              <a href="pages/contact.html" class="btn-cta-testdrive"
-                >Book Test Drive</a
-              >
+              <a href="#" class="btn-cta-explore">Explore Cars</a>
+              <a href="#" class="btn-cta-testdrive">Book Test Drive</a>
             </div>
           </div>
         </div>

@@ -9,11 +9,10 @@ function initApp() {
   initializeWishlistButtons();
   initializeFinanceCalculator();
   initializeNewsletterForm();
+  initializeCarsFilter();
 }
 
-/**
- * Ensures the Stackly logo is used as the favicon for all pages
- */
+/* Ensures the Stackly logo is used as the favicon for all pages */
 function setupFavicon() {
   const isPagesDir = window.location.pathname.includes("/pages/");
   const basePath = isPagesDir ? "../" : "./";
@@ -29,9 +28,7 @@ function setupFavicon() {
   favicon.href = faviconHref;
 }
 
-/**
- * Loads header.html into the page (if a placeholder is present) or initializes existing header
- */
+/* Loads header.html into the page (if a placeholder is present) or initializes existing header */
 async function loadHeaderComponent() {
   const headerPlaceholder =
     document.getElementById("header-placeholder") ||
@@ -413,7 +410,8 @@ function initializeNewsletterForm() {
     }
 
     const originalBtnHTML = submitBtn.innerHTML;
-    submitBtn.innerHTML = '<i class="fa-solid fa-check"></i> <span>Subscribed!</span>';
+    submitBtn.innerHTML =
+      '<i class="fa-solid fa-check"></i> <span>Subscribed!</span>';
     submitBtn.style.backgroundColor = "#16a34a";
     emailInput.value = "";
     emailInput.disabled = true;
@@ -426,3 +424,96 @@ function initializeNewsletterForm() {
   });
 }
 
+/**
+ * Initializes interactive filtering on the Cars page hero filter bar
+ */
+function initializeCarsFilter() {
+  const filterMake = document.getElementById("filter-make");
+  const filterModel = document.getElementById("filter-model");
+  const filterPrice = document.getElementById("filter-price");
+  const filterFuel = document.getElementById("filter-fuel");
+  const filterTransmission = document.getElementById("filter-transmission");
+  const carCards = document.querySelectorAll(".cars-grid .car-card");
+
+  if (!filterMake || !carCards.length) return;
+
+  const filters = [
+    filterMake,
+    filterModel,
+    filterPrice,
+    filterFuel,
+    filterTransmission,
+  ];
+
+  function applyFilters() {
+    const selectedMake = filterMake.value.toLowerCase().trim();
+    const selectedModel = filterModel.value.toLowerCase().trim();
+    const selectedPrice = filterPrice.value.trim();
+    const selectedFuel = filterFuel.value.toLowerCase().trim();
+    const selectedTransmission = filterTransmission.value.toLowerCase().trim();
+
+    let minPrice = 0;
+    let maxPrice = Infinity;
+    if (selectedPrice && selectedPrice.includes("-")) {
+      const [minStr, maxStr] = selectedPrice.split("-");
+      minPrice = parseFloat(minStr) || 0;
+      maxPrice = parseFloat(maxStr) || Infinity;
+    }
+
+    let matchCount = 0;
+
+    carCards.forEach((card) => {
+      const make = (card.getAttribute("data-make") || "").toLowerCase();
+      const model = (card.getAttribute("data-model") || "").toLowerCase();
+      const price = parseFloat(card.getAttribute("data-price")) || 0;
+      const fuel = (card.getAttribute("data-fuel") || "").toLowerCase();
+      const transmission = (
+        card.getAttribute("data-transmission") || ""
+      ).toLowerCase();
+
+      const matchesMake = !selectedMake || make === selectedMake;
+      const matchesModel = !selectedModel || model === selectedModel;
+      const matchesPrice =
+        !selectedPrice || (price >= minPrice && price <= maxPrice);
+      const matchesFuel = !selectedFuel || fuel === selectedFuel;
+      const matchesTransmission =
+        !selectedTransmission || transmission === selectedTransmission;
+
+      if (
+        matchesMake &&
+        matchesModel &&
+        matchesPrice &&
+        matchesFuel &&
+        matchesTransmission
+      ) {
+        card.style.display = "";
+        matchCount++;
+      } else {
+        card.style.display = "none";
+      }
+    });
+
+    const grid = document.querySelector(".cars-grid");
+    let noResultsMsg = document.getElementById("cars-no-results");
+    if (matchCount === 0) {
+      if (!noResultsMsg && grid) {
+        noResultsMsg = document.createElement("div");
+        noResultsMsg.id = "cars-no-results";
+        noResultsMsg.className = "no-cars-message";
+        noResultsMsg.innerHTML =
+          '<p style="text-align: center; grid-column: 1 / -1; padding: 3rem 1rem; font-size: 1.15rem; color: #64748b;"><i class="fa-solid fa-car" style="font-size: 2rem; display: block; margin-bottom: 0.75rem; color: #94a3b8;"></i>No cars found matching your selected criteria. Try resetting the filters.</p>';
+        grid.appendChild(noResultsMsg);
+      } else if (noResultsMsg) {
+        noResultsMsg.style.display = "";
+      }
+    } else if (noResultsMsg) {
+      noResultsMsg.style.display = "none";
+    }
+  }
+
+  filters.forEach((filter) => {
+    if (filter) {
+      filter.addEventListener("change", applyFilters);
+    }
+  });
+}

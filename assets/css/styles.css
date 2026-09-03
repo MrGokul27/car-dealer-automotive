@@ -412,14 +412,196 @@ img {
 }
 
 /* --------------------------------------------------------------------------
+   CARS PAGE HERO SECTION & FILTER BAR
+   -------------------------------------------------------------------------- */
+.cars-hero-section {
+  position: relative;
+  min-height: 480px;
+  background-image: url("../images/cars/cars-banner-image.png");
+  background-size: cover;
+  background-position: center right;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: flex-end;
+  padding: 5rem 0 0;
+  overflow: visible;
+}
+
+/* .cars-hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(14, 18, 28, 0.82) 0%,
+    rgba(14, 18, 28, 0.6) 45%,
+    rgba(14, 18, 28, 0.3) 80%,
+    rgba(14, 18, 28, 0.2) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+} */
+
+.cars-hero-container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 2.5rem;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 3.5rem;
+}
+
+.cars-hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 800px;
+}
+
+/* Breadcrumb */
+.cars-breadcrumb {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.2px;
+}
+
+.cars-breadcrumb .breadcrumb-item {
+  color: #ffffff;
+  transition: color var(--transition-speed) ease;
+}
+
+.cars-breadcrumb .breadcrumb-item:hover {
+  color: #e2e8f0;
+}
+
+.cars-breadcrumb .breadcrumb-separator {
+  color: #ffffff;
+  font-weight: 700;
+  user-select: none;
+}
+
+.cars-breadcrumb .breadcrumb-item.active {
+  color: var(--primary-red);
+  font-weight: 700;
+  cursor: default;
+}
+
+/* Title & Description */
+.cars-hero-title {
+  font-size: clamp(3.2rem, 6vw, 4.85rem);
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.5px;
+}
+
+.cars-hero-description {
+  font-size: clamp(1.15rem, 1.8vw, 1.35rem);
+  font-weight: 600;
+  color: #ffffff;
+  line-height: 1.45;
+  max-width: 680px;
+}
+
+/* Cars Filter Bar */
+.cars-filter-bar {
+  background-color: #0b0f19;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 16px;
+  padding: 1.6rem 2.25rem;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1.5rem;
+  align-items: end;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.5);
+  width: 100%;
+  position: relative;
+  z-index: 10;
+  transform: translateY(50%);
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.filter-label {
+  font-size: 0.98rem;
+  font-weight: 500;
+  color: #ffffff;
+  letter-spacing: 0.2px;
+}
+
+.custom-select-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.filter-select {
+  width: 100%;
+  background-color: #0b0f19;
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 8px;
+  padding: 0.65rem 2.25rem 0.65rem 1rem;
+  font-size: 0.95rem;
+  font-family: inherit;
+  font-weight: 400;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  outline: none;
+  transition:
+    border-color var(--transition-speed) ease,
+    box-shadow var(--transition-speed) ease,
+    background-color var(--transition-speed) ease;
+}
+
+.filter-select:hover,
+.filter-select:focus {
+  border-color: rgba(255, 255, 255, 0.75);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
+}
+
+.filter-select option {
+  background-color: #121826;
+  color: #ffffff;
+  padding: 0.6rem;
+}
+
+.select-icon {
+  position: absolute;
+  right: 1.1rem;
+  pointer-events: none;
+  color: #ffffff;
+  font-size: 0.8rem;
+}
+
+/* --------------------------------------------------------------------------
    POPULAR CARS (FEATURED) SECTION
    -------------------------------------------------------------------------- */
 .popular-cars-section {
   width: 100%;
   background-color: #ffffff;
   color: #111827;
-  padding: 5rem 0 3.5rem;
+  padding: 6.5rem 0 3.5rem;
   position: relative;
+  z-index: 1;
 }
 
 .popular-cars-container {
@@ -1831,6 +2013,12 @@ img {
     gap: 1.75rem 1.5rem;
   }
 
+  .cars-filter-bar {
+    grid-template-columns: repeat(3, 1fr);
+    padding: 1.4rem 1.75rem;
+    gap: 1.25rem;
+  }
+
   .categories-grid {
     grid-template-columns: repeat(3, 1fr);
     gap: 1.35rem;
@@ -1934,6 +2122,15 @@ img {
     padding: 5rem 0 6rem;
   }
 
+  .cars-hero-section {
+    min-height: auto;
+    padding: 3.5rem 0 0;
+  }
+
+  .cars-hero-container {
+    gap: 2.5rem;
+  }
+
   .hero-content {
     max-width: 100%;
   }
@@ -1943,13 +2140,23 @@ img {
     margin-bottom: 1.35rem;
   }
 
+  .cars-hero-title {
+    font-size: clamp(2.5rem, 6.5vw, 3.6rem);
+    margin-bottom: 1.25rem;
+  }
+
   .hero-description {
     font-size: 1.15rem;
     margin-bottom: 2.2rem;
   }
 
+  .cars-hero-description {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+
   .popular-cars-section {
-    padding: 4rem 0 2.5rem;
+    padding: 7rem 0 2.5rem;
   }
 
   .categories-section {
@@ -2030,6 +2237,16 @@ img {
 }
 
 @media (max-width: 680px) {
+  .cars-filter-bar {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 1.25rem;
+    gap: 1.1rem;
+  }
+
+  .popular-cars-section {
+    padding: 9.5rem 0 2.5rem;
+  }
+
   .cars-grid {
     grid-template-columns: 1fr;
     max-width: 440px;
@@ -2094,6 +2311,7 @@ img {
   }
 
   .hero-container,
+  .cars-hero-container,
   .popular-cars-container,
   .categories-container,
   .why-choose-us-container,
@@ -2103,6 +2321,12 @@ img {
   .latest-arrivals-container,
   .newsletter-cta-container {
     padding: 0 1.25rem;
+  }
+
+  .cars-filter-bar {
+    grid-template-columns: 1fr;
+    padding: 1.25rem 1rem;
+    gap: 1rem;
   }
 
   .newsletter-input-group {
@@ -2151,7 +2375,7 @@ img {
   }
 
   .popular-cars-section {
-    padding: 3.5rem 0 2rem;
+    padding: 14rem 0 2rem;
   }
 
   .categories-section {
