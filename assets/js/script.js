@@ -6,6 +6,7 @@ function initApp() {
   setupFavicon();
   loadHeaderComponent();
   loadFooterComponent();
+  initializeScrollToTop();
   initializeWishlistButtons();
   initializeFinanceCalculator();
   initializeNewsletterForm();
@@ -81,6 +82,7 @@ async function loadFooterComponent() {
     footerPlaceholder &&
     footerPlaceholder.classList.contains("site-footer")
   ) {
+    initializeScrollToTop();
     return;
   }
 
@@ -100,11 +102,13 @@ async function loadFooterComponent() {
     footerPlaceholder.outerHTML = html;
 
     adjustFooterPaths(isPagesDir);
+    initializeScrollToTop();
   } catch (error) {
     console.warn(
       "Component fetch fallback (e.g. running from local file system without server):",
       error,
     );
+    initializeScrollToTop();
   }
 }
 
@@ -515,5 +519,50 @@ function initializeCarsFilter() {
     if (filter) {
       filter.addEventListener("change", applyFilters);
     }
+  });
+}
+
+/**
+ * Initializes Scroll to Top button behavior and interactions
+ */
+function initializeScrollToTop() {
+  let scrollBtn = document.getElementById("scroll-to-top");
+
+  // Fallback: If button does not exist in DOM yet, create it dynamically
+  if (!scrollBtn) {
+    scrollBtn = document.createElement("button");
+    scrollBtn.type = "button";
+    scrollBtn.id = "scroll-to-top";
+    scrollBtn.className = "scroll-to-top";
+    scrollBtn.setAttribute("aria-label", "Scroll to top");
+    scrollBtn.setAttribute("title", "Scroll to top");
+    scrollBtn.innerHTML =
+      '<i class="fa-solid fa-arrow-up" aria-hidden="true"></i>';
+    document.body.appendChild(scrollBtn);
+  }
+
+  // Prevent attaching duplicate listeners
+  if (scrollBtn.dataset.initialized === "true") return;
+  scrollBtn.dataset.initialized = "true";
+
+  // Toggle visibility depending on scroll distance
+  const handleScroll = () => {
+    if (window.scrollY > 300) {
+      scrollBtn.classList.add("visible");
+    } else {
+      scrollBtn.classList.remove("visible");
+    }
+  };
+
+  window.addEventListener("scroll", handleScroll, { passive: true });
+  // Initial check on load
+  handleScroll();
+
+  // Smooth scroll to top on click
+  scrollBtn.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
   });
 }
