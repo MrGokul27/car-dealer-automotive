@@ -831,6 +831,114 @@ img {
 }
 
 /* --------------------------------------------------------------------------
+   OUR VALUES SECTION (ABOUT PAGE)
+   -------------------------------------------------------------------------- */
+.our-values-section {
+  width: 100%;
+  background-color: #07090e;
+  color: var(--text-white);
+  padding: 5.5rem 0 6rem;
+  position: relative;
+  z-index: 1;
+}
+
+.our-values-container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 2.5rem;
+  width: 100%;
+}
+
+.our-values-header {
+  text-align: center;
+  margin-bottom: 3.75rem;
+}
+
+.our-values-subtitle {
+  color: var(--primary-red);
+  font-size: 0.95rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  margin-bottom: 0.75rem;
+  display: inline-block;
+}
+
+.our-values-title {
+  font-size: clamp(2.2rem, 3.5vw, 3rem);
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+}
+
+.our-values-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  align-items: stretch;
+  position: relative;
+}
+
+.our-values-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1.25rem 1.75rem;
+  position: relative;
+  transition: transform var(--transition-speed) ease;
+}
+
+.our-values-card:hover {
+  transform: translateY(-4px);
+}
+
+.our-values-card:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 15%;
+  height: 70%;
+  width: 1px;
+  background-color: rgba(255, 255, 255, 0.14);
+}
+
+.our-values-icon-wrap {
+  width: 100%;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.our-values-icon {
+  max-width: 52px;
+  max-height: 52px;
+  object-fit: contain;
+  transition: transform var(--transition-speed) ease;
+}
+
+.our-values-card:hover .our-values-icon {
+  transform: scale(1.08);
+}
+
+.our-values-card-title {
+  font-size: 1.18rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.85rem;
+  line-height: 1.3;
+}
+
+.our-values-card-desc {
+  font-size: 0.95rem;
+  color: #9ca3af;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+/* --------------------------------------------------------------------------
    POPULAR CARS (FEATURED) SECTION
    -------------------------------------------------------------------------- */
 .popular-cars-section {
@@ -2401,6 +2509,15 @@ img {
   .stat-separator {
     height: 42px;
   }
+
+  .our-values-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem 1.5rem;
+  }
+
+  .our-values-card:not(:last-child)::after {
+    display: none;
+  }
 }
 
 @media (max-width: 960px) {
@@ -2512,6 +2629,10 @@ img {
     padding: 4.5rem 0 5rem;
   }
 
+  .our-values-section {
+    padding: 4.5rem 0 5rem;
+  }
+
   .who-we-are-grid {
     grid-template-columns: 1fr;
     gap: 2.75rem;
@@ -2598,6 +2719,15 @@ img {
     padding: 3.5rem 0 4rem;
   }
 
+  .our-values-section {
+    padding: 3.5rem 0 4rem;
+  }
+
+  .our-values-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.25rem 1.25rem;
+  }
+
   .who-we-are-stats-card {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -2681,6 +2811,7 @@ img {
   .cars-hero-container,
   .about-hero-container,
   .who-we-are-container,
+  .our-values-container,
   .popular-cars-container,
   .categories-container,
   .why-choose-us-container,
@@ -2867,6 +2998,13 @@ img {
     grid-template-columns: 1fr;
     gap: 2rem;
     max-width: 280px;
+    margin: 0 auto;
+  }
+
+  .our-values-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    max-width: 300px;
     margin: 0 auto;
   }
 
