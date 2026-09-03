@@ -824,6 +824,233 @@ img {
 }
 
 /* --------------------------------------------------------------------------
+   FINANCE YOUR CAR SECTION
+   -------------------------------------------------------------------------- */
+.finance-section {
+  width: 100%;
+  background-color: #ffffff;
+  color: #111827;
+  position: relative;
+  overflow: hidden;
+  padding: 20px 0;
+}
+
+.finance-container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 20px 2rem;
+  width: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 540px) minmax(300px, 360px);
+  gap: 3rem;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+/* Left Column: Form */
+.finance-form-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.finance-header {
+  margin-bottom: 2rem;
+}
+
+.finance-badge {
+  display: block;
+  color: var(--primary-red);
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.finance-heading {
+  font-size: clamp(2rem, 3.2vw, 2.75rem);
+  font-weight: 800;
+  color: #000000;
+  line-height: 1.15;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.5px;
+}
+
+.finance-desc {
+  font-size: 0.98rem;
+  color: #4b5568;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.finance-calculator-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.finance-inputs-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.35rem 1.25rem;
+  margin-bottom: 1.85rem;
+}
+
+.finance-input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.finance-label {
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #111827;
+  margin-bottom: 0.45rem;
+}
+
+.finance-input {
+  width: 100%;
+  height: 48px;
+  padding: 0 1rem;
+  font-family: var(--font-primary);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #000000;
+  background-color: #ffffff;
+  border: 1.5px solid #242938;
+  border-radius: 8px;
+  outline: none;
+  transition:
+    border-color var(--transition-speed) ease,
+    box-shadow var(--transition-speed) ease;
+}
+
+.finance-input:focus {
+  border-color: var(--primary-red);
+  box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.12);
+}
+
+.btn-calculate-emi {
+  align-self: flex-start;
+  background-color: var(--primary-red);
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 700;
+  padding: 0.85rem 2.25rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(255, 0, 0, 0.28);
+  transition:
+    background-color var(--transition-speed) ease,
+    transform var(--transition-speed) ease,
+    box-shadow var(--transition-speed) ease;
+}
+
+.btn-calculate-emi:hover {
+  background-color: var(--primary-red-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(255, 0, 0, 0.38);
+}
+
+.btn-calculate-emi:active {
+  transform: translateY(0);
+}
+
+/* Right / Result Column: Result Card */
+.finance-result-col {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.finance-result-card {
+  width: 100%;
+  background-color: #0c1017;
+  border-radius: 10px;
+  padding: 2.25rem 2rem;
+  color: #ffffff;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.18);
+  display: flex;
+  flex-direction: column;
+}
+
+.result-card-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 1.1rem;
+  letter-spacing: -0.2px;
+}
+
+.result-emi-amount {
+  font-size: clamp(1.85rem, 2.5vw, 2.35rem);
+  font-weight: 800;
+  color: var(--primary-red);
+  margin-bottom: 1.6rem;
+  letter-spacing: -0.5px;
+}
+
+.result-features-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.95rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.result-features-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+.result-features-list li i {
+  color: #ffffff;
+  font-size: 0.85rem;
+  opacity: 0.9;
+}
+
+/* Full Right Side Page Media Graphic & Car */
+.finance-media-wrap {
+  position: static;
+  width: 0;
+  height: 0;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.finance-bg-element {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  height: 100%;
+  width: auto;
+  object-fit: fill;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.finance-car-img {
+  position: absolute;
+  right: 0;
+  top: 20%;
+  bottom: 0;
+  height: 70%;
+  width: auto;
+  max-width: none;
+  object-fit: cover;
+  object-position: right center;
+  z-index: 1;
+  pointer-events: none;
+  filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.22));
+}
+
+/* --------------------------------------------------------------------------
    FOOTER COMPONENT
    -------------------------------------------------------------------------- */
 .site-footer {
@@ -1115,6 +1342,31 @@ img {
   .footer-car-image {
     max-width: 320px;
   }
+
+  .finance-container {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    padding: 3rem 2rem;
+  }
+
+  .finance-media-wrap {
+    width: 0;
+    height: 0;
+  }
+
+  .finance-bg-element {
+    height: 60%;
+    top: auto;
+    bottom: 0;
+    opacity: 0.5;
+  }
+
+  .finance-car-img {
+    height: 55%;
+    top: auto;
+    bottom: 0;
+    opacity: 0.35;
+  }
 }
 
 @media (max-width: 960px) {
@@ -1218,6 +1470,22 @@ img {
     grid-template-columns: repeat(2, 1fr);
     gap: 2.25rem 1.25rem;
   }
+
+  .finance-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 2.5rem 1.5rem;
+  }
+
+  .finance-media-wrap {
+    width: 0;
+    height: 0;
+  }
+
+  .finance-bg-element,
+  .finance-car-img {
+    display: none;
+  }
 }
 
 @media (max-width: 580px) {
@@ -1236,8 +1504,27 @@ img {
   .hero-container,
   .popular-cars-container,
   .categories-container,
-  .why-choose-us-container {
+  .why-choose-us-container,
+  .finance-container {
     padding: 0 1.25rem;
+  }
+
+  .finance-section {
+    padding: 0;
+  }
+
+  .finance-inputs-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .btn-calculate-emi {
+    width: 100%;
+    text-align: center;
+  }
+
+  .finance-result-card {
+    padding: 1.85rem 1.4rem;
   }
 
   .popular-cars-section {

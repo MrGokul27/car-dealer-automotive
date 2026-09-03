@@ -7,6 +7,7 @@ function initApp() {
   loadHeaderComponent();
   loadFooterComponent();
   initializeWishlistButtons();
+  initializeFinanceCalculator();
 }
 
 /**
@@ -296,4 +297,97 @@ function initializeWishlistButtons() {
       }
     });
   });
+}
+
+/**
+ * Initializes Finance EMI Calculator with interactive calculations and Indian currency formatting
+ */
+function initializeFinanceCalculator() {
+  const priceInput = document.getElementById("car-price");
+  const downPaymentInput = document.getElementById("down-payment");
+  const interestInput = document.getElementById("interest-rate");
+  const tenureInput = document.getElementById("loan-tenure");
+  const calculateBtn = document.getElementById("calculate-emi-btn");
+  const emiDisplay = document.getElementById("result-emi-display");
+
+  if (
+    !priceInput ||
+    !downPaymentInput ||
+    !interestInput ||
+    !tenureInput ||
+    !emiDisplay
+  ) {
+    return;
+  }
+
+  function parseNumber(val) {
+    if (typeof val !== "string") val = String(val || "");
+    const cleaned = val.replace(/[^0-9.]/g, "");
+    return parseFloat(cleaned) || 0;
+  }
+
+  function formatCurrency(num) {
+    return "₹ " + Math.round(num).toLocaleString("en-IN");
+  }
+
+  function calculateEMI() {
+    const carPrice = parseNumber(priceInput.value);
+    const downPayment = parseNumber(downPaymentInput.value);
+    const annualRate = parseNumber(interestInput.value);
+    const tenureYears = parseNumber(tenureInput.value);
+
+    const principal = Math.max(0, carPrice - downPayment);
+    const monthlyRate = annualRate / 12 / 100;
+    const months = tenureYears * 12;
+
+    if (principal <= 0 || months <= 0) {
+      emiDisplay.textContent = "₹ 0 /-";
+      return;
+    }
+
+    let monthlyEMI = 0;
+    if (monthlyRate === 0) {
+      monthlyEMI = principal / months;
+    } else {
+      const compoundFactor = Math.pow(1 + monthlyRate, months);
+      monthlyEMI =
+        (principal * monthlyRate * compoundFactor) / (compoundFactor - 1);
+    }
+
+    if (isNaN(monthlyEMI) || !isFinite(monthlyEMI)) {
+      emiDisplay.textContent = "₹ 0 /-";
+    } else {
+      emiDisplay.textContent = `${formatCurrency(monthlyEMI)} /-`;
+    }
+  }
+
+  // Format currency inputs on blur / focus
+  [priceInput, downPaymentInput].forEach((input) => {
+    input.addEventListener("blur", () => {
+      const num = parseNumber(input.value);
+      if (num > 0) {
+        input.value = formatCurrency(num);
+      }
+    });
+
+    input.addEventListener("focus", () => {
+      const num = parseNumber(input.value);
+      if (num > 0) {
+        input.value = num;
+      }
+    });
+  });
+
+  if (calculateBtn) {
+    calculateBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      calculateEMI();
+    });
+  }
+
+  [priceInput, downPaymentInput, interestInput, tenureInput].forEach(
+    (input) => {
+      input.addEventListener("input", calculateEMI);
+    },
+  );
 }

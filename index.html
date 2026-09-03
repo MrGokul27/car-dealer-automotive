@@ -529,6 +529,142 @@
           </div>
         </div>
       </section>
+
+      <!-- Finance Your Car Section -->
+      <section class="finance-section" id="finance">
+        <div class="finance-container">
+          <!-- Left Column: Form & Info -->
+          <div class="finance-form-col">
+            <div class="finance-header">
+              <span class="finance-badge">FINANCE YOUR CAR</span>
+              <h2 class="finance-heading">
+                Make Your Dream<br />
+                Car Affordable
+              </h2>
+              <p class="finance-desc">
+                Calculate your EMI and drive your dream car today.
+              </p>
+            </div>
+
+            <form
+              class="finance-calculator-form"
+              id="emi-calculator-form"
+              onsubmit="return false;"
+            >
+              <div class="finance-inputs-grid">
+                <div class="finance-input-group">
+                  <label for="car-price" class="finance-label">Car Price</label>
+                  <input
+                    type="text"
+                    id="car-price"
+                    class="finance-input"
+                    value="₹ 10,00,000"
+                    placeholder="₹ 10,00,000"
+                    autocomplete="off"
+                  />
+                </div>
+
+                <div class="finance-input-group">
+                  <label for="down-payment" class="finance-label"
+                    >Down Payment</label
+                  >
+                  <input
+                    type="text"
+                    id="down-payment"
+                    class="finance-input"
+                    value="₹ 2,00,000"
+                    placeholder="₹ 2,00,000"
+                    autocomplete="off"
+                  />
+                </div>
+
+                <div class="finance-input-group">
+                  <label for="interest-rate" class="finance-label"
+                    >Interest Rate (%)</label
+                  >
+                  <input
+                    type="text"
+                    id="interest-rate"
+                    class="finance-input"
+                    value="8.5"
+                    placeholder="8.5"
+                    autocomplete="off"
+                  />
+                </div>
+
+                <div class="finance-input-group">
+                  <label for="loan-tenure" class="finance-label"
+                    >Loan Tenure (Years)</label
+                  >
+                  <input
+                    type="number"
+                    id="loan-tenure"
+                    class="finance-input"
+                    value="5"
+                    placeholder="5"
+                    autocomplete="off"
+                  />
+                </div>
+              </div>
+
+              <button
+                type="button"
+                id="calculate-emi-btn"
+                class="btn-calculate-emi"
+              >
+                Calculate EMI
+              </button>
+            </form>
+          </div>
+
+          <!-- Middle Column: Estimated Monthly EMI Result Card -->
+          <div class="finance-result-col">
+            <div class="finance-result-card">
+              <h3 class="result-card-title">Estimated Monthly EMI</h3>
+              <div class="result-emi-amount" id="result-emi-display">
+                ₹ 16,413 /-
+              </div>
+              <ul class="result-features-list">
+                <li>
+                  <i class="fa-solid fa-check"></i>
+                  <span>Flexible Tenure</span>
+                </li>
+                <li>
+                  <i class="fa-solid fa-check"></i>
+                  <span>Low Interest Rate</span>
+                </li>
+                <li>
+                  <i class="fa-solid fa-check"></i>
+                  <span>Quick Approval</span>
+                </li>
+                <li>
+                  <i class="fa-solid fa-check"></i>
+                  <span>Minimal Documentation</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- Right Column: Visual Graphic & Car -->
+        <div class="finance-media-col">
+          <div class="finance-media-wrap">
+            <img
+              src="assets/images/home/home-finance-your-car-img.webp"
+              alt="Finance Dream Car"
+              class="finance-car-img"
+              loading="lazy"
+            />
+          </div>
+        </div>
+        <div>
+          <img
+            src="assets/images/home/home-finance-your-car-bg-element.webp"
+            alt="Finance Accent Graphic"
+            class="finance-bg-element"
+            loading="lazy"
+          />
+        </div>
+      </section>
     </main>
 
     <!-- Footer Component Placeholder -->
