@@ -696,6 +696,175 @@ img {
 }
 
 /* --------------------------------------------------------------------------
+   WHO WE ARE SECTION (ABOUT PAGE)
+   -------------------------------------------------------------------------- */
+.who-we-are-section {
+  width: 100%;
+  background-color: #ffffff;
+  color: #111827;
+  padding: 5.5rem 0 6rem;
+  position: relative;
+  z-index: 1;
+}
+
+.who-we-are-container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 2.5rem;
+  width: 100%;
+}
+
+.who-we-are-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.35fr;
+  gap: 3.5rem;
+  align-items: center;
+}
+
+.who-we-are-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.who-we-are-subtitle {
+  color: var(--primary-red);
+  font-size: 1.05rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.85rem;
+  display: inline-block;
+}
+
+.who-we-are-title {
+  font-size: clamp(2.35rem, 3.8vw, 3.4rem);
+  font-weight: 800;
+  color: #0b0f19;
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+  margin-bottom: 1.75rem;
+}
+
+.who-we-are-description {
+  font-size: 1.05rem;
+  line-height: 1.68;
+  color: #374151;
+  margin-bottom: 1.25rem;
+  font-weight: 400;
+}
+
+.who-we-are-btn-wrap {
+  margin-top: 1rem;
+}
+
+.btn-who-we-are {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  background-color: #c91f28;
+  background: linear-gradient(135deg, #df1f26 0%, #b8141b 100%);
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.85rem 1.85rem;
+  border-radius: 50px;
+  box-shadow: 0 6px 18px rgba(201, 31, 40, 0.35);
+  transition: all var(--transition-speed) ease;
+}
+
+.btn-who-we-are:hover {
+  background: linear-gradient(135deg, #e6232b 0%, #c91f28 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(201, 31, 40, 0.45);
+  color: #ffffff;
+}
+
+.btn-who-we-are i {
+  font-size: 0.95rem;
+  transition: transform var(--transition-speed) ease;
+}
+
+.btn-who-we-are:hover i {
+  transform: translateX(4px);
+}
+
+.who-we-are-image-wrapper {
+  position: relative;
+  width: 100%;
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.08);
+}
+
+.who-we-are-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  border-radius: 28px;
+  transition: transform 0.4s ease;
+}
+
+.who-we-are-image-wrapper:hover .who-we-are-img {
+  transform: scale(1.02);
+}
+
+/* Bottom Stats Bar Overlap */
+.who-we-are-stats-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: -3.75rem;
+  position: relative;
+  z-index: 10;
+}
+
+.who-we-are-stats-card {
+  width: 68%;
+  background-color: #080b11;
+  background: linear-gradient(180deg, #0d121c 0%, #06090e 100%);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 26px;
+  padding: 1.85rem 3rem;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+}
+
+.who-we-are-stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1;
+}
+
+.who-we-are-stat-item .stat-number {
+  color: var(--primary-red);
+  font-size: clamp(2rem, 2.75vw, 2.65rem);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 0.35rem;
+  letter-spacing: -0.5px;
+}
+
+.who-we-are-stat-item .stat-label {
+  color: #ffffff;
+  font-size: 0.95rem;
+  font-weight: 500;
+  white-space: nowrap;
+  letter-spacing: 0.1px;
+}
+
+.stat-separator {
+  width: 1px;
+  height: 48px;
+  background-color: rgba(255, 255, 255, 0.2);
+  flex-shrink: 0;
+}
+
+/* --------------------------------------------------------------------------
    POPULAR CARS (FEATURED) SECTION
    -------------------------------------------------------------------------- */
 .popular-cars-section {
@@ -2179,6 +2348,16 @@ img {
     bottom: 0;
     opacity: 0.35;
   }
+
+  .who-we-are-stats-card {
+    width: 76%;
+    padding: 1.6rem 2rem;
+    gap: 1.25rem;
+  }
+
+  .stat-separator {
+    height: 42px;
+  }
 }
 
 @media (max-width: 960px) {
@@ -2286,6 +2465,25 @@ img {
     gap: 1.5rem;
   }
 
+  .who-we-are-section {
+    padding: 4.5rem 0 5rem;
+  }
+
+  .who-we-are-grid {
+    grid-template-columns: 1fr;
+    gap: 2.75rem;
+  }
+
+  .who-we-are-stats-wrapper {
+    margin-top: 2rem;
+    justify-content: stretch;
+  }
+
+  .who-we-are-stats-card {
+    width: 100%;
+    padding: 1.75rem 2rem;
+  }
+
   .reviews-section {
     padding: 1.5rem 0 4.5rem;
   }
@@ -2351,6 +2549,22 @@ img {
     grid-template-columns: repeat(2, 1fr);
     padding: 1.25rem;
     gap: 1.1rem;
+  }
+
+  .who-we-are-section {
+    padding: 3.5rem 0 4rem;
+  }
+
+  .who-we-are-stats-card {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem 1.75rem;
+    padding: 1.6rem 1.5rem;
+    border-radius: 20px;
+  }
+
+  .stat-separator {
+    display: none;
   }
 
   .popular-cars-section {
@@ -2423,6 +2637,7 @@ img {
   .hero-container,
   .cars-hero-container,
   .about-hero-container,
+  .who-we-are-container,
   .popular-cars-container,
   .categories-container,
   .why-choose-us-container,
