@@ -1236,6 +1236,127 @@ img {
 }
 
 /* --------------------------------------------------------------------------
+   LATEST ARRIVALS / RECENTLY ADDED CARS SECTION
+   -------------------------------------------------------------------------- */
+.latest-arrivals-section {
+  width: 100%;
+  background-color: #ffffff;
+  color: #111827;
+  padding: 1.5rem 0 5.5rem;
+  position: relative;
+}
+
+.latest-arrivals-container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 2rem;
+  width: 100%;
+}
+
+.latest-arrivals-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.75rem;
+  align-items: stretch;
+}
+
+.latest-car-card {
+  background-color: #ffffff;
+  border: 1.5px solid #242938;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  transition:
+    transform var(--transition-speed) ease,
+    box-shadow var(--transition-speed) ease,
+    border-color var(--transition-speed) ease;
+}
+
+.latest-car-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+  border-color: var(--primary-red);
+}
+
+.latest-car-img-wrap {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  background-color: #0d121d;
+  overflow: hidden;
+}
+
+.latest-car-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.45s ease;
+}
+
+.latest-car-card:hover .latest-car-img {
+  transform: scale(1.04);
+}
+
+.latest-car-body {
+  padding: 1.35rem 1.4rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.latest-car-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #000000;
+  margin-bottom: 0.95rem;
+  letter-spacing: -0.2px;
+}
+
+.latest-car-specs {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.latest-spec-row {
+  display: grid;
+  grid-template-columns: 52px 14px 1fr;
+  align-items: center;
+  font-size: 0.92rem;
+  line-height: 1.45;
+}
+
+.latest-spec-label {
+  color: #111827;
+  font-weight: 500;
+}
+
+.latest-spec-colon {
+  color: #111827;
+  font-weight: 500;
+  text-align: center;
+}
+
+.latest-spec-value {
+  color: #111827;
+  font-weight: 500;
+}
+
+.latest-spec-value.price-highlight {
+  color: var(--primary-red);
+  font-weight: 600;
+}
+
+.latest-spec-fuel {
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: #111827;
+  margin-top: 0.2rem;
+}
+
+/* --------------------------------------------------------------------------
    FOOTER COMPONENT
    -------------------------------------------------------------------------- */
 .site-footer {
@@ -1647,6 +1768,15 @@ img {
     gap: 1.5rem;
   }
 
+  .latest-arrivals-section {
+    padding: 1.5rem 0 4.5rem;
+  }
+
+  .latest-arrivals-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
   .footer-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 2.25rem;
@@ -1690,6 +1820,12 @@ img {
     margin: 0 auto;
   }
 
+  .latest-arrivals-grid {
+    grid-template-columns: 1fr;
+    max-width: 440px;
+    margin: 0 auto;
+  }
+
   .finance-container {
     grid-template-columns: 1fr;
     gap: 2rem;
@@ -1726,7 +1862,8 @@ img {
   .why-choose-us-container,
   .finance-container,
   .services-container,
-  .reviews-container {
+  .reviews-container,
+  .latest-arrivals-container {
     padding: 0 1.25rem;
   }
 
@@ -1769,6 +1906,10 @@ img {
   }
 
   .reviews-section {
+    padding: 1rem 0 3.75rem;
+  }
+
+  .latest-arrivals-section {
     padding: 1rem 0 3.75rem;
   }
 
@@ -1878,6 +2019,12 @@ img {
   }
 
   .reviews-grid {
+    grid-template-columns: 1fr;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  .latest-arrivals-grid {
     grid-template-columns: 1fr;
     max-width: 300px;
     margin: 0 auto;
