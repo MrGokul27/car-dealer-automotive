@@ -1051,6 +1051,191 @@ img {
 }
 
 /* --------------------------------------------------------------------------
+   OUR SERVICES SECTION
+   -------------------------------------------------------------------------- */
+.services-section {
+  width: 100%;
+  background-color: #ffffff;
+  color: #111827;
+  padding: 3rem 0 5.5rem;
+  position: relative;
+}
+
+.services-container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 2rem;
+  width: 100%;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.75rem;
+  align-items: stretch;
+}
+
+.service-card {
+  background-color: #ffffff;
+  border: 1.5px solid #242938;
+  border-radius: 12px;
+  padding: 2.85rem 1.5rem 2.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  transition:
+    transform var(--transition-speed) ease,
+    box-shadow var(--transition-speed) ease,
+    border-color var(--transition-speed) ease;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.1);
+  border-color: var(--primary-red);
+}
+
+.service-icon-wrap {
+  width: 100%;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.service-icon {
+  max-width: 52px;
+  max-height: 52px;
+  object-fit: contain;
+  transition: transform var(--transition-speed) ease;
+}
+
+.service-card:hover .service-icon {
+  transform: scale(1.1);
+}
+
+.service-title {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #000000;
+  margin-bottom: 0.6rem;
+  letter-spacing: -0.2px;
+  line-height: 1.3;
+}
+
+.service-desc {
+  font-size: 0.92rem;
+  color: #4b5568;
+  font-weight: 400;
+  line-height: 1.45;
+  max-width: 200px;
+  margin: 0 auto;
+}
+
+/* --------------------------------------------------------------------------
+   CUSTOMER REVIEWS / TESTIMONIALS SECTION
+   -------------------------------------------------------------------------- */
+.reviews-section {
+  width: 100%;
+  background-color: #ffffff;
+  color: #111827;
+  padding: 1.5rem 0 5.5rem;
+  position: relative;
+}
+
+.reviews-container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 2rem;
+  width: 100%;
+}
+
+.reviews-header {
+  margin-bottom: 2.5rem;
+}
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+  align-items: stretch;
+}
+
+.review-card {
+  background-color: #ffffff;
+  border: 1.5px solid #242938;
+  border-radius: 12px;
+  padding: 2.25rem 1.75rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  transition:
+    transform var(--transition-speed) ease,
+    box-shadow var(--transition-speed) ease,
+    border-color var(--transition-speed) ease;
+}
+
+.review-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+  border-color: var(--primary-red);
+}
+
+.review-avatar-wrap {
+  width: 84px;
+  height: 84px;
+  min-width: 84px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.review-avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.review-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.reviewer-name {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #000000;
+  margin-bottom: 0.35rem;
+  letter-spacing: -0.2px;
+  line-height: 1.2;
+}
+
+.review-rating {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--primary-red);
+  font-size: 1.15rem;
+  margin-bottom: 0.75rem;
+}
+
+.review-text {
+  font-size: 0.95rem;
+  color: #222222;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+/* --------------------------------------------------------------------------
    FOOTER COMPONENT
    -------------------------------------------------------------------------- */
 .site-footer {
@@ -1325,6 +1510,11 @@ img {
     gap: 2.5rem 1.5rem;
   }
 
+  .services-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.25rem;
+  }
+
   .footer-grid {
     grid-template-columns: repeat(3, 1fr);
     gap: 2.5rem;
@@ -1439,6 +1629,24 @@ img {
     padding: 4rem 0 4.5rem;
   }
 
+  .services-section {
+    padding: 3rem 0 4.5rem;
+  }
+
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .reviews-section {
+    padding: 1.5rem 0 4.5rem;
+  }
+
+  .reviews-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
   .footer-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 2.25rem;
@@ -1469,6 +1677,17 @@ img {
   .why-choose-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 2.25rem 1.25rem;
+  }
+
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .reviews-grid {
+    grid-template-columns: 1fr;
+    max-width: 480px;
+    margin: 0 auto;
   }
 
   .finance-container {
@@ -1505,7 +1724,9 @@ img {
   .popular-cars-container,
   .categories-container,
   .why-choose-us-container,
-  .finance-container {
+  .finance-container,
+  .services-container,
+  .reviews-container {
     padding: 0 1.25rem;
   }
 
@@ -1537,6 +1758,29 @@ img {
 
   .why-choose-us-section {
     padding: 3.5rem 0 3.75rem;
+  }
+
+  .services-section {
+    padding: 2.5rem 0 3.75rem;
+  }
+
+  .service-card {
+    padding: 2rem 1rem 1.75rem;
+  }
+
+  .reviews-section {
+    padding: 1rem 0 3.75rem;
+  }
+
+  .review-card {
+    padding: 1.75rem 1.25rem;
+    gap: 1.25rem;
+  }
+
+  .review-avatar-wrap {
+    width: 72px;
+    height: 72px;
+    min-width: 72px;
   }
 
   .why-choose-header {
@@ -1625,5 +1869,27 @@ img {
     gap: 2rem;
     max-width: 280px;
     margin: 0 auto;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  .reviews-grid {
+    grid-template-columns: 1fr;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  .review-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 1.75rem 1.25rem;
+  }
+
+  .review-rating {
+    justify-content: center;
   }
 }
