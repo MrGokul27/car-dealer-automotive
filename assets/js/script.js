@@ -8,6 +8,7 @@ function initApp() {
   loadFooterComponent();
   initializeWishlistButtons();
   initializeFinanceCalculator();
+  initializeNewsletterForm();
 }
 
 /**
@@ -391,3 +392,37 @@ function initializeFinanceCalculator() {
     },
   );
 }
+
+/**
+ * Handles Newsletter Subscription Form submission
+ */
+function initializeNewsletterForm() {
+  const newsletterForm = document.getElementById("newsletter-form");
+  const emailInput = document.getElementById("newsletter-email");
+  const submitBtn = newsletterForm?.querySelector(".btn-newsletter-subscribe");
+
+  if (!newsletterForm || !emailInput || !submitBtn) return;
+
+  newsletterForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const email = emailInput.value.trim();
+
+    if (!email || !email.includes("@")) {
+      emailInput.focus();
+      return;
+    }
+
+    const originalBtnHTML = submitBtn.innerHTML;
+    submitBtn.innerHTML = '<i class="fa-solid fa-check"></i> <span>Subscribed!</span>';
+    submitBtn.style.backgroundColor = "#16a34a";
+    emailInput.value = "";
+    emailInput.disabled = true;
+
+    setTimeout(() => {
+      submitBtn.innerHTML = originalBtnHTML;
+      submitBtn.style.backgroundColor = "";
+      emailInput.disabled = false;
+    }, 3500);
+  });
+}
+
