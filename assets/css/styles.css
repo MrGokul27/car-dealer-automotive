@@ -939,6 +939,264 @@ img {
 }
 
 /* --------------------------------------------------------------------------
+   OUR TEAM SECTION (ABOUT PAGE)
+   -------------------------------------------------------------------------- */
+.our-team-section {
+  width: 100%;
+  background-color: #ffffff;
+  color: #111827;
+  padding: 5.5rem 0 3rem;
+  position: relative;
+  z-index: 1;
+}
+
+.our-team-container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 2.5rem;
+  width: 100%;
+}
+
+.our-team-header {
+  text-align: left;
+  margin-bottom: 3.25rem;
+}
+
+.our-team-subtitle {
+  color: var(--primary-red);
+  font-size: 0.95rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.our-team-title {
+  font-size: clamp(2.2rem, 3.5vw, 2.85rem);
+  font-weight: 800;
+  color: #000000;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+}
+
+.our-team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.25rem;
+  align-items: stretch;
+}
+
+.our-team-card {
+  background-color: #ffffff;
+  border: 1.5px solid #111827;
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+  transition:
+    transform var(--transition-speed) ease,
+    box-shadow var(--transition-speed) ease,
+    border-color var(--transition-speed) ease;
+}
+
+.our-team-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.1);
+  border-color: #000000;
+}
+
+.our-team-img-wrap {
+  width: 100%;
+  aspect-ratio: 1 / 0.92;
+  overflow: hidden;
+  background-color: #f3f4f6;
+}
+
+.our-team-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform var(--transition-speed) ease;
+}
+
+.our-team-card:hover .our-team-img {
+  transform: scale(1.03);
+}
+
+.our-team-info {
+  padding: 1.75rem 1.5rem 2rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.our-team-name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #000000;
+  margin-bottom: 0.35rem;
+  line-height: 1.3;
+}
+
+.our-team-role {
+  font-size: 0.95rem;
+  color: #555e6d;
+  font-weight: 400;
+  margin-bottom: 1.35rem;
+}
+
+.our-team-socials {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+}
+
+.team-social-link {
+  color: #000000;
+  font-size: 1.15rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition:
+    color var(--transition-speed) ease,
+    transform var(--transition-speed) ease;
+}
+
+.team-social-link:hover {
+  color: var(--primary-red);
+  transform: translateY(-2px);
+}
+
+/* --------------------------------------------------------------------------
+   CUSTOMER TESTIMONIALS SECTION (ABOUT PAGE)
+   -------------------------------------------------------------------------- */
+.about-testimonials-section {
+  width: 100%;
+  background-color: #ffffff;
+  color: #111827;
+  padding: 2.5rem 0 6rem;
+  position: relative;
+  z-index: 1;
+}
+
+.about-testimonials-container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 2.5rem;
+  width: 100%;
+}
+
+.about-testimonials-header {
+  text-align: left;
+  margin-bottom: 2.75rem;
+}
+
+.about-testimonials-subtitle {
+  color: var(--primary-red);
+  font-size: 0.95rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.about-testimonials-title {
+  font-size: clamp(2.2rem, 3.5vw, 2.85rem);
+  font-weight: 800;
+  color: #000000;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+}
+
+.about-testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+  align-items: stretch;
+}
+
+.about-testimonial-card {
+  background-color: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+  padding: 2.25rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 2.5rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.02);
+  transition:
+    transform var(--transition-speed) ease,
+    box-shadow var(--transition-speed) ease,
+    border-color var(--transition-speed) ease;
+}
+
+.about-testimonial-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.07);
+  border-color: #d1d5db;
+}
+
+.about-testimonial-quote {
+  font-size: 0.96rem;
+  line-height: 1.55;
+  color: #111827;
+  font-weight: 450;
+  margin: 0;
+}
+
+.about-testimonial-user {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.about-testimonial-avatar-wrap {
+  width: 70px;
+  height: 70px;
+  min-width: 70px;
+  border-radius: 50%;
+  overflow: hidden;
+  background-color: #f3f4f6;
+  flex-shrink: 0;
+}
+
+.about-testimonial-avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.about-testimonial-user-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.about-testimonial-name {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #000000;
+  margin: 0;
+  line-height: 1.2;
+}
+
+.about-testimonial-stars {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--primary-red);
+  font-size: 0.9rem;
+}
+
+/* --------------------------------------------------------------------------
    POPULAR CARS (FEATURED) SECTION
    -------------------------------------------------------------------------- */
 .popular-cars-section {
@@ -2633,6 +2891,14 @@ img {
     padding: 4.5rem 0 5rem;
   }
 
+  .our-team-section {
+    padding: 4.5rem 0 5rem;
+  }
+
+  .our-team-grid {
+    gap: 1.5rem;
+  }
+
   .who-we-are-grid {
     grid-template-columns: 1fr;
     gap: 2.75rem;
@@ -2653,6 +2919,15 @@ img {
   }
 
   .reviews-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .about-testimonials-section {
+    padding: 1.5rem 0 4.5rem;
+  }
+
+  .about-testimonials-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
   }
@@ -2723,6 +2998,17 @@ img {
     padding: 3.5rem 0 4rem;
   }
 
+  .our-team-section {
+    padding: 3.5rem 0 4rem;
+  }
+
+  .our-team-grid {
+    grid-template-columns: 1fr;
+    max-width: 440px;
+    margin: 0 auto;
+    gap: 2rem;
+  }
+
   .our-values-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 2.25rem 1.25rem;
@@ -2771,6 +3057,17 @@ img {
     margin: 0 auto;
   }
 
+  .about-testimonials-section {
+    padding: 1rem 0 4rem;
+  }
+
+  .about-testimonials-grid {
+    grid-template-columns: 1fr;
+    max-width: 480px;
+    margin: 0 auto;
+    gap: 1.5rem;
+  }
+
   .latest-arrivals-grid {
     grid-template-columns: 1fr;
     max-width: 440px;
@@ -2812,6 +3109,8 @@ img {
   .about-hero-container,
   .who-we-are-container,
   .our-values-container,
+  .our-team-container,
+  .about-testimonials-container,
   .popular-cars-container,
   .categories-container,
   .why-choose-us-container,
@@ -3018,6 +3317,23 @@ img {
     grid-template-columns: 1fr;
     max-width: 300px;
     margin: 0 auto;
+  }
+
+  .about-testimonials-grid {
+    grid-template-columns: 1fr;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+
+  .about-testimonial-card {
+    padding: 1.75rem 1.25rem;
+    gap: 1.75rem;
+  }
+
+  .about-testimonial-avatar-wrap {
+    width: 60px;
+    height: 60px;
+    min-width: 60px;
   }
 
   .latest-arrivals-grid {
