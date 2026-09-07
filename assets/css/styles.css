@@ -1073,6 +1073,173 @@ img {
 }
 
 /* --------------------------------------------------------------------------
+   OUR PROCESS SECTION (ABOUT PAGE)
+   -------------------------------------------------------------------------- */
+.our-process-section {
+  width: 100%;
+  background-color: #050608;
+  color: #ffffff;
+  padding: 5.5rem 0 6rem;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.our-process-container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 2.5rem;
+  width: 100%;
+}
+
+.our-process-header {
+  text-align: center;
+  margin-bottom: 4rem;
+  position: relative;
+  z-index: 5;
+  margin-right: auto;
+  width: fit-content;
+}
+
+.our-process-subtitle {
+  color: var(--primary-red);
+  font-size: 0.95rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.65rem;
+  display: block;
+}
+
+.our-process-title {
+  font-size: clamp(2rem, 3.5vw, 2.85rem);
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.5px;
+  line-height: 1.2;
+}
+
+.our-process-content-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 400px;
+}
+
+.our-process-steps {
+  position: relative;
+  width: 100%;
+  min-height: 400px;
+  z-index: 3;
+}
+
+.process-step-item {
+  position: absolute;
+  width: 205px;
+  text-align: center;
+  transition: transform var(--transition-speed) ease;
+}
+
+.process-step-item:hover {
+  transform: translateY(-3px);
+}
+
+.process-step-item.step-1 {
+  left: 1%;
+  top: 15px;
+}
+
+.process-step-item.step-2 {
+  left: 17.5%;
+  top: 95px;
+}
+
+.process-step-item.step-3 {
+  left: 33%;
+  top: 185px;
+}
+
+.process-step-item.step-4 {
+  left: 51.5%;
+  top: 255px;
+}
+
+.step-num {
+  display: block;
+  font-size: 1.45rem;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.2;
+  margin-bottom: 0.35rem;
+  letter-spacing: 0.5px;
+}
+
+.step-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.45rem;
+  line-height: 1.3;
+}
+
+.step-desc {
+  font-size: 0.92rem;
+  color: #a0a8bc;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+.our-process-circle-wrap {
+  position: absolute;
+  left: 44.5%;
+  top: 10px;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+  z-index: 2;
+  transition:
+    transform var(--transition-speed) ease,
+    box-shadow var(--transition-speed) ease;
+}
+
+.our-process-circle-wrap:hover {
+  transform: scale(1.04);
+  box-shadow: 0 12px 35px rgba(255, 0, 0, 0.2);
+}
+
+.our-process-circle-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.our-process-car-wrap {
+  position: absolute;
+  right: -30px;
+  top: -20px;
+  bottom: -20px;
+  width: 48%;
+  max-width: 650px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.our-process-car-img {
+  width: 100%;
+  height: auto;
+  max-height: 430px;
+  object-fit: contain;
+  object-position: right center;
+  filter: drop-shadow(-10px 10px 25px rgba(0, 0, 0, 0.8));
+}
+
+/* --------------------------------------------------------------------------
    CUSTOMER TESTIMONIALS SECTION (ABOUT PAGE)
    -------------------------------------------------------------------------- */
 .about-testimonials-section {
@@ -2776,6 +2943,46 @@ img {
   .our-values-card:not(:last-child)::after {
     display: none;
   }
+
+  .our-process-section {
+    padding: 5rem 0 5.5rem;
+  }
+
+  .process-step-item {
+    width: 185px;
+  }
+
+  .process-step-item.step-1 {
+    left: 0;
+    top: 15px;
+  }
+
+  .process-step-item.step-2 {
+    left: 16%;
+    top: 90px;
+  }
+
+  .process-step-item.step-3 {
+    left: 31%;
+    top: 175px;
+  }
+
+  .process-step-item.step-4 {
+    left: 48%;
+    top: 245px;
+  }
+
+  .our-process-circle-wrap {
+    left: 43%;
+    width: 175px;
+    height: 175px;
+    top: 15px;
+  }
+
+  .our-process-car-wrap {
+    width: 48%;
+    right: -25px;
+  }
 }
 
 @media (max-width: 960px) {
@@ -2981,6 +3188,65 @@ img {
     grid-column: span 2;
     justify-content: center;
   }
+
+  .our-process-section {
+    padding: 4.5rem 0 5rem;
+  }
+
+  .our-process-header {
+    margin-bottom: 3rem;
+  }
+
+  .our-process-content-wrapper {
+    min-height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
+  }
+
+  .our-process-circle-wrap {
+    position: static;
+    width: 170px;
+    height: 170px;
+    margin: 0 auto;
+  }
+
+  .our-process-steps {
+    position: static;
+    min-height: auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    width: 100%;
+  }
+
+  .process-step-item {
+    position: static;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    padding: 1.5rem 1.4rem;
+  }
+
+  .process-step-item:hover {
+    transform: translateY(-3px);
+    border-color: rgba(255, 0, 0, 0.3);
+  }
+
+  .our-process-car-wrap {
+    position: static;
+    width: 100%;
+    max-width: 540px;
+    margin: 0 auto;
+    justify-content: center;
+  }
+
+  .our-process-car-img {
+    max-height: 320px;
+    object-position: center;
+  }
 }
 
 @media (max-width: 680px) {
@@ -3000,6 +3266,21 @@ img {
 
   .our-team-section {
     padding: 3.5rem 0 4rem;
+  }
+
+  .our-process-section {
+    padding: 3.5rem 0 4rem;
+  }
+
+  .our-process-steps {
+    grid-template-columns: 1fr;
+    max-width: 440px;
+    margin: 0 auto;
+    gap: 1.15rem;
+  }
+
+  .our-process-header {
+    margin-bottom: 2.25rem;
   }
 
   .our-team-grid {
@@ -3110,6 +3391,7 @@ img {
   .who-we-are-container,
   .our-values-container,
   .our-team-container,
+  .our-process-container,
   .about-testimonials-container,
   .popular-cars-container,
   .categories-container,
@@ -3120,6 +3402,15 @@ img {
   .latest-arrivals-container,
   .newsletter-cta-container {
     padding: 0 1.25rem;
+  }
+
+  .process-step-item {
+    padding: 1.25rem 1.15rem;
+  }
+
+  .our-process-circle-wrap {
+    width: 140px;
+    height: 140px;
   }
 
   .cars-filter-bar {
