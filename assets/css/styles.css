@@ -2274,6 +2274,156 @@ img {
 }
 
 /* --------------------------------------------------------------------------
+   SERVICES - OUR SERVICE PROCESS SECTION
+   -------------------------------------------------------------------------- */
+.services-process-section {
+  width: 100%;
+  background-color: #ffffff;
+  padding: 5.5rem 0 6rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.services-process-container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 2rem;
+  width: 100%;
+}
+
+.services-process-header {
+  text-align: center;
+  margin-bottom: 4.5rem;
+}
+
+.services-process-badge {
+  display: block;
+  color: var(--primary-red);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.services-process-title {
+  font-size: clamp(2rem, 3.2vw, 2.65rem);
+  font-weight: 800;
+  color: #000000;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+}
+
+.services-process-flow {
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.services-process-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.services-process-row-top {
+  margin-bottom: 4.5rem;
+}
+
+/* Connecting dotted lines for desktop */
+@media (min-width: 961px) {
+  .services-process-row-top::before {
+    content: "";
+    position: absolute;
+    top: 80px;
+    left: calc(100% / 6);
+    right: -45px;
+    border-top: 3px dotted #111827;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .services-process-row-top::after {
+    content: "";
+    position: absolute;
+    top: 80px;
+    right: -45px;
+    height: calc(100% + 4.5rem);
+    border-right: 3px dotted #111827;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .services-process-row-bottom::before {
+    content: "";
+    position: absolute;
+    top: 80px;
+    left: calc(100% / 6);
+    right: -45px;
+    border-top: 3px dotted #111827;
+    z-index: 1;
+    pointer-events: none;
+  }
+}
+
+.services-process-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  transition: transform var(--transition-speed) ease;
+}
+
+.services-process-step:hover {
+  transform: translateY(-4px);
+}
+
+.services-process-icon-wrap {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.services-process-icon {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform var(--transition-speed) ease;
+}
+
+.services-process-step:hover .services-process-icon {
+  transform: scale(1.05);
+}
+
+.services-process-step-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #000000;
+  margin-bottom: 0.5rem;
+  line-height: 1.3;
+  letter-spacing: -0.2px;
+}
+
+.services-process-step-desc {
+  font-size: 0.92rem;
+  color: #4b5568;
+  line-height: 1.45;
+  max-width: 220px;
+  margin: 0 auto;
+}
+
+/* --------------------------------------------------------------------------
    SERVICES - OUR FACILITIES SECTION
    -------------------------------------------------------------------------- */
 .services-facilities-section {
@@ -3382,6 +3532,29 @@ img {
     padding: 3rem 0 4.5rem;
   }
 
+  .services-process-section {
+    padding: 4rem 0 4.5rem;
+  }
+
+  .services-process-header {
+    margin-bottom: 3rem;
+  }
+
+  .services-process-row {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .services-process-row-top {
+    margin-bottom: 3.5rem;
+  }
+
+  .services-process-icon-wrap {
+    width: 130px;
+    height: 130px;
+  }
+
+  .services-process-facilities-section,
   .services-facilities-section {
     padding: 3.5rem 0 4.5rem;
   }
@@ -3586,6 +3759,41 @@ img {
 
   .our-process-section {
     padding: 3.5rem 0 4rem;
+  }
+
+  .services-process-section {
+    padding: 3.5rem 0 4rem;
+  }
+
+  .services-process-header {
+    margin-bottom: 2.25rem;
+  }
+
+  .services-process-row {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .services-process-row-top {
+    margin-bottom: 2.5rem;
+  }
+
+  .services-process-flow::before {
+    content: "";
+    position: absolute;
+    top: 65px;
+    bottom: 65px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 3px dotted #111827;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  .services-process-icon-wrap {
+    width: 130px;
+    height: 130px;
+    margin-bottom: 1.25rem;
   }
 
   .our-process-steps {
