@@ -2176,6 +2176,212 @@ img {
 }
 
 /* --------------------------------------------------------------------------
+   SERVICES - WHY CHOOSE US SECTION
+   -------------------------------------------------------------------------- */
+.services-why-choose-section {
+  width: 100%;
+  background-color: #090c12;
+  color: var(--text-white);
+  padding: 5rem 0 5.5rem;
+  position: relative;
+}
+
+.services-why-choose-container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 2rem;
+  width: 100%;
+}
+
+.services-why-choose-header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.services-why-choose-badge {
+  display: block;
+  color: var(--primary-red);
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 0.45rem;
+}
+
+.services-why-choose-title {
+  font-size: clamp(2rem, 3.2vw, 2.65rem);
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.2;
+  margin-bottom: 0.35rem;
+  letter-spacing: -0.5px;
+}
+
+.services-why-choose-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 2rem 1.5rem;
+  align-items: flex-start;
+}
+
+.services-why-choose-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform var(--transition-speed) ease;
+}
+
+.services-why-choose-card:hover {
+  transform: translateY(-4px);
+}
+
+.services-why-choose-icon-wrap {
+  width: 100%;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+
+.services-why-choose-icon {
+  max-width: 58px;
+  max-height: 58px;
+  object-fit: contain;
+  transition: transform var(--transition-speed) ease;
+}
+
+.services-why-choose-card:hover .services-why-choose-icon {
+  transform: scale(1.08);
+}
+
+.services-why-choose-card-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.6rem;
+  line-height: 1.3;
+  letter-spacing: -0.2px;
+}
+
+.services-why-choose-card-desc {
+  font-size: 0.88rem;
+  color: #a0a8bc;
+  line-height: 1.45;
+  max-width: 230px;
+  margin: 0 auto;
+}
+
+/* --------------------------------------------------------------------------
+   SERVICES - OUR FACILITIES SECTION
+   -------------------------------------------------------------------------- */
+.services-facilities-section {
+  width: 100%;
+  background-color: #ffffff;
+  padding: 5rem 0 5.5rem;
+  position: relative;
+}
+
+.services-facilities-container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 2rem;
+  width: 100%;
+}
+
+.services-facilities-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+  align-items: stretch;
+}
+
+/* Facility Info / Text Card */
+.services-facility-info-card {
+  background-color: #d9d9d9;
+  border-radius: 16px;
+  padding: 3.5rem 2.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+.services-facility-badge {
+  display: block;
+  color: var(--primary-red);
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+}
+
+.services-facility-title {
+  font-size: clamp(1.85rem, 2.4vw, 2.45rem);
+  font-weight: 800;
+  color: #0f141d;
+  line-height: 1.2;
+  margin-bottom: 1.75rem;
+  letter-spacing: -0.5px;
+}
+
+.services-facility-desc {
+  font-size: 0.95rem;
+  color: #242a3a;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+/* Facility Image Cards */
+.services-facility-img-card {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  height: 100%;
+  min-height: 380px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+.services-facility-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.45s ease;
+}
+
+.services-facility-img-card:hover .services-facility-img {
+  transform: scale(1.05);
+}
+
+.services-facility-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.92) 0%,
+    rgba(0, 0, 0, 0.75) 45%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  padding: 3rem 1.75rem 1.5rem;
+  pointer-events: none;
+}
+
+.services-facility-card-title {
+  color: #ffffff;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.3;
+  margin: 0;
+  letter-spacing: -0.2px;
+}
+
+/* --------------------------------------------------------------------------
    CUSTOMER REVIEWS / TESTIMONIALS SECTION
    -------------------------------------------------------------------------- */
 .reviews-section {
@@ -2958,7 +3164,8 @@ img {
     gap: 1.35rem;
   }
 
-  .why-choose-grid {
+  .why-choose-grid,
+  .services-why-choose-grid {
     grid-template-columns: repeat(3, 1fr);
     gap: 2.5rem 1.5rem;
   }
@@ -3166,12 +3373,32 @@ img {
     padding: 1rem 0 4.5rem;
   }
 
-  .why-choose-us-section {
+  .why-choose-us-section,
+  .services-why-choose-section {
     padding: 4rem 0 4.5rem;
   }
 
   .services-section {
     padding: 3rem 0 4.5rem;
+  }
+
+  .services-facilities-section {
+    padding: 3.5rem 0 4.5rem;
+  }
+
+  .services-facilities-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  .services-facility-img-card {
+    min-height: 320px;
+  }
+
+  .services-facility-info-card {
+    padding: 2.75rem 1.75rem;
   }
 
   .services-grid {
@@ -3411,7 +3638,8 @@ img {
     gap: 1rem;
   }
 
-  .why-choose-grid {
+  .why-choose-grid,
+  .services-why-choose-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 2.25rem 1.25rem;
   }
@@ -3486,6 +3714,8 @@ img {
   .popular-cars-container,
   .categories-container,
   .why-choose-us-container,
+  .services-why-choose-container,
+  .services-facilities-container,
   .finance-container,
   .services-container,
   .reviews-container,
@@ -3562,12 +3792,30 @@ img {
     padding: 1rem 0 3.75rem;
   }
 
-  .why-choose-us-section {
+  .why-choose-us-section,
+  .services-why-choose-section {
     padding: 3.5rem 0 3.75rem;
   }
 
   .services-section {
     padding: 2.5rem 0 3.75rem;
+  }
+
+  .services-facilities-section {
+    padding: 2.5rem 0 3.75rem;
+  }
+
+  .services-facility-img-card {
+    min-height: 280px;
+  }
+
+  .services-facility-info-card {
+    padding: 2.25rem 1.5rem;
+  }
+
+  .services-facility-title {
+    font-size: 1.85rem;
+    margin-bottom: 1.25rem;
   }
 
   .service-card {
@@ -3593,7 +3841,8 @@ img {
     min-width: 72px;
   }
 
-  .why-choose-header {
+  .why-choose-header,
+  .services-why-choose-header {
     margin-bottom: 2.25rem;
   }
 
@@ -3674,7 +3923,8 @@ img {
     margin: 0 auto;
   }
 
-  .why-choose-grid {
+  .why-choose-grid,
+  .services-why-choose-grid {
     grid-template-columns: 1fr;
     gap: 2rem;
     max-width: 280px;
