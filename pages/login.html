@@ -1,0 +1,403 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign In - AutoDrive | Stackly Motors</title>
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/webp"
+      href="../assets/images/stackly-logo.webp"
+    />
+    <!-- Google Fonts (Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+    <!-- Main and Auth Stylesheets -->
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+    <link rel="stylesheet" href="../assets/css/auth.css" />
+  </head>
+  <body class="auth-page" data-page="login">
+    <!-- Top Header Bar with Logo and Back to Home Button -->
+    <header class="auth-header">
+      <div class="auth-header-left">
+        <a href="../index.html" class="auth-back-btn" id="backToHomeBtn">
+          <i class="fa-solid fa-arrow-left"></i>
+          <span>Back to Home</span>
+        </a>
+      </div>
+      <div class="auth-header-center">
+        <a
+          href="../index.html"
+          class="auth-logo-link"
+          aria-label="Stackly Motors Home"
+        >
+          <img
+            src="../assets/images/auth/auth-logo.webp"
+            alt="Stackly Automotive"
+            class="auth-logo-img"
+          />
+        </a>
+      </div>
+      <div class="auth-header-right"></div>
+    </header>
+
+    <!-- Main Content Wrapper -->
+    <main class="auth-main-wrapper">
+      <!-- Left Column: Branding, Hero Heading & 6 Features -->
+      <section class="auth-left-section" aria-label="AutoDrive Features">
+        <div class="auth-hero-header">
+          <h1 class="auth-welcome-title">
+            Welcome <span class="auth-brand-highlight">Back</span>
+          </h1>
+          <span class="auth-brand-name"
+            >To <span class="auth-brand-highlight">AutoDrive</span></span
+          >
+          <p class="auth-hero-subtitle">
+            Your journey to the perfect car starts here
+          </p>
+        </div>
+
+        <div class="auth-features-list">
+          <!-- Feature 1: Best Price Guarantee -->
+          <div class="auth-feature-item">
+            <div class="auth-feature-icon-box">
+              <img
+                src="../assets/images/auth/auth-left-icon1.webp"
+                alt="Best Price Guarantee"
+                class="auth-feature-icon-img"
+              />
+            </div>
+            <div class="auth-feature-info">
+              <h3 class="auth-feature-title">Best Price Guarantee</h3>
+              <p class="auth-feature-desc">
+                Get the best prices in the market..
+              </p>
+            </div>
+          </div>
+
+          <!-- Feature 2: Easy Finance -->
+          <div class="auth-feature-item">
+            <div class="auth-feature-icon-box">
+              <img
+                src="../assets/images/auth/auth-left-icon2.webp"
+                alt="Easy Finance"
+                class="auth-feature-icon-img"
+              />
+            </div>
+            <div class="auth-feature-info">
+              <h3 class="auth-feature-title">Easy Finance</h3>
+              <p class="auth-feature-desc">
+                Flexible finance options to suit your budget..
+              </p>
+            </div>
+          </div>
+
+          <!-- Feature 3: Warranty Support -->
+          <div class="auth-feature-item">
+            <div class="auth-feature-icon-box">
+              <img
+                src="../assets/images/auth/auth-left-icon3.webp"
+                alt="Warranty Support"
+                class="auth-feature-icon-img"
+              />
+            </div>
+            <div class="auth-feature-info">
+              <h3 class="auth-feature-title">Warranty Support</h3>
+              <p class="auth-feature-desc">
+                Up to 5 years warranty on select cars.
+              </p>
+            </div>
+          </div>
+
+          <!-- Feature 4: 24/7 Support -->
+          <div class="auth-feature-item">
+            <div class="auth-feature-icon-box">
+              <img
+                src="../assets/images/auth/auth-left-icon4.webp"
+                alt="24/7 Support"
+                class="auth-feature-icon-img"
+              />
+            </div>
+            <div class="auth-feature-info">
+              <h3 class="auth-feature-title">24/7 Support</h3>
+              <p class="auth-feature-desc">We are always here to assist you.</p>
+            </div>
+          </div>
+
+          <!-- Feature 5: Trusted Dealer -->
+          <div class="auth-feature-item">
+            <div class="auth-feature-icon-box">
+              <img
+                src="../assets/images/auth/auth-left-icon5.webp"
+                alt="Trusted Dealer"
+                class="auth-feature-icon-img"
+              />
+            </div>
+            <div class="auth-feature-info">
+              <h3 class="auth-feature-title">Trusted Dealer</h3>
+              <p class="auth-feature-desc">
+                10+ years of experience in the automotive industry.
+              </p>
+            </div>
+          </div>
+
+          <!-- Feature 6: Certified Cars -->
+          <div class="auth-feature-item">
+            <div class="auth-feature-icon-box">
+              <img
+                src="../assets/images/auth/auth-left-icon6.webp"
+                alt="Certified Cars"
+                class="auth-feature-icon-img"
+              />
+            </div>
+            <div class="auth-feature-info">
+              <h3 class="auth-feature-title">Certified Cars</h3>
+              <p class="auth-feature-desc">
+                All cars are 100% certified and thoroughly inspected.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Right Column: Frosted Glass Authentication Card -->
+      <section class="auth-right-section" aria-label="Sign In">
+        <div class="auth-card">
+          <!-- Card Header -->
+          <div class="auth-card-header">
+            <h2 class="auth-card-title">Sign In</h2>
+            <p class="auth-card-desc">
+              Sign in to continue to your AutoDrive account.
+            </p>
+          </div>
+
+          <!-- Role Selector -->
+          <div class="auth-role-section">
+            <span class="auth-role-label">Select Your Role</span>
+            <div
+              class="auth-role-grid"
+              role="radiogroup"
+              aria-label="Select Your Role"
+            >
+              <!-- Customer Role (Active by default) -->
+              <label class="auth-role-card active" id="roleCustomerCard">
+                <input type="radio" name="loginRole" value="customer" checked />
+                <div class="auth-role-icon">
+                  <i class="fa-solid fa-user"></i>
+                </div>
+                <div class="auth-role-text">
+                  <span class="auth-role-name">Customer</span>
+                  <span class="auth-role-sub">Buy or find dream cars</span>
+                </div>
+              </label>
+
+              <!-- Dealer / Staff Role -->
+              <label class="auth-role-card" id="roleDealerCard">
+                <input type="radio" name="loginRole" value="dealer" />
+                <div class="auth-role-icon">
+                  <i class="fa-solid fa-briefcase"></i>
+                </div>
+                <div class="auth-role-text">
+                  <span class="auth-role-name">Dealer / Staff</span>
+                  <span class="auth-role-sub">Manage dealership</span>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <!-- Divider -->
+          <div class="auth-divider">
+            <div class="auth-divider-line"></div>
+            <span class="auth-divider-text">Or</span>
+            <div class="auth-divider-line"></div>
+          </div>
+
+          <!-- Sign In Form -->
+          <form class="auth-form" id="signInForm" novalidate>
+            <!-- Email Address -->
+            <div class="auth-input-group">
+              <label for="loginEmail" class="auth-label">
+                Email Address <span class="auth-required-star">*</span>
+              </label>
+              <div class="auth-input-wrapper">
+                <i class="fa-regular fa-envelope auth-input-icon"></i>
+                <input
+                  type="email"
+                  id="loginEmail"
+                  name="email"
+                  class="auth-input"
+                  placeholder="Enter your email address"
+                  required
+                  autocomplete="email"
+                />
+              </div>
+              <span class="auth-error-msg"></span>
+            </div>
+
+            <!-- Password -->
+            <div class="auth-input-group">
+              <label for="loginPassword" class="auth-label">
+                Password <span class="auth-required-star">*</span>
+              </label>
+              <div class="auth-input-wrapper">
+                <i class="fa-solid fa-lock auth-input-icon"></i>
+                <input
+                  type="password"
+                  id="loginPassword"
+                  name="password"
+                  class="auth-input auth-input-has-toggle"
+                  placeholder="Enter your password"
+                  required
+                  autocomplete="current-password"
+                />
+                <button
+                  type="button"
+                  class="auth-toggle-pwd"
+                  aria-label="Toggle password visibility"
+                >
+                  <i class="fa-regular fa-eye"></i>
+                </button>
+              </div>
+              <span class="auth-error-msg"></span>
+
+              <!-- Weak Password Validation Meter -->
+              <div class="auth-pwd-strength-container" id="loginPwdStrength">
+                <div class="auth-strength-meter-bar">
+                  <div class="auth-strength-segment"></div>
+                  <div class="auth-strength-segment"></div>
+                  <div class="auth-strength-segment"></div>
+                  <div class="auth-strength-segment"></div>
+                </div>
+                <div class="auth-strength-label-wrapper">
+                  <span class="auth-strength-text">Password Strength:</span>
+                  <span class="auth-strength-value weak">Weak</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Options Row: Remember Me & Forgot Password -->
+            <div class="auth-options-row">
+              <label class="auth-checkbox-label">
+                <input
+                  type="checkbox"
+                  id="rememberMe"
+                  name="remember"
+                  checked
+                />
+                <span class="auth-custom-checkbox">
+                  <i class="fa-solid fa-check"></i>
+                </span>
+                <span>Remember Me</span>
+              </label>
+              <a href="#" class="auth-forgot-link" id="forgotPasswordLink"
+                >Forgot Password?</a
+              >
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="auth-submit-btn">
+              <span>Sign In</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </form>
+
+          <!-- Divider -->
+          <div class="auth-divider">
+            <div class="auth-divider-line"></div>
+            <span class="auth-divider-text">Or</span>
+            <div class="auth-divider-line"></div>
+          </div>
+
+          <!-- Social Buttons -->
+          <div class="auth-social-group">
+            <button type="button" class="auth-social-btn google-btn">
+              <img
+                src="../assets/images/auth/auth-google-icon.webp"
+                alt="Google logo"
+              />
+              <span>Continue With Google</span>
+            </button>
+
+            <button type="button" class="auth-social-btn apple-btn">
+              <img
+                src="../assets/images/auth/auth-apple-icon.webp"
+                alt="Apple logo"
+              />
+              <span>Continue With Apple</span>
+            </button>
+          </div>
+
+          <!-- Footer Switch Link -->
+          <p class="auth-footer-text">
+            Don't have an account?
+            <a
+              href="register.html"
+              class="auth-link-highlight"
+              id="showRegisterBtn"
+              >Create Account</a
+            >
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <!-- Forgot Password Modal -->
+    <div class="auth-modal-backdrop" id="forgotPasswordModal">
+      <div class="auth-modal-card">
+        <div class="auth-modal-header">
+          <h3 class="auth-modal-title">Reset Password</h3>
+          <button
+            type="button"
+            class="auth-modal-close"
+            id="closeForgotModalBtn"
+            aria-label="Close modal"
+          >
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <p style="font-size: 0.88rem; color: #64748b; margin-bottom: 1.25rem">
+          Enter your registered email address below and we'll send you a link to
+          reset your password.
+        </p>
+        <form id="forgotPasswordForm" class="auth-form" novalidate>
+          <div class="auth-input-group">
+            <label for="forgotEmail" class="auth-label"
+              >Email Address <span class="auth-required-star">*</span></label
+            >
+            <div class="auth-input-wrapper">
+              <i class="fa-regular fa-envelope auth-input-icon"></i>
+              <input
+                type="email"
+                id="forgotEmail"
+                class="auth-input"
+                placeholder="Enter your email address"
+                required
+              />
+            </div>
+          </div>
+          <button
+            type="submit"
+            class="auth-submit-btn"
+            style="margin-top: 0.75rem"
+          >
+            <span>Send Reset Link</span>
+            <i class="fa-solid fa-paper-plane"></i>
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../assets/js/auth.js"></script>
+  </body>
+</html>

@@ -140,7 +140,7 @@ function adjustHeaderPaths(isPagesDir) {
       }
     });
 
-    if (outlineLogin) outlineLogin.href = "contact.html";
+    if (outlineLogin) outlineLogin.href = "login.html";
     if (primaryDrive) primaryDrive.href = "contact.html";
     if (wishlistBtn) wishlistBtn.href = "cars.html";
   } else {
@@ -156,7 +156,7 @@ function adjustHeaderPaths(isPagesDir) {
       }
     });
 
-    if (outlineLogin) outlineLogin.href = "pages/contact.html";
+    if (outlineLogin) outlineLogin.href = "pages/login.html";
     if (primaryDrive) primaryDrive.href = "pages/contact.html";
     if (wishlistBtn) wishlistBtn.href = "pages/cars.html";
   }
