@@ -11,6 +11,7 @@ function initApp() {
   initializeFinanceCalculator();
   initializeNewsletterForm();
   initializeCarsFilter();
+  initializeContactForm();
 }
 
 /* Ensures the Stackly logo is used as the favicon for all pages */
@@ -565,4 +566,233 @@ function initializeScrollToTop() {
       behavior: "smooth",
     });
   });
+}
+
+/**
+ * Initializes Contact Page Form and strict input restrictions
+ * - Prevents typing numbers or special characters in Full Name / Username field
+ * - Prevents typing letters or special characters in Phone Number field
+ */
+function initializeContactForm() {
+  const contactForm = document.getElementById("contact-us-form");
+  const nameInput = document.getElementById("contact-fullname");
+  const phoneInput = document.getElementById("contact-phone");
+  const emailInput = document.getElementById("contact-email");
+  const subjectInput = document.getElementById("contact-subject");
+  const messageInput = document.getElementById("contact-message");
+  const statusAlert = document.getElementById("contact-form-alert");
+
+  /* --- Full Name / Username: STRICTLY Letters (A-Z, a-z) & Spaces only --- */
+  if (nameInput) {
+    // 1. Prevent non-alphabet keys on keydown before they are typed
+    nameInput.addEventListener("keydown", (e) => {
+      // Allow navigation and editing control keys
+      const allowedKeys = [
+        "Backspace",
+        "Delete",
+        "Tab",
+        "Escape",
+        "Enter",
+        "ArrowLeft",
+        "ArrowRight",
+        "ArrowUp",
+        "ArrowDown",
+        "Home",
+        "End",
+        "PageUp",
+        "PageDown",
+      ];
+
+      if (allowedKeys.includes(e.key)) return;
+
+      // Allow Ctrl/Command shortcuts (Ctrl+A, Ctrl+C, Ctrl+V, Ctrl+X, Ctrl+Z)
+      if (e.ctrlKey || e.metaKey || e.altKey) return;
+
+      // Only allow letters and single space
+      if (e.key.length === 1) {
+        if (!/^[a-zA-Z\s]$/.test(e.key)) {
+          e.preventDefault();
+        }
+      }
+    });
+
+    // 2. Prevent invalid input for mobile / virtual keyboards / IME
+    nameInput.addEventListener("beforeinput", (e) => {
+      if (e.data && !/^[a-zA-Z\s]+$/.test(e.data)) {
+        e.preventDefault();
+      }
+    });
+
+    // 3. Fallback sanitizer on input event
+    nameInput.addEventListener("input", (e) => {
+      const sanitized = e.target.value.replace(/[^a-zA-Z\s]/g, "");
+      if (e.target.value !== sanitized) {
+        e.target.value = sanitized;
+      }
+      e.target.classList.remove("input-error");
+    });
+
+    // 4. Handle paste strictly
+    nameInput.addEventListener("paste", (e) => {
+      e.preventDefault();
+      const clipboardText = (e.clipboardData || window.clipboardData).getData(
+        "text",
+      );
+      const cleanText = clipboardText.replace(/[^a-zA-Z\s]/g, "");
+      if (cleanText) {
+        const start = nameInput.selectionStart || 0;
+        const end = nameInput.selectionEnd || 0;
+        const originalVal = nameInput.value;
+        nameInput.value =
+          originalVal.substring(0, start) +
+          cleanText +
+          originalVal.substring(end);
+        const newPos = start + cleanText.length;
+        nameInput.setSelectionRange(newPos, newPos);
+      }
+    });
+  }
+
+  /* --- Phone Number: STRICTLY Digits (0-9) only --- */
+  if (phoneInput) {
+    // 1. Prevent non-digit keys on keydown before they are typed
+    phoneInput.addEventListener("keydown", (e) => {
+      const allowedKeys = [
+        "Backspace",
+        "Delete",
+        "Tab",
+        "Escape",
+        "Enter",
+        "ArrowLeft",
+        "ArrowRight",
+        "ArrowUp",
+        "ArrowDown",
+        "Home",
+        "End",
+        "PageUp",
+        "PageDown",
+      ];
+
+      if (allowedKeys.includes(e.key)) return;
+
+      // Allow Ctrl/Command shortcuts
+      if (e.ctrlKey || e.metaKey || e.altKey) return;
+
+      // Only allow 0-9 digits
+      if (e.key.length === 1) {
+        if (!/^[0-9]$/.test(e.key)) {
+          e.preventDefault();
+        }
+      }
+    });
+
+    // 2. Prevent invalid input on beforeinput
+    phoneInput.addEventListener("beforeinput", (e) => {
+      if (e.data && !/^[0-9]+$/.test(e.data)) {
+        e.preventDefault();
+      }
+    });
+
+    // 3. Fallback sanitizer on input event
+    phoneInput.addEventListener("input", (e) => {
+      const sanitized = e.target.value.replace(/[^0-9]/g, "");
+      if (e.target.value !== sanitized) {
+        e.target.value = sanitized;
+      }
+      e.target.classList.remove("input-error");
+    });
+
+    // 4. Handle paste strictly
+    phoneInput.addEventListener("paste", (e) => {
+      e.preventDefault();
+      const clipboardText = (e.clipboardData || window.clipboardData).getData(
+        "text",
+      );
+      const cleanText = clipboardText.replace(/[^0-9]/g, "");
+      if (cleanText) {
+        const start = phoneInput.selectionStart || 0;
+        const end = phoneInput.selectionEnd || 0;
+        const originalVal = phoneInput.value;
+        phoneInput.value =
+          originalVal.substring(0, start) +
+          cleanText +
+          originalVal.substring(end);
+        const newPos = start + cleanText.length;
+        phoneInput.setSelectionRange(newPos, newPos);
+      }
+    });
+  }
+
+  // Clear error styling on input for other fields
+  [emailInput, subjectInput, messageInput].forEach((inputEl) => {
+    if (inputEl) {
+      inputEl.addEventListener("input", () => {
+        inputEl.classList.remove("input-error");
+      });
+    }
+  });
+
+  /* --- Form Submit Handler --- */
+  if (contactForm) {
+    contactForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const nameVal = nameInput ? nameInput.value.trim() : "";
+      const emailVal = emailInput ? emailInput.value.trim() : "";
+      const phoneVal = phoneInput ? phoneInput.value.trim() : "";
+      const subjectVal = subjectInput ? subjectInput.value.trim() : "";
+      const messageVal = messageInput ? messageInput.value.trim() : "";
+
+      let isValid = true;
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      if (!nameVal) {
+        if (nameInput) nameInput.classList.add("input-error");
+        isValid = false;
+      }
+      if (!emailVal || !emailRegex.test(emailVal)) {
+        if (emailInput) emailInput.classList.add("input-error");
+        isValid = false;
+      }
+      if (!phoneVal || phoneVal.length < 7) {
+        if (phoneInput) phoneInput.classList.add("input-error");
+        isValid = false;
+      }
+      if (!subjectVal) {
+        if (subjectInput) subjectInput.classList.add("input-error");
+        isValid = false;
+      }
+      if (!messageVal) {
+        if (messageInput) messageInput.classList.add("input-error");
+        isValid = false;
+      }
+
+      if (!isValid) {
+        if (statusAlert) {
+          statusAlert.className = "contact-form-alert alert-error";
+          statusAlert.style.display = "block";
+          statusAlert.innerHTML =
+            '<i class="fa-solid fa-triangle-exclamation" style="margin-right: 6px;"></i> Please fill in all required fields with valid information.';
+        }
+        return;
+      }
+
+      // Success state
+      if (statusAlert) {
+        statusAlert.className = "contact-form-alert alert-success";
+        statusAlert.style.display = "block";
+        statusAlert.innerHTML = `<i class="fa-solid fa-circle-check" style="margin-right: 6px;"></i> Thank you, <strong>${nameVal}</strong>! Your inquiry regarding "<strong>${subjectVal}</strong>" has been received. Our team will contact you shortly at <strong>${phoneVal}</strong>.`;
+      }
+
+      // Reset form
+      contactForm.reset();
+
+      // Clear success notification after 7 seconds
+      setTimeout(() => {
+        if (statusAlert) {
+          statusAlert.style.display = "none";
+        }
+      }, 7000);
+    });
+  }
 }
