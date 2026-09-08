@@ -30,6 +30,7 @@ function initApp() {
   initializeNewsletterForm();
   initializeCarsFilter();
   initializeContactForm();
+  initScrollReveal();
 }
 
 /* Ensures the Stackly logo is used as the favicon for all pages */
@@ -122,12 +123,18 @@ async function loadFooterComponent() {
 
     adjustFooterPaths(isPagesDir);
     initializeScrollToTop();
+    if (typeof window.reobserveScrollReveal === "function") {
+      window.reobserveScrollReveal();
+    }
   } catch (error) {
     console.warn(
       "Component fetch fallback (e.g. running from local file system without server):",
       error,
     );
     initializeScrollToTop();
+    if (typeof window.reobserveScrollReveal === "function") {
+      window.reobserveScrollReveal();
+    }
   }
 }
 
@@ -860,4 +867,302 @@ function setupEmptyLinks404Redirect() {
       window.location.href = target404;
     }
   });
+}
+
+/**
+ * ============================================================================
+ * SCROLL REVEAL ANIMATION ENGINE (All Pages & Sections Except Dashboard)
+ * ============================================================================
+ */
+function initScrollReveal() {
+  // 1. Explicitly ignore dashboard pages to maintain crisp dashboard performance
+  const isDashboard =
+    document.body.classList.contains("dashboard-body") ||
+    document.body.getAttribute("data-page") === "dashboard" ||
+    window.location.pathname.toLowerCase().includes("dashboard");
+
+  if (isDashboard) {
+    return;
+  }
+
+  // 2. Comprehensive section and grid element targeting rules
+  const revealRules = [
+    // Hero banner contents across pages
+    {
+      selector:
+        ".hero-content, .about-hero-content, .services-hero-content, .cars-hero-content, .blog-hero-content, .contact-hero-content",
+      effect: "sr-zoom-in",
+    },
+    { selector: ".cars-filter-bar", effect: "sr-from-top" },
+
+    // Section headers & badges across all sections
+    {
+      selector:
+        ".section-header, .about-section-header, .services-section-header, .contact-section-header",
+      effect: "sr-reveal",
+    },
+
+    // Home Page card grids with stagger
+    {
+      container: ".popular-cars-section .cars-grid",
+      items: ".car-card",
+      effect: "sr-reveal",
+    },
+    {
+      container: ".why-choose-us-section .why-cards-grid",
+      items: ".why-card",
+      effect: "sr-reveal",
+    },
+    {
+      container: ".browse-brands-section .brands-grid",
+      items: ".brand-card",
+      effect: "sr-reveal",
+    },
+    {
+      container: ".featured-services-section .services-grid",
+      items: ".service-card",
+      effect: "sr-reveal",
+    },
+    {
+      container: ".testimonials-section .reviews-grid",
+      items: ".review-card",
+      effect: "sr-reveal",
+    },
+    {
+      container: ".latest-blog-section .blog-grid",
+      items: ".blog-card",
+      effect: "sr-reveal",
+    },
+
+    // Home Page Finance Calculator Columns
+    {
+      selector: ".finance-calc-section .calc-inputs-col",
+      effect: "sr-from-left",
+    },
+    {
+      selector:
+        ".finance-calc-section .calc-result-col, .finance-calc-section .calc-result-card",
+      effect: "sr-from-right",
+    },
+
+    // Newsletter & CTA Banners
+    {
+      selector: ".newsletter-section .newsletter-top-card",
+      effect: "sr-zoom-in",
+    },
+    {
+      selector:
+        ".newsletter-section .newsletter-bottom-row, .about-cta-section .newsletter-bottom-row, .services-cta-section .newsletter-bottom-row, .cars-cta-section .newsletter-bottom-row",
+      effect: "sr-from-bottom",
+    },
+
+    // About Us Page Sections
+    {
+      selector: ".who-we-are-grid .who-we-are-img-col",
+      effect: "sr-from-left",
+    },
+    {
+      selector: ".who-we-are-grid .who-we-are-content-col",
+      effect: "sr-from-right",
+    },
+    {
+      container: ".our-values-grid",
+      items: ".value-card",
+      effect: "sr-reveal",
+    },
+    {
+      container: ".our-process-grid",
+      items: ".process-step",
+      effect: "sr-reveal",
+    },
+    {
+      selector: ".our-process-car-img, .about-car-visual",
+      effect: "sr-from-right",
+    },
+    {
+      container: ".our-team-grid",
+      items: ".team-card",
+      effect: "sr-reveal",
+    },
+
+    // Services Page Sections
+    {
+      container: ".services-listing-section .services-grid",
+      items: ".service-detail-card",
+      effect: "sr-reveal",
+    },
+    {
+      container: ".why-service-grid",
+      items: ".why-service-card",
+      effect: "sr-reveal",
+    },
+    {
+      container: ".service-process-grid",
+      items: ".process-step-card",
+      effect: "sr-reveal",
+    },
+    {
+      selector: ".service-booking-section .booking-form-card",
+      effect: "sr-zoom-in",
+    },
+    {
+      container: ".services-faq-section .faq-accordion",
+      items: ".faq-item",
+      effect: "sr-reveal",
+    },
+
+    // Cars Page Sections
+    {
+      container: ".cars-page-section .cars-grid, .cars-grid",
+      items: ".car-card",
+      effect: "sr-reveal",
+    },
+    { selector: ".cars-pagination", effect: "sr-from-bottom" },
+
+    // Blog Page Sections
+    {
+      container: ".blog-listing-section .blog-grid",
+      items: ".blog-card",
+      effect: "sr-reveal",
+    },
+
+    // Contact Page Sections
+    {
+      container: ".contact-info-cards-grid",
+      items: ".contact-info-card",
+      effect: "sr-reveal",
+    },
+    {
+      selector: ".contact-form-card, .contact-form-wrapper",
+      effect: "sr-from-left",
+    },
+    {
+      selector: ".contact-showroom-card, .contact-showroom-wrapper",
+      effect: "sr-from-right",
+    },
+    {
+      selector: ".contact-map-section, .contact-map-wrapper",
+      effect: "sr-from-bottom",
+    },
+
+    // 404 Error Page Content
+    { selector: ".error-content-col", effect: "sr-from-left" },
+    { selector: ".error-car-col", effect: "sr-from-right" },
+    { selector: ".error-badge-wrapper", effect: "sr-zoom-in" },
+
+    // Standalone sections fallback
+    {
+      selector:
+        "main > section:not(.hero-section):not(.about-hero-section):not(.services-hero-section):not(.cars-hero-section):not(.blog-hero-section):not(.contact-hero-section)",
+      effect: "sr-reveal",
+    },
+
+    // Site Footer Component
+    {
+      container: ".site-footer .footer-top-grid",
+      items: ".footer-column",
+      effect: "sr-reveal",
+    },
+    { selector: ".site-footer .footer-bottom-bar", effect: "sr-from-bottom" },
+  ];
+
+  // Helper to apply classes and stagger indices
+  function applyRevealClasses(scope = document) {
+    revealRules.forEach((rule) => {
+      if (rule.container && rule.items) {
+        const containers = scope.querySelectorAll(rule.container);
+        containers.forEach((container) => {
+          const items = container.querySelectorAll(rule.items);
+          items.forEach((item, index) => {
+            if (!item.classList.contains("sr-reveal")) {
+              item.classList.add("sr-reveal");
+              if (rule.effect && rule.effect !== "sr-reveal") {
+                item.classList.add(rule.effect);
+              }
+              const delayIndex = (index % 8) + 1;
+              item.classList.add(`sr-delay-${delayIndex}`);
+            }
+          });
+        });
+      } else if (rule.selector) {
+        const elements = scope.querySelectorAll(rule.selector);
+        elements.forEach((el) => {
+          if (!el.classList.contains("sr-reveal")) {
+            el.classList.add("sr-reveal");
+            if (rule.effect && rule.effect !== "sr-reveal") {
+              el.classList.add(rule.effect);
+            }
+          }
+        });
+      }
+    });
+
+    // Also pick up any custom [data-reveal] or .reveal elements
+    scope.querySelectorAll("[data-reveal], .reveal").forEach((el) => {
+      el.classList.add("sr-reveal");
+      const dir = el.getAttribute("data-reveal");
+      if (dir === "left") el.classList.add("sr-from-left");
+      else if (dir === "right") el.classList.add("sr-from-right");
+      else if (dir === "top") el.classList.add("sr-from-top");
+      else if (dir === "bottom" || dir === "up")
+        el.classList.add("sr-from-bottom");
+      else if (dir === "zoom" || dir === "scale")
+        el.classList.add("sr-zoom-in");
+    });
+  }
+
+  // Initial markup tagging
+  applyRevealClasses();
+
+  // Setup IntersectionObserver for smooth scroll triggering
+  if ("IntersectionObserver" in window) {
+    const revealObserver = new IntersectionObserver(
+      (entries, observer) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("sr-revealed");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.08,
+        rootMargin: "0px 0px -30px 0px",
+      },
+    );
+
+    const observeElements = (scope = document) => {
+      scope.querySelectorAll(".sr-reveal:not(.sr-revealed)").forEach((el) => {
+        // Elements already in the initial viewport
+        const rect = el.getBoundingClientRect();
+        const isInViewport =
+          rect.top < window.innerHeight &&
+          rect.bottom > 0 &&
+          rect.left < window.innerWidth &&
+          rect.right > 0;
+
+        if (isInViewport) {
+          // Reveal with a slight natural delay for smoothness
+          setTimeout(() => {
+            el.classList.add("sr-revealed");
+          }, 60);
+        } else {
+          revealObserver.observe(el);
+        }
+      });
+    };
+
+    observeElements();
+
+    // Expose global reobserve function for dynamically loaded components
+    window.reobserveScrollReveal = function (scope = document) {
+      applyRevealClasses(scope);
+      observeElements(scope);
+    };
+  } else {
+    // Fallback: Reveal all immediately
+    document.querySelectorAll(".sr-reveal").forEach((el) => {
+      el.classList.add("sr-revealed");
+    });
+  }
 }

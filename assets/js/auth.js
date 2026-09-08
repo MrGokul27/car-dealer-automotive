@@ -15,6 +15,7 @@ function initAuth() {
   setupSocialLogins();
   setupForgotPasswordModal();
   setupQueryParamPrefill();
+  initAuthScrollReveal();
 }
 
 /**
@@ -58,10 +59,14 @@ function setupQueryParamPrefill() {
   }
 
   if (roleParam) {
-    const roleRadio = document.querySelector(`input[name="loginRole"][value="${roleParam}"]`);
+    const roleRadio = document.querySelector(
+      `input[name="loginRole"][value="${roleParam}"]`,
+    );
     if (roleRadio) {
       roleRadio.checked = true;
-      document.querySelectorAll(".auth-role-card").forEach(c => c.classList.remove("active"));
+      document
+        .querySelectorAll(".auth-role-card")
+        .forEach((c) => c.classList.remove("active"));
       roleRadio.closest(".auth-role-card")?.classList.add("active");
     }
   }
@@ -71,7 +76,7 @@ function setupQueryParamPrefill() {
       showToast(
         "success",
         "Account Ready!",
-        "Registration complete! Please enter your password to sign in to your dashboard."
+        "Registration complete! Please enter your password to sign in to your dashboard.",
       );
     }, 300);
   }
@@ -578,15 +583,26 @@ function setupFormSubmissions() {
       if (!isValid) return;
 
       // Selected Role
-      const roleRadio = document.querySelector('input[name="loginRole"]:checked');
+      const roleRadio = document.querySelector(
+        'input[name="loginRole"]:checked',
+      );
       const selectedRole = roleRadio ? roleRadio.value : "customer";
       const email = emailInput.value.trim();
 
       // Check if we have registered name for this email
-      let displayName = email.split("@")[0].replace(/[._-]/g, " ").replace(/\b\w/g, l => l.toUpperCase());
+      let displayName = email
+        .split("@")[0]
+        .replace(/[._-]/g, " ")
+        .replace(/\b\w/g, (l) => l.toUpperCase());
       try {
-        const regUser = JSON.parse(localStorage.getItem("autoDrive_registered_user") || "{}");
-        if (regUser.email && regUser.email.toLowerCase() === email.toLowerCase() && regUser.name) {
+        const regUser = JSON.parse(
+          localStorage.getItem("autoDrive_registered_user") || "{}",
+        );
+        if (
+          regUser.email &&
+          regUser.email.toLowerCase() === email.toLowerCase() &&
+          regUser.name
+        ) {
           displayName = regUser.name;
         }
       } catch (err) {}
@@ -596,7 +612,7 @@ function setupFormSubmissions() {
         email: email,
         role: selectedRole,
         loginTime: new Date().toISOString(),
-        rememberMe: document.getElementById("rememberMe")?.checked || false
+        rememberMe: document.getElementById("rememberMe")?.checked || false,
       };
 
       localStorage.setItem("autoDrive_user", JSON.stringify(userSession));
@@ -729,7 +745,9 @@ function setupFormSubmissions() {
       const emailVal = emailInput ? emailInput.value.trim() : "";
       const phoneVal = phoneInput ? phoneInput.value.trim() : "";
       const cityVal = cityInput ? cityInput.value.trim() : "";
-      const roleRadio = document.querySelector('input[name="registerRole"]:checked');
+      const roleRadio = document.querySelector(
+        'input[name="registerRole"]:checked',
+      );
       const roleVal = roleRadio ? roleRadio.value : "customer";
 
       const registeredUser = {
@@ -738,10 +756,13 @@ function setupFormSubmissions() {
         phone: phoneVal,
         city: cityVal,
         role: roleVal,
-        loginTime: new Date().toISOString()
+        loginTime: new Date().toISOString(),
       };
 
-      localStorage.setItem("autoDrive_registered_user", JSON.stringify(registeredUser));
+      localStorage.setItem(
+        "autoDrive_registered_user",
+        JSON.stringify(registeredUser),
+      );
       localStorage.setItem("autoDrive_user", JSON.stringify(registeredUser));
 
       // Disable button & show loading state
@@ -770,52 +791,18 @@ function setupFormSubmissions() {
 function setupSocialLogins() {
   const googleBtns = document.querySelectorAll(".auth-social-btn.google-btn");
   const appleBtns = document.querySelectorAll(".auth-social-btn.apple-btn");
+  const isPagesDir = window.location.pathname.includes("/pages/");
+  const target404 = isPagesDir ? "404.html" : "pages/404.html";
 
   googleBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
-      const roleRadio = document.querySelector('input[name="loginRole"]:checked, input[name="registerRole"]:checked');
-      const selectedRole = roleRadio ? roleRadio.value : "customer";
-
-      const socialUser = {
-        name: "Alex Morgan",
-        email: "alex.morgan@gmail.com",
-        role: selectedRole,
-        loginTime: new Date().toISOString()
-      };
-      localStorage.setItem("autoDrive_user", JSON.stringify(socialUser));
-
-      showToast(
-        "success",
-        "Google Authentication",
-        `Signed in as Alex Morgan! Redirecting to ${selectedRole === "dealer" ? "Dealer" : "Customer"} Dashboard...`,
-      );
-      setTimeout(() => {
-        window.location.href = getDashboardUrl();
-      }, 1000);
+      window.location.href = target404;
     });
   });
 
   appleBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
-      const roleRadio = document.querySelector('input[name="loginRole"]:checked, input[name="registerRole"]:checked');
-      const selectedRole = roleRadio ? roleRadio.value : "customer";
-
-      const socialUser = {
-        name: "Alex Morgan",
-        email: "alex.morgan@icloud.com",
-        role: selectedRole,
-        loginTime: new Date().toISOString()
-      };
-      localStorage.setItem("autoDrive_user", JSON.stringify(socialUser));
-
-      showToast(
-        "success",
-        "Apple Authentication",
-        `Signed in with Apple ID! Redirecting to ${selectedRole === "dealer" ? "Dealer" : "Customer"} Dashboard...`,
-      );
-      setTimeout(() => {
-        window.location.href = getDashboardUrl();
-      }, 1000);
+      window.location.href = target404;
     });
   });
 }
@@ -1006,4 +993,42 @@ function setupEmptyLinks404Redirect() {
       window.location.href = target404;
     }
   });
+}
+
+/**
+ * Scroll reveal animations for Authentication pages
+ */
+function initAuthScrollReveal() {
+  const header = document.querySelector(".auth-header");
+  if (header) {
+    header.classList.add("sr-reveal", "sr-from-top");
+  }
+
+  const heroHeader = document.querySelector(".auth-hero-header");
+  if (heroHeader) {
+    heroHeader.classList.add("sr-reveal", "sr-from-left");
+  }
+
+  const featureItems = document.querySelectorAll(
+    ".auth-features-list .auth-feature-item",
+  );
+  featureItems.forEach((item, index) => {
+    item.classList.add(
+      "sr-reveal",
+      "sr-from-left",
+      `sr-delay-${(index % 6) + 1}`,
+    );
+  });
+
+  const authCard = document.querySelector(".auth-card");
+  if (authCard) {
+    authCard.classList.add("sr-reveal", "sr-zoom-in", "sr-delay-2");
+  }
+
+  // Trigger reveals smoothly
+  setTimeout(() => {
+    document.querySelectorAll(".sr-reveal").forEach((el) => {
+      el.classList.add("sr-revealed");
+    });
+  }, 50);
 }

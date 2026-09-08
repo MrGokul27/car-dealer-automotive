@@ -5170,3 +5170,131 @@ img {
     height: 215px;
   }
 }
+
+/* ==========================================================================
+   SCROLL REVEAL ANIMATIONS (Except Dashboard)
+   ========================================================================== */
+
+/* Base hidden state for scroll reveal elements */
+.sr-reveal {
+  opacity: 0;
+  transform: translateY(36px);
+  transition:
+    opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.75s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
+
+/* Revealed / Active Visible State */
+.sr-reveal.sr-revealed,
+.sr-reveal.is-visible {
+  opacity: 1 !important;
+  transform: translate3d(0, 0, 0) scale(1) !important;
+  filter: blur(0) !important;
+}
+
+/* Direction & Effect Variations */
+.sr-reveal.sr-from-left {
+  transform: translate3d(-45px, 0, 0);
+}
+
+.sr-reveal.sr-from-right {
+  transform: translate3d(45px, 0, 0);
+}
+
+.sr-reveal.sr-from-top {
+  transform: translate3d(0, -36px, 0);
+}
+
+.sr-reveal.sr-from-bottom {
+  transform: translate3d(0, 36px, 0);
+}
+
+.sr-reveal.sr-zoom-in,
+.sr-reveal.sr-scale {
+  transform: scale(0.93) translateY(20px);
+}
+
+.sr-reveal.sr-fade-only {
+  transform: none;
+}
+
+/* Stagger Delays */
+.sr-delay-1 {
+  transition-delay: 0.08s;
+}
+.sr-delay-2 {
+  transition-delay: 0.16s;
+}
+.sr-delay-3 {
+  transition-delay: 0.24s;
+}
+.sr-delay-4 {
+  transition-delay: 0.32s;
+}
+.sr-delay-5 {
+  transition-delay: 0.4s;
+}
+.sr-delay-6 {
+  transition-delay: 0.48s;
+}
+.sr-delay-7 {
+  transition-delay: 0.56s;
+}
+.sr-delay-8 {
+  transition-delay: 0.64s;
+}
+
+/* Staggered Grid Container Automations */
+.sr-stagger-container > .sr-reveal:nth-child(1) {
+  transition-delay: 0.05s;
+}
+.sr-stagger-container > .sr-reveal:nth-child(2) {
+  transition-delay: 0.15s;
+}
+.sr-stagger-container > .sr-reveal:nth-child(3) {
+  transition-delay: 0.25s;
+}
+.sr-stagger-container > .sr-reveal:nth-child(4) {
+  transition-delay: 0.35s;
+}
+.sr-stagger-container > .sr-reveal:nth-child(5) {
+  transition-delay: 0.45s;
+}
+.sr-stagger-container > .sr-reveal:nth-child(6) {
+  transition-delay: 0.55s;
+}
+.sr-stagger-container > .sr-reveal:nth-child(7) {
+  transition-delay: 0.65s;
+}
+.sr-stagger-container > .sr-reveal:nth-child(8) {
+  transition-delay: 0.75s;
+}
+
+/* Accessibility: Disable animations if user prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .sr-reveal,
+  .sr-reveal.sr-from-left,
+  .sr-reveal.sr-from-right,
+  .sr-reveal.sr-from-top,
+  .sr-reveal.sr-from-bottom,
+  .sr-reveal.sr-zoom-in,
+  .sr-reveal.sr-scale,
+  .sr-reveal.sr-fade-only {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+    filter: none !important;
+  }
+}
+
+/* Explicit Exclusion: Ensure Dashboard Pages never hide content */
+body.dashboard-body .sr-reveal,
+body[data-page="dashboard"] .sr-reveal {
+  opacity: 1 !important;
+  transform: none !important;
+  transition: none !important;
+  filter: none !important;
+}

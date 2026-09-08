@@ -151,6 +151,10 @@ body.auth-page::before {
   justify-content: flex-end;
 }
 
+input[type="password"]::-ms-reveal {
+  display: none;
+}
+
 /* --------------------------------------------------------------------------
    MAIN CONTAINER & GRID
    -------------------------------------------------------------------------- */
