@@ -1,6 +1,23 @@
 document.addEventListener("DOMContentLoaded", () => {
+  initPreloader();
   initApp();
 });
+
+function initPreloader() {
+  const preloader = document.getElementById("page-preloader");
+  if (!preloader) return;
+
+  const hide = () => preloader.classList.add("hidden");
+
+  // Hide after 2 seconds minimum, or when page fully loads — whichever is later
+  const minDelay = new Promise((resolve) => setTimeout(resolve, 2000));
+  const pageLoad = new Promise((resolve) => {
+    if (document.readyState === "complete") resolve();
+    else window.addEventListener("load", resolve, { once: true });
+  });
+
+  Promise.all([minDelay, pageLoad]).then(hide);
+}
 
 function initApp() {
   setupFavicon();
