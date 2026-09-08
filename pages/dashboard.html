@@ -1,0 +1,3081 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AutoDrive | Automotive Role-Based Dashboard</title>
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/webp"
+      href="../assets/images/stackly-logo.webp"
+    />
+
+    <!-- Google Fonts (Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font Awesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+
+    <!-- Bootstrap 5 CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    />
+
+    <!-- Theme & Dashboard Custom Stylesheets -->
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+    <link rel="stylesheet" href="../assets/css/dashboard.css" />
+  </head>
+
+  <body class="dashboard-body" data-page="dashboard">
+    <!-- Mobile Sidebar Backdrop Overlay -->
+    <div class="dash-sidebar-backdrop" id="dashSidebarBackdrop"></div>
+
+    <div class="dashboard-layout">
+      <!-- ====================================================================
+           SIDEBAR COMPONENT
+           ==================================================================== -->
+      <aside class="dash-sidebar" id="dashSidebar">
+        <!-- Sidebar Brand Header -->
+        <div class="dash-sidebar-header">
+          <a href="../index.html" class="dash-sidebar-logo">
+            <img
+              src="../assets/images/stackly-logo.webp"
+              alt="AutoDrive Dealership"
+            />
+          </a>
+          <button
+            type="button"
+            class="dash-sidebar-close"
+            id="closeSidebarBtn"
+            aria-label="Close sidebar"
+          >
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <!-- User Role Profile Card -->
+        <div class="dash-user-role-card">
+          <div class="dash-avatar-wrapper">
+            <img
+              src="../assets/images/about/about-our-team-1.webp"
+              alt="User Avatar"
+              class="dash-avatar-img"
+            />
+            <span class="dash-avatar-status"></span>
+          </div>
+          <div class="dash-user-meta">
+            <div class="dash-user-meta-name user-display-name">Alex Morgan</div>
+            <span class="dash-user-meta-role role-badge-customer">
+              <i class="fa-solid fa-user-check"></i> VIP Customer
+            </span>
+          </div>
+        </div>
+
+        <!-- ================================================================
+             CUSTOMER ROLE SIDEBAR NAVIGATION
+             ================================================================ -->
+        <div class="dash-nav-section" id="customerSidebarNav">
+          <div class="dash-nav-title">Customer Menu</div>
+          <ul class="dash-nav-list">
+            <li>
+              <a
+                class="dash-nav-link active"
+                data-nav-target="customer-overview"
+              >
+                <div class="dash-nav-link-left">
+                  <i class="fa-solid fa-gauge-high"></i>
+                  <span>My Dashboard</span>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a class="dash-nav-link" data-nav-target="customer-garage">
+                <div class="dash-nav-link-left">
+                  <i class="fa-solid fa-warehouse"></i>
+                  <span>My Garage & Saved</span>
+                </div>
+                <span class="dash-nav-badge badge-red">6</span>
+              </a>
+            </li>
+            <li>
+              <a class="dash-nav-link" data-nav-target="customer-testdrives">
+                <div class="dash-nav-link-left">
+                  <i class="fa-solid fa-car-side"></i>
+                  <span>Test Drive Bookings</span>
+                </div>
+                <span class="dash-nav-badge">2</span>
+              </a>
+            </li>
+            <li>
+              <a class="dash-nav-link" data-nav-target="customer-services">
+                <div class="dash-nav-link-left">
+                  <i class="fa-solid fa-wrench"></i>
+                  <span>Service & Health</span>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a class="dash-nav-link" data-nav-target="customer-finance">
+                <div class="dash-nav-link-left">
+                  <i class="fa-solid fa-calculator"></i>
+                  <span>Finance & EMI</span>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a class="dash-nav-link" data-nav-target="customer-orders">
+                <div class="dash-nav-link-left">
+                  <i class="fa-solid fa-file-invoice-dollar"></i>
+                  <span>Orders & Invoices</span>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a class="dash-nav-link" data-nav-target="customer-profile">
+                <div class="dash-nav-link-left">
+                  <i class="fa-solid fa-user-gear"></i>
+                  <span>Account & Profile</span>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- ================================================================
+             DEALER / STAFF ROLE SIDEBAR NAVIGATION
+             ================================================================ -->
+        <div
+          class="dash-nav-section"
+          id="dealerSidebarNav"
+          style="display: none"
+        >
+          <div class="dash-nav-title">Dealership Management</div>
+          <ul class="dash-nav-list">
+            <li>
+              <a class="dash-nav-link active" data-nav-target="dealer-overview">
+                <div class="dash-nav-link-left">
+                  <i class="fa-solid fa-chart-line"></i>
+                  <span>Command Center</span>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a class="dash-nav-link" data-nav-target="dealer-inventory">
+                <div class="dash-nav-link-left">
+                  <i class="fa-solid fa-car"></i>
+                  <span>Vehicle Inventory</span>
+                </div>
+                <span class="dash-nav-badge badge-red">138</span>
+              </a>
+            </li>
+            <li>
+              <a class="dash-nav-link" data-nav-target="dealer-leads">
+                <div class="dash-nav-link-left">
+                  <i class="fa-solid fa-users"></i>
+                  <span>Leads & Inquiries</span>
+                </div>
+                <span class="dash-nav-badge">19</span>
+              </a>
+            </li>
+            <li>
+              <a class="dash-nav-link" data-nav-target="dealer-testdrives">
+                <div class="dash-nav-link-left">
+                  <i class="fa-solid fa-calendar-check"></i>
+                  <span>Test Drive Fleet</span>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a class="dash-nav-link" data-nav-target="dealer-sales">
+                <div class="dash-nav-link-left">
+                  <i class="fa-solid fa-handshake"></i>
+                  <span>Sales & Approvals</span>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a class="dash-nav-link" data-nav-target="dealer-servicebay">
+                <div class="dash-nav-link-left">
+                  <i class="fa-solid fa-screwdriver-wrench"></i>
+                  <span>Service Bay Ops</span>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a class="dash-nav-link" data-nav-target="dealer-analytics">
+                <div class="dash-nav-link-left">
+                  <i class="fa-solid fa-chart-pie"></i>
+                  <span>Analytics & KPI</span>
+                </div>
+              </a>
+            </li>
+            <li>
+              <a class="dash-nav-link" data-nav-target="dealer-settings">
+                <div class="dash-nav-link-left">
+                  <i class="fa-solid fa-sliders"></i>
+                  <span>Dealer Settings</span>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Sidebar Footer -->
+        <div class="dash-sidebar-footer">
+          <button type="button" class="dash-logout-btn">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Sign Out</span>
+          </button>
+        </div>
+      </aside>
+
+      <!-- ====================================================================
+           MAIN CONTENT WORKSPACE
+           ==================================================================== -->
+      <div class="dash-main">
+        <!-- Top Sticky Header -->
+        <header class="dash-topbar">
+          <div class="dash-topbar-left">
+            <button
+              type="button"
+              class="dash-mobile-toggle"
+              id="mobileSidebarToggle"
+              aria-label="Toggle Navigation"
+            >
+              <i class="fa-solid fa-bars"></i>
+            </button>
+            <div class="dash-topbar-search">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input type="text" placeholder="Search models, VINs, orders..." />
+            </div>
+          </div>
+
+          <div class="dash-topbar-right">
+            <!-- Dynamic Role Switcher Pill -->
+            <!-- <div
+              class="role-switcher-container"
+              title="Switch between Customer & Dealer portal views"
+            >
+              <button
+                type="button"
+                class="role-switch-btn active"
+                data-role="customer"
+              >
+                <i class="fa-solid fa-user"></i>
+                <span>Customer</span>
+              </button>
+              <button type="button" class="role-switch-btn" data-role="dealer">
+                <i class="fa-solid fa-briefcase"></i>
+                <span>Dealer / Staff</span>
+              </button>
+            </div> -->
+
+            <!-- Notification Bell Icon (Triggers 404 if clicked as empty link) -->
+            <a href="#" class="dash-action-icon-btn" aria-label="Notifications">
+              <i class="fa-regular fa-bell"></i>
+              <span class="dash-action-badge">3</span>
+            </a>
+
+            <!-- User Profile Summary in Header -->
+            <div
+              class="dash-topbar-profile"
+              onclick="
+                navigateToSection(
+                  localStorage.getItem('autoDrive_user') &&
+                    JSON.parse(localStorage.getItem('autoDrive_user')).role ===
+                      'dealer'
+                    ? 'dealer-settings'
+                    : 'customer-profile',
+                )
+              "
+            >
+              <div class="dash-topbar-profile-info">
+                <div class="dash-topbar-profile-name user-display-name">
+                  Alex Morgan
+                </div>
+                <div class="dash-topbar-profile-email user-display-email">
+                  alex.morgan@autodrive.com
+                </div>
+              </div>
+              <img
+                src="../assets/images/about/about-our-team-1.webp"
+                alt="Profile"
+                class="dash-avatar-img"
+                style="width: 38px; height: 38px"
+              />
+            </div>
+          </div>
+        </header>
+
+        <!-- Dashboard Content Body Container -->
+        <main class="dash-content-container">
+          <!-- ================================================================
+               CUSTOMER SECTIONS
+               ================================================================ -->
+
+          <!-- 1. CUSTOMER OVERVIEW -->
+          <section class="dash-section active" id="customer-overview">
+            <!-- Hero Welcome Banner -->
+            <div class="dash-welcome-banner">
+              <img
+                src="../assets/images/home/home-hero-banner-image.webp"
+                alt="Banner Car"
+                class="dash-welcome-banner-bg"
+              />
+              <div class="dash-welcome-tag">
+                <i class="fa-solid fa-bolt"></i> AutoDrive VIP Concierge
+              </div>
+              <h1 class="dash-welcome-title">
+                Welcome Back, <span class="user-display-name">Alex Morgan</span>
+              </h1>
+              <p class="dash-welcome-subtitle">
+                Your luxury automotive garage is active. Track your pending test
+                drives, vehicle delivery progress, service records, and finance
+                approvals in one seamless dashboard.
+              </p>
+            </div>
+
+            <!-- KPI Metric Stats Cards -->
+            <div class="row g-4 mb-4">
+              <div class="col-12 col-sm-6 col-xl-3">
+                <div class="dash-stat-card">
+                  <div class="dash-stat-card-top">
+                    <div class="dash-stat-icon-wrapper icon-red">
+                      <i class="fa-solid fa-heart"></i>
+                    </div>
+                    <span class="dash-stat-badge badge-positive"
+                      >+2 This Week</span
+                    >
+                  </div>
+                  <div>
+                    <div class="dash-stat-value">6</div>
+                    <div class="dash-stat-label">Saved Dream Cars</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-12 col-sm-6 col-xl-3">
+                <div class="dash-stat-card">
+                  <div class="dash-stat-card-top">
+                    <div class="dash-stat-icon-wrapper icon-blue">
+                      <i class="fa-solid fa-car-side"></i>
+                    </div>
+                    <span class="dash-stat-badge badge-neutral"
+                      >Upcoming: Sat</span
+                    >
+                  </div>
+                  <div>
+                    <div class="dash-stat-value">2</div>
+                    <div class="dash-stat-label">Test Drives Booked</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-12 col-sm-6 col-xl-3">
+                <div class="dash-stat-card">
+                  <div class="dash-stat-card-top">
+                    <div class="dash-stat-icon-wrapper icon-green">
+                      <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <span class="dash-stat-badge badge-positive">All Good</span>
+                  </div>
+                  <div>
+                    <div class="dash-stat-value">98%</div>
+                    <div class="dash-stat-label">Vehicle Health Score</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-12 col-sm-6 col-xl-3">
+                <div class="dash-stat-card">
+                  <div class="dash-stat-card-top">
+                    <div class="dash-stat-icon-wrapper icon-amber">
+                      <i class="fa-solid fa-dollar-sign"></i>
+                    </div>
+                    <span class="dash-stat-badge badge-positive">Approved</span>
+                  </div>
+                  <div>
+                    <div class="dash-stat-value">$45,000</div>
+                    <div class="dash-stat-label">Pre-Approved Finance</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Active Vehicle Order Delivery Tracker -->
+            <div class="row g-4 mb-4">
+              <div class="col-12">
+                <div class="dash-card">
+                  <div class="dash-card-header">
+                    <h2 class="dash-card-title">
+                      <i class="fa-solid fa-truck-ramp-box"></i>
+                      Active Vehicle Order: 2024 Porsche 911 Carrera GTS
+                    </h2>
+                    <span class="badge-status badge-status-yellow">
+                      <i class="fa-solid fa-clock"></i> In Transit & Inspection
+                    </span>
+                  </div>
+
+                  <div class="row align-items-center">
+                    <div class="col-12 col-lg-4 mb-3 mb-lg-0">
+                      <div class="d-flex align-items-center gap-3">
+                        <img
+                          src="../assets/images/home/home-featured-cars-1.webp"
+                          alt="Ordered Porsche"
+                          style="
+                            width: 90px;
+                            height: 60px;
+                            object-fit: cover;
+                            border-radius: 8px;
+                            border: 1px solid var(--dash-border);
+                          "
+                        />
+                        <div>
+                          <h4 style="font-size: 1rem; margin-bottom: 0.2rem">
+                            Porsche 911 Carrera GTS
+                          </h4>
+                          <p
+                            style="
+                              font-size: 0.8rem;
+                              color: var(--dash-text-muted);
+                              margin: 0;
+                            "
+                          >
+                            VIN: WP0AB2A98NS289104 | Carmine Red
+                          </p>
+                          <span
+                            style="
+                              font-size: 0.82rem;
+                              color: var(--dash-red);
+                              font-weight: 700;
+                            "
+                            >$168,400 Total</span
+                          >
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="col-12 col-lg-8">
+                      <!-- 4 Step Tracker -->
+                      <div class="dash-order-tracker">
+                        <div class="dash-tracker-step completed">
+                          <div class="dash-tracker-icon">
+                            <i class="fa-solid fa-check"></i>
+                          </div>
+                          <div class="dash-tracker-label">
+                            Booking Confirmed
+                          </div>
+                          <div class="dash-tracker-time">Aug 18, 2026</div>
+                        </div>
+
+                        <div class="dash-tracker-step completed">
+                          <div class="dash-tracker-icon">
+                            <i class="fa-solid fa-check"></i>
+                          </div>
+                          <div class="dash-tracker-label">Vehicle Shipped</div>
+                          <div class="dash-tracker-time">Aug 28, 2026</div>
+                        </div>
+
+                        <div class="dash-tracker-step active">
+                          <div class="dash-tracker-icon">
+                            <i class="fa-solid fa-screwdriver-wrench"></i>
+                          </div>
+                          <div class="dash-tracker-label">
+                            PDI & Ceramic Detail
+                          </div>
+                          <div class="dash-tracker-time">In Progress</div>
+                        </div>
+
+                        <div class="dash-tracker-step">
+                          <div class="dash-tracker-icon">
+                            <i class="fa-solid fa-key"></i>
+                          </div>
+                          <div class="dash-tracker-label">Ready for Pickup</div>
+                          <div class="dash-tracker-time">Est: Sep 12</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Shortcuts & Recommended Vehicles -->
+            <div class="row g-4">
+              <!-- Quick Action Shortcuts -->
+              <div class="col-12 col-lg-4">
+                <div class="dash-card h-100">
+                  <div class="dash-card-header">
+                    <h2 class="dash-card-title">
+                      <i class="fa-solid fa-compass"></i> Quick Actions
+                    </h2>
+                  </div>
+                  <div class="d-flex flex-column gap-3">
+                    <button
+                      type="button"
+                      class="dash-btn-primary w-100 justify-content-start"
+                      data-bs-toggle="modal"
+                      data-bs-target="#scheduleTestDriveModal"
+                    >
+                      <i class="fa-solid fa-calendar-plus"></i>
+                      <span>Schedule a Test Drive</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      class="dash-btn-outline w-100 justify-content-start"
+                      data-bs-toggle="modal"
+                      data-bs-target="#serviceBookingModal"
+                    >
+                      <i class="fa-solid fa-wrench"></i>
+                      <span>Book Service Appointment</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      class="dash-btn-outline w-100 justify-content-start"
+                      onclick="navigateToSection('customer-finance')"
+                    >
+                      <i class="fa-solid fa-calculator"></i>
+                      <span>Calculate Car Loan EMI</span>
+                    </button>
+
+                    <a
+                      href="cars.html"
+                      class="dash-btn-outline w-100 justify-content-start"
+                    >
+                      <i class="fa-solid fa-magnifying-glass"></i>
+                      <span>Explore New Showroom Arrivals</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Top Shortlisted Vehicles -->
+              <div class="col-12 col-lg-8">
+                <div class="dash-card h-100">
+                  <div class="dash-card-header">
+                    <h2 class="dash-card-title">
+                      <i class="fa-solid fa-star"></i> Featured From Your Garage
+                    </h2>
+                    <button
+                      type="button"
+                      class="dash-btn-outline dash-btn-sm"
+                      onclick="navigateToSection('customer-garage')"
+                    >
+                      View All (6)
+                    </button>
+                  </div>
+
+                  <div class="row g-3">
+                    <!-- Featured Car 1 -->
+                    <div class="col-12 col-md-6">
+                      <div class="dash-car-card">
+                        <div class="dash-car-img-box">
+                          <img
+                            src="../assets/images/home/home-featured-cars-2.webp"
+                            alt="Audi RS7 Sportback"
+                          />
+                          <span class="dash-car-status-pill status-available"
+                            >In Showroom</span
+                          >
+                          <span class="dash-car-price-badge">$127,800</span>
+                        </div>
+                        <div class="dash-car-body">
+                          <h4 class="dash-car-title">Audi RS7 Sportback</h4>
+                          <p class="dash-car-subtitle">
+                            4.0L Twin-Turbo V8 | 591 HP
+                          </p>
+                          <div class="dash-car-specs-grid">
+                            <div class="dash-spec-item">
+                              <span class="dash-spec-label">0-60 MPH</span>
+                              <span class="dash-spec-val">3.5 sec</span>
+                            </div>
+                            <div class="dash-spec-item">
+                              <span class="dash-spec-label">Top Speed</span>
+                              <span class="dash-spec-val">190 mph</span>
+                            </div>
+                            <div class="dash-spec-item">
+                              <span class="dash-spec-label">Fuel</span>
+                              <span class="dash-spec-val">Gasoline</span>
+                            </div>
+                          </div>
+                          <button
+                            type="button"
+                            class="dash-btn-primary w-100 book-testdrive-action"
+                            data-car="Audi RS7 Sportback"
+                          >
+                            <i class="fa-solid fa-calendar-check"></i> Book Test
+                            Drive
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Featured Car 2 -->
+                    <div class="col-12 col-md-6">
+                      <div class="dash-car-card">
+                        <div class="dash-car-img-box">
+                          <img
+                            src="../assets/images/home/home-featured-cars-3.webp"
+                            alt="BMW M4 Competition"
+                          />
+                          <span class="dash-car-status-pill status-available"
+                            >Available</span
+                          >
+                          <span class="dash-car-price-badge">$86,300</span>
+                        </div>
+                        <div class="dash-car-body">
+                          <h4 class="dash-car-title">BMW M4 Competition</h4>
+                          <p class="dash-car-subtitle">
+                            3.0L M TwinPower Turbo | 503 HP
+                          </p>
+                          <div class="dash-car-specs-grid">
+                            <div class="dash-spec-item">
+                              <span class="dash-spec-label">0-60 MPH</span>
+                              <span class="dash-spec-val">3.8 sec</span>
+                            </div>
+                            <div class="dash-spec-item">
+                              <span class="dash-spec-label">Drivetrain</span>
+                              <span class="dash-spec-val">M xDrive</span>
+                            </div>
+                            <div class="dash-spec-item">
+                              <span class="dash-spec-label">Fuel</span>
+                              <span class="dash-spec-val">Gasoline</span>
+                            </div>
+                          </div>
+                          <button
+                            type="button"
+                            class="dash-btn-primary w-100 book-testdrive-action"
+                            data-car="BMW M4 Competition"
+                          >
+                            <i class="fa-solid fa-calendar-check"></i> Book Test
+                            Drive
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 2. CUSTOMER GARAGE & SAVED CARS -->
+          <section class="dash-section" id="customer-garage">
+            <div
+              class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2"
+            >
+              <div>
+                <h2 class="dash-welcome-title mb-1">
+                  My Garage & <span>Wishlist</span>
+                </h2>
+                <p class="dash-welcome-subtitle">
+                  Browse and compare your 6 saved high-performance and luxury
+                  vehicles.
+                </p>
+              </div>
+              <div class="d-flex gap-2">
+                <a href="cars.html" class="dash-btn-primary">
+                  <i class="fa-solid fa-plus"></i> Browse More Cars
+                </a>
+              </div>
+            </div>
+
+            <div class="row g-4">
+              <!-- Car Card 1 -->
+              <div class="col-12 col-md-6 col-xl-4">
+                <div class="dash-car-card">
+                  <div class="dash-car-img-box">
+                    <img
+                      src="../assets/images/home/home-featured-cars-1.webp"
+                      alt="Porsche 911 GT3 RS"
+                    />
+                    <span class="dash-car-status-pill status-reserved"
+                      >Reserved</span
+                    >
+                    <span class="dash-car-price-badge">$223,800</span>
+                  </div>
+                  <div class="dash-car-body">
+                    <h4 class="dash-car-title">Porsche 911 GT3 RS</h4>
+                    <p class="dash-car-subtitle">
+                      4.0L Naturally Aspirated Boxer 6 | 518 HP
+                    </p>
+                    <div class="dash-car-specs-grid">
+                      <div class="dash-spec-item">
+                        <span class="dash-spec-label">0-60 MPH</span>
+                        <span class="dash-spec-val">3.0 sec</span>
+                      </div>
+                      <div class="dash-spec-item">
+                        <span class="dash-spec-label">Transmission</span>
+                        <span class="dash-spec-val">7-Speed PDK</span>
+                      </div>
+                      <div class="dash-spec-item">
+                        <span class="dash-spec-label">Mileage</span>
+                        <span class="dash-spec-val">420 mi</span>
+                      </div>
+                    </div>
+                    <div class="dash-car-actions">
+                      <button
+                        type="button"
+                        class="dash-btn-primary flex-grow-1 book-testdrive-action"
+                        data-car="Porsche 911 GT3 RS"
+                      >
+                        Test Drive
+                      </button>
+                      <a href="#" class="dash-btn-outline">
+                        <i class="fa-solid fa-trash-can"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Car Card 2 -->
+              <div class="col-12 col-md-6 col-xl-4">
+                <div class="dash-car-card">
+                  <div class="dash-car-img-box">
+                    <img
+                      src="../assets/images/home/home-featured-cars-2.webp"
+                      alt="Audi RS7 Sportback"
+                    />
+                    <span class="dash-car-status-pill status-available"
+                      >Available</span
+                    >
+                    <span class="dash-car-price-badge">$127,800</span>
+                  </div>
+                  <div class="dash-car-body">
+                    <h4 class="dash-car-title">Audi RS7 Sportback</h4>
+                    <p class="dash-car-subtitle">
+                      4.0L Twin-Turbo V8 | 591 HP | Quattro
+                    </p>
+                    <div class="dash-car-specs-grid">
+                      <div class="dash-spec-item">
+                        <span class="dash-spec-label">0-60 MPH</span>
+                        <span class="dash-spec-val">3.5 sec</span>
+                      </div>
+                      <div class="dash-spec-item">
+                        <span class="dash-spec-label">Transmission</span>
+                        <span class="dash-spec-val">8-Speed Tiptronic</span>
+                      </div>
+                      <div class="dash-spec-item">
+                        <span class="dash-spec-label">Mileage</span>
+                        <span class="dash-spec-val">1,250 mi</span>
+                      </div>
+                    </div>
+                    <div class="dash-car-actions">
+                      <button
+                        type="button"
+                        class="dash-btn-primary flex-grow-1 book-testdrive-action"
+                        data-car="Audi RS7 Sportback"
+                      >
+                        Test Drive
+                      </button>
+                      <a href="#" class="dash-btn-outline">
+                        <i class="fa-solid fa-trash-can"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Car Card 3 -->
+              <div class="col-12 col-md-6 col-xl-4">
+                <div class="dash-car-card">
+                  <div class="dash-car-img-box">
+                    <img
+                      src="../assets/images/home/home-featured-cars-3.webp"
+                      alt="BMW M4 Competition"
+                    />
+                    <span class="dash-car-status-pill status-available"
+                      >Available</span
+                    >
+                    <span class="dash-car-price-badge">$86,300</span>
+                  </div>
+                  <div class="dash-car-body">
+                    <h4 class="dash-car-title">BMW M4 Competition</h4>
+                    <p class="dash-car-subtitle">
+                      3.0L M TwinPower Turbo | 503 HP
+                    </p>
+                    <div class="dash-car-specs-grid">
+                      <div class="dash-spec-item">
+                        <span class="dash-spec-label">0-60 MPH</span>
+                        <span class="dash-spec-val">3.8 sec</span>
+                      </div>
+                      <div class="dash-spec-item">
+                        <span class="dash-spec-label">Transmission</span>
+                        <span class="dash-spec-val">8-Speed M Steptronic</span>
+                      </div>
+                      <div class="dash-spec-item">
+                        <span class="dash-spec-label">Mileage</span>
+                        <span class="dash-spec-val">3,100 mi</span>
+                      </div>
+                    </div>
+                    <div class="dash-car-actions">
+                      <button
+                        type="button"
+                        class="dash-btn-primary flex-grow-1 book-testdrive-action"
+                        data-car="BMW M4 Competition"
+                      >
+                        Test Drive
+                      </button>
+                      <a href="#" class="dash-btn-outline">
+                        <i class="fa-solid fa-trash-can"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Car Card 4 -->
+              <div class="col-12 col-md-6 col-xl-4">
+                <div class="dash-car-card">
+                  <div class="dash-car-img-box">
+                    <img
+                      src="../assets/images/home/home-featured-cars-4.webp"
+                      alt="Mercedes-AMG GT 63 S"
+                    />
+                    <span class="dash-car-status-pill status-available"
+                      >Available</span
+                    >
+                    <span class="dash-car-price-badge">$175,900</span>
+                  </div>
+                  <div class="dash-car-body">
+                    <h4 class="dash-car-title">Mercedes-AMG GT 63 S</h4>
+                    <p class="dash-car-subtitle">
+                      4.0L V8 Biturbo Hybrid | 830 HP
+                    </p>
+                    <div class="dash-car-specs-grid">
+                      <div class="dash-spec-item">
+                        <span class="dash-spec-label">0-60 MPH</span>
+                        <span class="dash-spec-val">2.9 sec</span>
+                      </div>
+                      <div class="dash-spec-item">
+                        <span class="dash-spec-label">Transmission</span>
+                        <span class="dash-spec-val">AMG SPEEDSHIFT 9G</span>
+                      </div>
+                      <div class="dash-spec-item">
+                        <span class="dash-spec-label">Mileage</span>
+                        <span class="dash-spec-val">890 mi</span>
+                      </div>
+                    </div>
+                    <div class="dash-car-actions">
+                      <button
+                        type="button"
+                        class="dash-btn-primary flex-grow-1 book-testdrive-action"
+                        data-car="Mercedes-AMG GT 63 S"
+                      >
+                        Test Drive
+                      </button>
+                      <a href="#" class="dash-btn-outline">
+                        <i class="fa-solid fa-trash-can"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Car Card 5 -->
+              <div class="col-12 col-md-6 col-xl-4">
+                <div class="dash-car-card">
+                  <div class="dash-car-img-box">
+                    <img
+                      src="../assets/images/home/home-featured-cars-5.webp"
+                      alt="Ford Mustang Dark Horse"
+                    />
+                    <span class="dash-car-status-pill status-available"
+                      >Available</span
+                    >
+                    <span class="dash-car-price-badge">$61,200</span>
+                  </div>
+                  <div class="dash-car-body">
+                    <h4 class="dash-car-title">Ford Mustang Dark Horse</h4>
+                    <p class="dash-car-subtitle">
+                      5.0L Coyote V8 Engine | 500 HP
+                    </p>
+                    <div class="dash-car-specs-grid">
+                      <div class="dash-spec-item">
+                        <span class="dash-spec-label">0-60 MPH</span>
+                        <span class="dash-spec-val">4.1 sec</span>
+                      </div>
+                      <div class="dash-spec-item">
+                        <span class="dash-spec-label">Transmission</span>
+                        <span class="dash-spec-val">TREMEC 6-Speed</span>
+                      </div>
+                      <div class="dash-spec-item">
+                        <span class="dash-spec-label">Mileage</span>
+                        <span class="dash-spec-val">15 mi</span>
+                      </div>
+                    </div>
+                    <div class="dash-car-actions">
+                      <button
+                        type="button"
+                        class="dash-btn-primary flex-grow-1 book-testdrive-action"
+                        data-car="Ford Mustang Dark Horse"
+                      >
+                        Test Drive
+                      </button>
+                      <a href="#" class="dash-btn-outline">
+                        <i class="fa-solid fa-trash-can"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Car Card 6 -->
+              <div class="col-12 col-md-6 col-xl-4">
+                <div class="dash-car-card">
+                  <div class="dash-car-img-box">
+                    <img
+                      src="../assets/images/home/home-featured-cars-6.webp"
+                      alt="Range Rover Sport SV"
+                    />
+                    <span class="dash-car-status-pill status-available"
+                      >Available</span
+                    >
+                    <span class="dash-car-price-badge">$180,300</span>
+                  </div>
+                  <div class="dash-car-body">
+                    <h4 class="dash-car-title">Range Rover Sport SV</h4>
+                    <p class="dash-car-subtitle">
+                      4.4L Twin-Turbo Mild-Hybrid V8 | 626 HP
+                    </p>
+                    <div class="dash-car-specs-grid">
+                      <div class="dash-spec-item">
+                        <span class="dash-spec-label">0-60 MPH</span>
+                        <span class="dash-spec-val">3.6 sec</span>
+                      </div>
+                      <div class="dash-spec-item">
+                        <span class="dash-spec-label">Suspension</span>
+                        <span class="dash-spec-val">6D Dynamics Air</span>
+                      </div>
+                      <div class="dash-spec-item">
+                        <span class="dash-spec-label">Mileage</span>
+                        <span class="dash-spec-val">650 mi</span>
+                      </div>
+                    </div>
+                    <div class="dash-car-actions">
+                      <button
+                        type="button"
+                        class="dash-btn-primary flex-grow-1 book-testdrive-action"
+                        data-car="Range Rover Sport SV"
+                      >
+                        Test Drive
+                      </button>
+                      <a href="#" class="dash-btn-outline">
+                        <i class="fa-solid fa-trash-can"></i>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 3. CUSTOMER TEST DRIVE BOOKINGS -->
+          <section class="dash-section" id="customer-testdrives">
+            <div
+              class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2"
+            >
+              <div>
+                <h2 class="dash-welcome-title mb-1">
+                  Test Drive <span>Appointments</span>
+                </h2>
+                <p class="dash-welcome-subtitle">
+                  Manage your scheduled test drives and VIP showroom visits.
+                </p>
+              </div>
+              <button
+                type="button"
+                class="dash-btn-primary"
+                data-bs-toggle="modal"
+                data-bs-target="#scheduleTestDriveModal"
+              >
+                <i class="fa-solid fa-calendar-plus"></i> Book New Drive
+              </button>
+            </div>
+
+            <!-- Responsive Table for Test Drive Appointments -->
+            <div class="table-responsive">
+              <table class="dash-table">
+                <thead>
+                  <tr>
+                    <th>Vehicle Model</th>
+                    <th>Showroom Location</th>
+                    <th>Date & Time</th>
+                    <th>Sales Specialist</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <div class="table-vehicle-cell">
+                        <img
+                          src="../assets/images/home/home-featured-cars-1.webp"
+                          alt="Porsche"
+                          class="table-vehicle-thumb"
+                        />
+                        <div class="table-vehicle-info">
+                          <div class="table-vehicle-name">
+                            Porsche 911 GT3 RS
+                          </div>
+                          <div class="table-vehicle-vin">
+                            VIN: WP0AB2A98NS289104
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>AutoDrive Beverly Hills Flagship</td>
+                    <td>
+                      <strong>Saturday, Sep 12, 2026</strong><br /><span
+                        class="text-muted"
+                        >11:30 AM PST</span
+                      >
+                    </td>
+                    <td>Marcus Vance (VIP Lead)</td>
+                    <td>
+                      <span class="badge-status badge-status-green">
+                        <i class="fa-solid fa-check"></i> Confirmed
+                      </span>
+                    </td>
+                    <td>
+                      <div class="d-flex gap-2">
+                        <a href="#" class="dash-btn-outline dash-btn-sm"
+                          >Reschedule</a
+                        >
+                        <a href="#" class="dash-btn-outline dash-btn-sm"
+                          >Cancel</a
+                        >
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <div class="table-vehicle-cell">
+                        <img
+                          src="../assets/images/home/home-featured-cars-3.webp"
+                          alt="BMW"
+                          class="table-vehicle-thumb"
+                        />
+                        <div class="table-vehicle-info">
+                          <div class="table-vehicle-name">
+                            BMW M4 Competition
+                          </div>
+                          <div class="table-vehicle-vin">
+                            VIN: WBS43AZ00NCG19284
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>AutoDrive Downtown Performance Bay</td>
+                    <td>
+                      <strong>Thursday, Sep 17, 2026</strong><br /><span
+                        class="text-muted"
+                        >03:00 PM PST</span
+                      >
+                    </td>
+                    <td>Elena Rostova (M Specialist)</td>
+                    <td>
+                      <span class="badge-status badge-status-yellow">
+                        <i class="fa-solid fa-clock"></i> Pending Vehicle Prep
+                      </span>
+                    </td>
+                    <td>
+                      <div class="d-flex gap-2">
+                        <a href="#" class="dash-btn-outline dash-btn-sm"
+                          >Reschedule</a
+                        >
+                        <a href="#" class="dash-btn-outline dash-btn-sm"
+                          >Cancel</a
+                        >
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <div class="table-vehicle-cell">
+                        <img
+                          src="../assets/images/home/home-featured-cars-2.webp"
+                          alt="Audi"
+                          class="table-vehicle-thumb"
+                        />
+                        <div class="table-vehicle-info">
+                          <div class="table-vehicle-name">
+                            Audi RS7 Sportback
+                          </div>
+                          <div class="table-vehicle-vin">
+                            VIN: WUAWAF4K9NN019482
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>AutoDrive Metro Hub</td>
+                    <td>
+                      <strong>August 22, 2026</strong><br /><span
+                        class="text-muted"
+                        >02:00 PM PST</span
+                      >
+                    </td>
+                    <td>David Keller</td>
+                    <td>
+                      <span class="badge-status badge-status-blue">
+                        <i class="fa-solid fa-flag-checkered"></i> Completed
+                      </span>
+                    </td>
+                    <td>
+                      <a href="#" class="dash-btn-outline dash-btn-sm"
+                        >View Inspection Report</a
+                      >
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- 4. CUSTOMER SERVICE & MAINTENANCE HUB -->
+          <section class="dash-section" id="customer-services">
+            <div
+              class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2"
+            >
+              <div>
+                <h2 class="dash-welcome-title mb-1">
+                  Service & <span>Vehicle Health</span>
+                </h2>
+                <p class="dash-welcome-subtitle">
+                  Real-time telemetry diagnostic metrics and service history.
+                </p>
+              </div>
+              <button
+                type="button"
+                class="dash-btn-primary"
+                data-bs-toggle="modal"
+                data-bs-target="#serviceBookingModal"
+              >
+                <i class="fa-solid fa-wrench"></i> Book Service Bay
+              </button>
+            </div>
+
+            <!-- Vehicle Health Telemetry Scorecard -->
+            <div class="dash-card mb-4">
+              <div class="dash-card-header">
+                <h2 class="dash-card-title">
+                  <i class="fa-solid fa-car-battery"></i>
+                  Live Telemetry Diagnostic: 2023 Audi RS7 Sportback
+                </h2>
+                <span class="badge-status badge-status-green"
+                  >Optimal Condition</span
+                >
+              </div>
+              <div class="health-scorecard-grid">
+                <div class="health-item">
+                  <div class="health-item-icon">
+                    <i class="fa-solid fa-oil-can"></i>
+                  </div>
+                  <div class="health-item-val">92%</div>
+                  <div class="health-item-label">Synthetic Oil Life</div>
+                  <div class="progress dash-progress">
+                    <div
+                      class="progress-bar bg-success"
+                      style="width: 92%"
+                    ></div>
+                  </div>
+                </div>
+
+                <div class="health-item">
+                  <div class="health-item-icon">
+                    <i class="fa-solid fa-compact-disc"></i>
+                  </div>
+                  <div class="health-item-val">88%</div>
+                  <div class="health-item-label">Carbon Ceramic Pads</div>
+                  <div class="progress dash-progress">
+                    <div
+                      class="progress-bar bg-success"
+                      style="width: 88%"
+                    ></div>
+                  </div>
+                </div>
+
+                <div class="health-item">
+                  <div class="health-item-icon">
+                    <i class="fa-solid fa-ring"></i>
+                  </div>
+                  <div class="health-item-val">84%</div>
+                  <div class="health-item-label">Michelin Pilot Tread</div>
+                  <div class="progress dash-progress">
+                    <div class="progress-bar bg-info" style="width: 84%"></div>
+                  </div>
+                </div>
+
+                <div class="health-item">
+                  <div class="health-item-icon">
+                    <i class="fa-solid fa-bolt-lightning"></i>
+                  </div>
+                  <div class="health-item-val">98%</div>
+                  <div class="health-item-label">48V Hybrid Battery</div>
+                  <div class="progress dash-progress">
+                    <div
+                      class="progress-bar bg-success"
+                      style="width: 98%"
+                    ></div>
+                  </div>
+                </div>
+
+                <div class="health-item">
+                  <div class="health-item-icon">
+                    <i class="fa-solid fa-temperature-half"></i>
+                  </div>
+                  <div class="health-item-val">90°C</div>
+                  <div class="health-item-label">Engine Coolant Temp</div>
+                  <div class="progress dash-progress">
+                    <div
+                      class="progress-bar bg-success"
+                      style="width: 50%"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Service History Table -->
+            <div class="table-responsive">
+              <table class="dash-table">
+                <thead>
+                  <tr>
+                    <th>Service Order ID</th>
+                    <th>Vehicle</th>
+                    <th>Maintenance Package</th>
+                    <th>Date Serviced</th>
+                    <th>Technician</th>
+                    <th>Invoice Total</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>#SRV-9082</strong></td>
+                    <td>Audi RS7 (2023)</td>
+                    <td>10,000-Mile Full Synthetic Inspection & Oil Change</td>
+                    <td>July 14, 2026</td>
+                    <td>Senior Master Tech Lucas</td>
+                    <td><strong>$380.00</strong></td>
+                    <td>
+                      <a href="#" class="dash-btn-outline dash-btn-sm"
+                        >Receipt PDF</a
+                      >
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td><strong>#SRV-8149</strong></td>
+                    <td>Audi RS7 (2023)</td>
+                    <td>Ceramic Pro 9H Coating & Paint Protection Film</td>
+                    <td>May 02, 2026</td>
+                    <td>Detail Master Christian</td>
+                    <td><strong>$1,850.00</strong></td>
+                    <td>
+                      <a href="#" class="dash-btn-outline dash-btn-sm"
+                        >Receipt PDF</a
+                      >
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- 5. CUSTOMER FINANCE & EMI CALCULATOR -->
+          <section class="dash-section" id="customer-finance">
+            <div
+              class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2"
+            >
+              <div>
+                <h2 class="dash-welcome-title mb-1">
+                  Auto Financing & <span>Loan Calculator</span>
+                </h2>
+                <p class="dash-welcome-subtitle">
+                  Calculate real-time monthly installments, interest rates, and
+                  manage pre-approved loans.
+                </p>
+              </div>
+            </div>
+
+            <div class="row g-4 mb-4">
+              <!-- Live Interactive EMI Calculator -->
+              <div class="col-12 col-lg-7">
+                <div class="dash-card h-100">
+                  <div class="dash-card-header">
+                    <h2 class="dash-card-title">
+                      <i class="fa-solid fa-calculator"></i> Interactive Car
+                      Loan Estimator
+                    </h2>
+                  </div>
+
+                  <div class="emi-calc-box">
+                    <!-- Slider 1: Total Vehicle Price -->
+                    <div class="emi-slider-group">
+                      <div class="emi-slider-header">
+                        <label for="emiCarPrice">Vehicle Price (USD)</label>
+                        <span class="emi-slider-val" id="emiCarPriceVal"
+                          >$85,000</span
+                        >
+                      </div>
+                      <input
+                        type="range"
+                        id="emiCarPrice"
+                        class="dash-range-slider"
+                        min="20000"
+                        max="250000"
+                        step="2500"
+                        value="85000"
+                      />
+                    </div>
+
+                    <!-- Slider 2: Down Payment -->
+                    <div class="emi-slider-group">
+                      <div class="emi-slider-header">
+                        <label for="emiDownPayment">Down Payment (USD)</label>
+                        <span class="emi-slider-val" id="emiDownPaymentVal"
+                          >$15,000</span
+                        >
+                      </div>
+                      <input
+                        type="range"
+                        id="emiDownPayment"
+                        class="dash-range-slider"
+                        min="0"
+                        max="100000"
+                        step="1000"
+                        value="15000"
+                      />
+                    </div>
+
+                    <!-- Slider 3: Annual Interest Rate -->
+                    <div class="emi-slider-group">
+                      <div class="emi-slider-header">
+                        <label for="emiInterestRate">Annual APR Rate (%)</label>
+                        <span class="emi-slider-val" id="emiInterestRateVal"
+                          >4.5%</span
+                        >
+                      </div>
+                      <input
+                        type="range"
+                        id="emiInterestRate"
+                        class="dash-range-slider"
+                        min="1.9"
+                        max="12.0"
+                        step="0.1"
+                        value="4.5"
+                      />
+                    </div>
+
+                    <!-- Slider 4: Loan Tenure -->
+                    <div class="emi-slider-group">
+                      <div class="emi-slider-header">
+                        <label for="emiLoanTenure">Loan Tenure</label>
+                        <span class="emi-slider-val" id="emiLoanTenureVal"
+                          >48 Months (4.0 Yrs)</span
+                        >
+                      </div>
+                      <input
+                        type="range"
+                        id="emiLoanTenure"
+                        class="dash-range-slider"
+                        min="12"
+                        max="84"
+                        step="6"
+                        value="48"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Estimated Monthly Payment Result Box -->
+              <div class="col-12 col-lg-5">
+                <div
+                  class="dash-card h-100 d-flex flex-column justify-content-between"
+                >
+                  <div class="dash-card-header">
+                    <h2 class="dash-card-title">
+                      <i class="fa-solid fa-receipt"></i> Monthly Estimate
+                    </h2>
+                  </div>
+
+                  <div class="emi-result-card mb-3">
+                    <div
+                      style="font-size: 0.85rem; color: var(--dash-text-muted)"
+                    >
+                      ESTIMATED MONTHLY INSTALLMENT
+                    </div>
+                    <div class="emi-result-amount" id="emiMonthlyAmount">
+                      $1,596 <span>/ mo</span>
+                    </div>
+                    <div style="font-size: 0.8rem; color: #34d399">
+                      <i class="fa-solid fa-circle-check"></i> Includes
+                      AutoDrive Tier-1 Preferred Rate
+                    </div>
+                  </div>
+
+                  <div class="d-flex flex-column gap-2 mb-3">
+                    <div
+                      class="d-flex justify-content-between text-muted"
+                      style="font-size: 0.88rem"
+                    >
+                      <span>Principal Financed:</span>
+                      <strong class="text-white" id="emiTotalLoan"
+                        >$70,000</strong
+                      >
+                    </div>
+                    <div
+                      class="d-flex justify-content-between text-muted"
+                      style="font-size: 0.88rem"
+                    >
+                      <span>Total Interest Payable:</span>
+                      <strong class="text-white" id="emiTotalInterest"
+                        >$6,615</strong
+                      >
+                    </div>
+                    <div
+                      class="d-flex justify-content-between text-muted"
+                      style="font-size: 0.88rem"
+                    >
+                      <span>Total Amount with Down Payment:</span>
+                      <strong class="text-white" id="emiTotalPayable"
+                        >$91,615</strong
+                      >
+                    </div>
+                  </div>
+
+                  <button type="button" class="dash-btn-primary w-100">
+                    <i class="fa-solid fa-paper-plane"></i> Apply for
+                    Pre-Approval
+                  </button>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 6. CUSTOMER ORDERS & INVOICES -->
+          <section class="dash-section" id="customer-orders">
+            <div
+              class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2"
+            >
+              <div>
+                <h2 class="dash-welcome-title mb-1">
+                  Orders & <span>Invoices</span>
+                </h2>
+                <p class="dash-welcome-subtitle">
+                  Download receipts, track purchase contracts and billings.
+                </p>
+              </div>
+            </div>
+
+            <!-- Invoices Table -->
+            <div class="table-responsive">
+              <table class="dash-table">
+                <thead>
+                  <tr>
+                    <th>Invoice #</th>
+                    <th>Vehicle / Service</th>
+                    <th>Invoice Date</th>
+                    <th>Payment Method</th>
+                    <th>Total Amount</th>
+                    <th>Payment Status</th>
+                    <th>Download</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>#INV-2026-981</strong></td>
+                    <td>2024 Porsche 911 Carrera GTS (Deposit)</td>
+                    <td>Aug 18, 2026</td>
+                    <td>Wire Transfer •••• 8912</td>
+                    <td><strong>$25,000.00</strong></td>
+                    <td>
+                      <span class="badge-status badge-status-green">Paid</span>
+                    </td>
+                    <td>
+                      <a href="#" class="dash-btn-outline dash-btn-sm"
+                        ><i class="fa-solid fa-download"></i> PDF</a
+                      >
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td><strong>#INV-2026-722</strong></td>
+                    <td>Audi RS7 Annual Detail & Coating</td>
+                    <td>May 02, 2026</td>
+                    <td>Visa Card •••• 4021</td>
+                    <td><strong>$1,850.00</strong></td>
+                    <td>
+                      <span class="badge-status badge-status-green">Paid</span>
+                    </td>
+                    <td>
+                      <a href="#" class="dash-btn-outline dash-btn-sm"
+                        ><i class="fa-solid fa-download"></i> PDF</a
+                      >
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td><strong>#INV-2025-410</strong></td>
+                    <td>2023 Audi RS7 Sportback (Full Purchase)</td>
+                    <td>Oct 10, 2025</td>
+                    <td>AutoDrive Financial Wire</td>
+                    <td><strong>$127,800.00</strong></td>
+                    <td>
+                      <span class="badge-status badge-status-green">Paid</span>
+                    </td>
+                    <td>
+                      <a href="#" class="dash-btn-outline dash-btn-sm"
+                        ><i class="fa-solid fa-download"></i> PDF</a
+                      >
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- 7. CUSTOMER ACCOUNT & PROFILE SETTINGS -->
+          <section class="dash-section" id="customer-profile">
+            <div
+              class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2"
+            >
+              <div>
+                <h2 class="dash-welcome-title mb-1">
+                  Account & <span>Profile Settings</span>
+                </h2>
+                <p class="dash-welcome-subtitle">
+                  Manage your personal details, contact preferences, and
+                  delivery addresses.
+                </p>
+              </div>
+            </div>
+
+            <div class="row g-4">
+              <!-- Left Profile Card -->
+              <div class="col-12 col-lg-4">
+                <div class="dash-card text-center h-100">
+                  <div class="position-relative d-inline-block mb-3">
+                    <img
+                      src="../assets/images/about/about-our-team-1.webp"
+                      alt="Profile Avatar"
+                      class="dash-avatar-img"
+                      style="width: 100px; height: 100px; border-width: 3px"
+                    />
+                  </div>
+                  <h3
+                    class="user-display-name mb-1"
+                    style="font-size: 1.25rem; font-weight: 800"
+                  >
+                    Alex Morgan
+                  </h3>
+                  <div
+                    class="user-display-email text-muted mb-3"
+                    style="font-size: 0.88rem"
+                  >
+                    alex.morgan@autodrive.com
+                  </div>
+
+                  <span class="dash-user-meta-role role-badge-customer mb-4">
+                    <i class="fa-solid fa-user-check"></i> VIP Customer
+                  </span>
+
+                  <div
+                    class="border-top pt-3 border-secondary border-opacity-25 text-start"
+                  >
+                    <div
+                      class="d-flex justify-content-between py-2 text-muted"
+                      style="font-size: 0.85rem"
+                    >
+                      <span>Account Status:</span>
+                      <strong class="text-success">Verified VIP</strong>
+                    </div>
+                    <div
+                      class="d-flex justify-content-between py-2 text-muted"
+                      style="font-size: 0.85rem"
+                    >
+                      <span>Preferred Center:</span>
+                      <strong class="text-white">Beverly Hills</strong>
+                    </div>
+                    <div
+                      class="d-flex justify-content-between py-2 text-muted"
+                      style="font-size: 0.85rem"
+                    >
+                      <span>Member Since:</span>
+                      <strong class="text-white">2025</strong>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right Edit Information Form -->
+              <div class="col-12 col-lg-8">
+                <div class="dash-card h-100">
+                  <div class="dash-card-header">
+                    <h2 class="dash-card-title">
+                      <i class="fa-solid fa-user-pen"></i> Personal Information
+                    </h2>
+                  </div>
+
+                  <form id="customerProfileForm">
+                    <div class="row g-3">
+                      <div class="col-12 col-md-6">
+                        <div class="dash-form-group">
+                          <label class="dash-form-label" for="profileNameInput"
+                            >Full Name</label
+                          >
+                          <input
+                            type="text"
+                            id="profileNameInput"
+                            class="dash-form-control"
+                            value="Alex Morgan"
+                            required
+                          />
+                        </div>
+                      </div>
+
+                      <div class="col-12 col-md-6">
+                        <div class="dash-form-group">
+                          <label class="dash-form-label" for="profileEmailInput"
+                            >Email Address</label
+                          >
+                          <input
+                            type="email"
+                            id="profileEmailInput"
+                            class="dash-form-control"
+                            value="alex.morgan@autodrive.com"
+                            required
+                          />
+                        </div>
+                      </div>
+
+                      <div class="col-12 col-md-6">
+                        <div class="dash-form-group">
+                          <label class="dash-form-label" for="profilePhoneInput"
+                            >Phone Number</label
+                          >
+                          <input
+                            type="tel"
+                            id="profilePhoneInput"
+                            class="dash-form-control"
+                            value="+1 (555) 234-8920"
+                          />
+                        </div>
+                      </div>
+
+                      <div class="col-12 col-md-6">
+                        <div class="dash-form-group">
+                          <label class="dash-form-label" for="profileCityInput"
+                            >Location / City</label
+                          >
+                          <input
+                            type="text"
+                            id="profileCityInput"
+                            class="dash-form-control"
+                            value="Los Angeles, CA"
+                          />
+                        </div>
+                      </div>
+
+                      <div class="col-12">
+                        <div class="dash-form-group">
+                          <label class="dash-form-label"
+                            >Delivery Address</label
+                          >
+                          <input
+                            type="text"
+                            class="dash-form-control"
+                            value="742 Evergreen Terrace, Beverly Hills, CA 90210"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="d-flex justify-content-end gap-3 mt-4">
+                      <button type="submit" class="dash-btn-primary">
+                        <i class="fa-solid fa-check"></i> Save Profile Changes
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- ================================================================
+               DEALER / STAFF ROLE SECTIONS
+               ================================================================ -->
+
+          <!-- 1. DEALER COMMAND CENTER OVERVIEW -->
+          <section class="dash-section" id="dealer-overview">
+            <!-- Hero Welcome Banner -->
+            <div class="dash-welcome-banner">
+              <img
+                src="../assets/images/contact/contact-showroom-image.webp"
+                alt="Showroom"
+                class="dash-welcome-banner-bg"
+              />
+              <div class="dash-welcome-tag">
+                <i class="fa-solid fa-chart-line"></i> AutoDrive Dealership
+                Operations
+              </div>
+              <h1 class="dash-welcome-title">
+                Dealership <span>Command Center</span>
+              </h1>
+              <p class="dash-welcome-subtitle">
+                Real-time inventory valuation, customer test drive appointments,
+                sales conversion pipeline, and service bay work orders.
+              </p>
+            </div>
+
+            <!-- Dealer KPI Cards -->
+            <div class="row g-4 mb-4">
+              <div class="col-12 col-sm-6 col-xl-3">
+                <div class="dash-stat-card">
+                  <div class="dash-stat-card-top">
+                    <div class="dash-stat-icon-wrapper icon-green">
+                      <i class="fa-solid fa-sack-dollar"></i>
+                    </div>
+                    <span class="dash-stat-badge badge-positive"
+                      >+14.2% MoM</span
+                    >
+                  </div>
+                  <div>
+                    <div class="dash-stat-value">$1,845,200</div>
+                    <div class="dash-stat-label">Monthly Gross Revenue</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-12 col-sm-6 col-xl-3">
+                <div class="dash-stat-card">
+                  <div class="dash-stat-card-top">
+                    <div class="dash-stat-icon-wrapper icon-red">
+                      <i class="fa-solid fa-car"></i>
+                    </div>
+                    <span class="dash-stat-badge badge-positive">42 Units</span>
+                  </div>
+                  <div>
+                    <div class="dash-stat-value">42 / 50</div>
+                    <div class="dash-stat-label">
+                      Vehicles Sold (Monthly Target)
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-12 col-sm-6 col-xl-3">
+                <div class="dash-stat-card">
+                  <div class="dash-stat-card-top">
+                    <div class="dash-stat-icon-wrapper icon-blue">
+                      <i class="fa-solid fa-warehouse"></i>
+                    </div>
+                    <span class="dash-stat-badge badge-neutral"
+                      >Lot Capacity 82%</span
+                    >
+                  </div>
+                  <div>
+                    <div class="dash-stat-value">138</div>
+                    <div class="dash-stat-label">
+                      Vehicles in Showroom Stock
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-12 col-sm-6 col-xl-3">
+                <div class="dash-stat-card">
+                  <div class="dash-stat-card-top">
+                    <div class="dash-stat-icon-wrapper icon-amber">
+                      <i class="fa-solid fa-fire"></i>
+                    </div>
+                    <span class="dash-stat-badge badge-positive"
+                      >High Intent</span
+                    >
+                  </div>
+                  <div>
+                    <div class="dash-stat-value">19</div>
+                    <div class="dash-stat-label">Active Hot Leads</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Revenue Breakdown & Recent Customer Leads Grid -->
+            <div class="row g-4">
+              <!-- Category Sales Share -->
+              <div class="col-12 col-lg-5">
+                <div class="dash-card h-100">
+                  <div class="dash-card-header">
+                    <h2 class="dash-card-title">
+                      <i class="fa-solid fa-chart-pie"></i> Sales by Segment
+                    </h2>
+                  </div>
+
+                  <div class="d-flex flex-column gap-3">
+                    <div>
+                      <div
+                        class="d-flex justify-content-between mb-1"
+                        style="font-size: 0.88rem"
+                      >
+                        <span>Supercars & Performance Coupes</span>
+                        <strong class="text-white">$840,000 (45%)</strong>
+                      </div>
+                      <div class="progress dash-progress">
+                        <div
+                          class="progress-bar bg-danger"
+                          style="width: 45%"
+                        ></div>
+                      </div>
+                    </div>
+
+                    <div>
+                      <div
+                        class="d-flex justify-content-between mb-1"
+                        style="font-size: 0.88rem"
+                      >
+                        <span>Luxury & Sport SUVs</span>
+                        <strong class="text-white">$550,000 (30%)</strong>
+                      </div>
+                      <div class="progress dash-progress">
+                        <div
+                          class="progress-bar bg-info"
+                          style="width: 30%"
+                        ></div>
+                      </div>
+                    </div>
+
+                    <div>
+                      <div
+                        class="d-flex justify-content-between mb-1"
+                        style="font-size: 0.88rem"
+                      >
+                        <span>Electric & Hybrid High-End</span>
+                        <strong class="text-white">$310,000 (17%)</strong>
+                      </div>
+                      <div class="progress dash-progress">
+                        <div
+                          class="progress-bar bg-success"
+                          style="width: 17%"
+                        ></div>
+                      </div>
+                    </div>
+
+                    <div>
+                      <div
+                        class="d-flex justify-content-between mb-1"
+                        style="font-size: 0.88rem"
+                      >
+                        <span>Pre-Owned Certified</span>
+                        <strong class="text-white">$145,200 (8%)</strong>
+                      </div>
+                      <div class="progress dash-progress">
+                        <div
+                          class="progress-bar bg-warning"
+                          style="width: 8%"
+                        ></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Quick Leads Overview Table -->
+              <div class="col-12 col-lg-7">
+                <div class="dash-card h-100">
+                  <div class="dash-card-header">
+                    <h2 class="dash-card-title">
+                      <i class="fa-solid fa-user-tag"></i> Recent Hot Walk-ins &
+                      Inquiries
+                    </h2>
+                    <button
+                      type="button"
+                      class="dash-btn-outline dash-btn-sm"
+                      onclick="navigateToSection('dealer-leads')"
+                    >
+                      View All (19)
+                    </button>
+                  </div>
+
+                  <div class="table-responsive">
+                    <table class="dash-table">
+                      <thead>
+                        <tr>
+                          <th>Customer</th>
+                          <th>Target Model</th>
+                          <th>Budget</th>
+                          <th>Stage</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>
+                            <strong>Michael Sterling</strong><br /><span
+                              class="text-muted"
+                              >+1 310-555-0192</span
+                            >
+                          </td>
+                          <td>Porsche 911 GT3 RS</td>
+                          <td><strong>$230,000</strong></td>
+                          <td>
+                            <span class="badge-status badge-status-red"
+                              >Finance Approval</span
+                            >
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td>
+                            <strong>Sarah Jenkins</strong><br /><span
+                              class="text-muted"
+                              >+1 415-555-9012</span
+                            >
+                          </td>
+                          <td>BMW M4 Competition</td>
+                          <td><strong>$90,000</strong></td>
+                          <td>
+                            <span class="badge-status badge-status-yellow"
+                              >Test Drive Scheduled</span
+                            >
+                          </td>
+                        </tr>
+
+                        <tr>
+                          <td>
+                            <strong>Dr. Brandon Cole</strong><br /><span
+                              class="text-muted"
+                              >+1 213-555-8833</span
+                            >
+                          </td>
+                          <td>Mercedes-AMG GT 63 S</td>
+                          <td><strong>$180,000</strong></td>
+                          <td>
+                            <span class="badge-status badge-status-green"
+                              >Contract Ready</span
+                            >
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 2. DEALER VEHICLE INVENTORY MANAGEMENT -->
+          <section class="dash-section" id="dealer-inventory">
+            <div
+              class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2"
+            >
+              <div>
+                <h2 class="dash-welcome-title mb-1">
+                  Vehicle <span>Inventory Management</span>
+                </h2>
+                <p class="dash-welcome-subtitle">
+                  Search, filter, update stock status, and add new cars to the
+                  showroom lot.
+                </p>
+              </div>
+              <button
+                type="button"
+                class="dash-btn-primary"
+                data-bs-toggle="modal"
+                data-bs-target="#addVehicleModal"
+              >
+                <i class="fa-solid fa-plus"></i> Add New Vehicle
+              </button>
+            </div>
+
+            <!-- Filter Controls -->
+            <div class="dash-card mb-4">
+              <div class="row g-3 align-items-center">
+                <div class="col-12 col-md-6 col-lg-5">
+                  <div class="dash-topbar-search w-100">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input
+                      type="text"
+                      id="inventorySearchInput"
+                      placeholder="Search by Make, Model or VIN..."
+                    />
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-3">
+                  <select class="dash-form-control" id="inventoryStatusFilter">
+                    <option value="all">Filter by Status (All)</option>
+                    <option value="available">Available in Lot</option>
+                    <option value="reserved">Reserved</option>
+                    <option value="service">In Service / Inspection</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Inventory Responsive Table -->
+            <div class="table-responsive">
+              <table class="dash-table" id="dealerInventoryTable">
+                <thead>
+                  <tr>
+                    <th>Vehicle & Model</th>
+                    <th>VIN</th>
+                    <th>Category</th>
+                    <th>Mileage</th>
+                    <th>Showroom MSRP</th>
+                    <th>Lot Days</th>
+                    <th>Stock Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr data-status="reserved">
+                    <td>
+                      <div class="table-vehicle-cell">
+                        <img
+                          src="../assets/images/home/home-featured-cars-1.webp"
+                          alt="Car"
+                          class="table-vehicle-thumb"
+                        />
+                        <div class="table-vehicle-info">
+                          <div class="table-vehicle-name">
+                            2024 Porsche 911 GT3 RS
+                          </div>
+                          <div class="table-vehicle-vin">
+                            Carmine Red | 518 HP
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><code>WP0AB2A98NS289104</code></td>
+                    <td>Coupe / Track</td>
+                    <td>420 mi</td>
+                    <td><strong>$223,800</strong></td>
+                    <td>6 Days</td>
+                    <td>
+                      <span class="badge-status badge-status-yellow"
+                        >Reserved</span
+                      >
+                    </td>
+                    <td>
+                      <div class="d-flex gap-2">
+                        <a href="#" class="dash-btn-outline dash-btn-sm"
+                          ><i class="fa-solid fa-pen-to-square"></i
+                        ></a>
+                        <a href="#" class="dash-btn-outline dash-btn-sm"
+                          ><i class="fa-solid fa-tag"></i
+                        ></a>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr data-status="available">
+                    <td>
+                      <div class="table-vehicle-cell">
+                        <img
+                          src="../assets/images/home/home-featured-cars-2.webp"
+                          alt="Car"
+                          class="table-vehicle-thumb"
+                        />
+                        <div class="table-vehicle-info">
+                          <div class="table-vehicle-name">
+                            2024 Audi RS7 Sportback
+                          </div>
+                          <div class="table-vehicle-vin">
+                            Nardo Gray | 591 HP
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><code>WUAWAF4K9NN019482</code></td>
+                    <td>Grand Tourer</td>
+                    <td>1,250 mi</td>
+                    <td><strong>$127,800</strong></td>
+                    <td>12 Days</td>
+                    <td>
+                      <span class="badge-status badge-status-green"
+                        >Available</span
+                      >
+                    </td>
+                    <td>
+                      <div class="d-flex gap-2">
+                        <a href="#" class="dash-btn-outline dash-btn-sm"
+                          ><i class="fa-solid fa-pen-to-square"></i
+                        ></a>
+                        <a href="#" class="dash-btn-outline dash-btn-sm"
+                          ><i class="fa-solid fa-tag"></i
+                        ></a>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr data-status="available">
+                    <td>
+                      <div class="table-vehicle-cell">
+                        <img
+                          src="../assets/images/home/home-featured-cars-3.webp"
+                          alt="Car"
+                          class="table-vehicle-thumb"
+                        />
+                        <div class="table-vehicle-info">
+                          <div class="table-vehicle-name">
+                            2024 BMW M4 Competition
+                          </div>
+                          <div class="table-vehicle-vin">
+                            Isle of Man Green | 503 HP
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><code>WBS43AZ00NCG19284</code></td>
+                    <td>Coupe</td>
+                    <td>3,100 mi</td>
+                    <td><strong>$86,300</strong></td>
+                    <td>18 Days</td>
+                    <td>
+                      <span class="badge-status badge-status-green"
+                        >Available</span
+                      >
+                    </td>
+                    <td>
+                      <div class="d-flex gap-2">
+                        <a href="#" class="dash-btn-outline dash-btn-sm"
+                          ><i class="fa-solid fa-pen-to-square"></i
+                        ></a>
+                        <a href="#" class="dash-btn-outline dash-btn-sm"
+                          ><i class="fa-solid fa-tag"></i
+                        ></a>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr data-status="available">
+                    <td>
+                      <div class="table-vehicle-cell">
+                        <img
+                          src="../assets/images/home/home-featured-cars-4.webp"
+                          alt="Car"
+                          class="table-vehicle-thumb"
+                        />
+                        <div class="table-vehicle-info">
+                          <div class="table-vehicle-name">
+                            2024 Mercedes-AMG GT 63 S
+                          </div>
+                          <div class="table-vehicle-vin">
+                            Obsidian Black | 830 HP
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><code>WDD2906891A084920</code></td>
+                    <td>4-Door Coupe</td>
+                    <td>890 mi</td>
+                    <td><strong>$175,900</strong></td>
+                    <td>4 Days</td>
+                    <td>
+                      <span class="badge-status badge-status-green"
+                        >Available</span
+                      >
+                    </td>
+                    <td>
+                      <div class="d-flex gap-2">
+                        <a href="#" class="dash-btn-outline dash-btn-sm"
+                          ><i class="fa-solid fa-pen-to-square"></i
+                        ></a>
+                        <a href="#" class="dash-btn-outline dash-btn-sm"
+                          ><i class="fa-solid fa-tag"></i
+                        ></a>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr data-status="service">
+                    <td>
+                      <div class="table-vehicle-cell">
+                        <img
+                          src="../assets/images/home/home-featured-cars-5.webp"
+                          alt="Car"
+                          class="table-vehicle-thumb"
+                        />
+                        <div class="table-vehicle-info">
+                          <div class="table-vehicle-name">
+                            2024 Ford Mustang Dark Horse
+                          </div>
+                          <div class="table-vehicle-vin">
+                            Vapor Blue | 500 HP
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td><code>1FA6P8CF8R5501823</code></td>
+                    <td>Muscle Coupe</td>
+                    <td>15 mi</td>
+                    <td><strong>$61,200</strong></td>
+                    <td>2 Days</td>
+                    <td>
+                      <span class="badge-status badge-status-blue"
+                        >Pre-Delivery Inspection</span
+                      >
+                    </td>
+                    <td>
+                      <div class="d-flex gap-2">
+                        <a href="#" class="dash-btn-outline dash-btn-sm"
+                          ><i class="fa-solid fa-pen-to-square"></i
+                        ></a>
+                        <a href="#" class="dash-btn-outline dash-btn-sm"
+                          ><i class="fa-solid fa-tag"></i
+                        ></a>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- 3. DEALER LEADS & INQUIRIES -->
+          <section class="dash-section" id="dealer-leads">
+            <div
+              class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2"
+            >
+              <div>
+                <h2 class="dash-welcome-title mb-1">
+                  Customer Leads & <span>Inquiries</span>
+                </h2>
+                <p class="dash-welcome-subtitle">
+                  High-intent car shoppers, quote requests, and follow-up
+                  schedules.
+                </p>
+              </div>
+            </div>
+
+            <!-- Leads Table -->
+            <div class="table-responsive">
+              <table class="dash-table">
+                <thead>
+                  <tr>
+                    <th>Lead Name & Contact</th>
+                    <th>Interested Model</th>
+                    <th>Budget / Financing</th>
+                    <th>Assigned Rep</th>
+                    <th>Pipeline Stage</th>
+                    <th>Follow-up Due</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <strong>Michael Sterling</strong><br /><span
+                        class="text-muted"
+                        >m.sterling@lawfirm.com | (310) 555-0192</span
+                      >
+                    </td>
+                    <td>Porsche 911 GT3 RS</td>
+                    <td>$230k (Pre-approved Cashier)</td>
+                    <td>Marcus Vance</td>
+                    <td>
+                      <span class="badge-status badge-status-red"
+                        >Contract Negotiation</span
+                      >
+                    </td>
+                    <td>Today (2:00 PM)</td>
+                    <td>
+                      <a href="#" class="dash-btn-primary dash-btn-sm"
+                        >Call Client</a
+                      >
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <strong>Sarah Jenkins</strong><br /><span
+                        class="text-muted"
+                        >s.jenkins@techcorp.io | (415) 555-9012</span
+                      >
+                    </td>
+                    <td>BMW M4 Competition</td>
+                    <td>$90k (AutoDrive Finance 48Mo)</td>
+                    <td>Elena Rostova</td>
+                    <td>
+                      <span class="badge-status badge-status-yellow"
+                        >Test Drive Scheduled</span
+                      >
+                    </td>
+                    <td>Tomorrow (11:00 AM)</td>
+                    <td>
+                      <a href="#" class="dash-btn-outline dash-btn-sm"
+                        >Log Note</a
+                      >
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <strong>Dr. Brandon Cole</strong><br /><span
+                        class="text-muted"
+                        >bcole.md@healthmed.org | (213) 555-8833</span
+                      >
+                    </td>
+                    <td>Mercedes-AMG GT 63 S</td>
+                    <td>$180k (Trade-in 2021 Panamera)</td>
+                    <td>David Keller</td>
+                    <td>
+                      <span class="badge-status badge-status-green"
+                        >Trade-in Appraisal Done</span
+                      >
+                    </td>
+                    <td>Sep 10, 2026</td>
+                    <td>
+                      <a href="#" class="dash-btn-primary dash-btn-sm"
+                        >Close Deal</a
+                      >
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- 4. DEALER TEST DRIVE FLEET -->
+          <section class="dash-section" id="dealer-testdrives">
+            <div
+              class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2"
+            >
+              <div>
+                <h2 class="dash-welcome-title mb-1">
+                  Test Drive <span>Fleet Manager</span>
+                </h2>
+                <p class="dash-welcome-subtitle">
+                  Manage showroom vehicle allocations, checkouts, and customer
+                  test drive records.
+                </p>
+              </div>
+            </div>
+
+            <div class="table-responsive">
+              <table class="dash-table">
+                <thead>
+                  <tr>
+                    <th>Customer</th>
+                    <th>Showroom Demo Vehicle</th>
+                    <th>Scheduled Slot</th>
+                    <th>Advisor Assigned</th>
+                    <th>Driver's License</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <strong>Alex Morgan (VIP)</strong><br /><span
+                        class="text-muted"
+                        >alex.morgan@autodrive.com</span
+                      >
+                    </td>
+                    <td>2024 Porsche 911 GT3 RS (Demo #01)</td>
+                    <td>Saturday, Sep 12 @ 11:30 AM</td>
+                    <td>Marcus Vance</td>
+                    <td>
+                      <span class="badge-status badge-status-green"
+                        ><i class="fa-solid fa-check"></i> Verified CA</span
+                      >
+                    </td>
+                    <td>
+                      <a href="#" class="dash-btn-primary dash-btn-sm"
+                        >Check Out Keys</a
+                      >
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <strong>Sarah Jenkins</strong><br /><span
+                        class="text-muted"
+                        >s.jenkins@techcorp.io</span
+                      >
+                    </td>
+                    <td>2024 BMW M4 Competition (Demo #04)</td>
+                    <td>Thursday, Sep 17 @ 03:00 PM</td>
+                    <td>Elena Rostova</td>
+                    <td>
+                      <span class="badge-status badge-status-green"
+                        ><i class="fa-solid fa-check"></i> Verified NY</span
+                      >
+                    </td>
+                    <td>
+                      <a href="#" class="dash-btn-outline dash-btn-sm"
+                        >Confirm Prep</a
+                      >
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- 5. DEALER SALES & FINANCING APPROVALS -->
+          <section class="dash-section" id="dealer-sales">
+            <div
+              class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2"
+            >
+              <div>
+                <h2 class="dash-welcome-title mb-1">
+                  Sales & <span>Financing Approvals</span>
+                </h2>
+                <p class="dash-welcome-subtitle">
+                  Approve loan applications, finalize title paperwork, and
+                  release delivery vouchers.
+                </p>
+              </div>
+            </div>
+
+            <div class="table-responsive">
+              <table class="dash-table">
+                <thead>
+                  <tr>
+                    <th>Deal #</th>
+                    <th>Buyer Name</th>
+                    <th>Vehicle</th>
+                    <th>Deal Value</th>
+                    <th>Financing Bank</th>
+                    <th>Underwriting</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>#DL-8910</strong></td>
+                    <td>Michael Sterling</td>
+                    <td>Porsche 911 GT3 RS</td>
+                    <td><strong>$223,800</strong></td>
+                    <td>Chase Private Auto</td>
+                    <td>
+                      <span class="badge-status badge-status-green"
+                        >Approved Tier 1</span
+                      >
+                    </td>
+                    <td>
+                      <a href="#" class="dash-btn-primary dash-btn-sm"
+                        >Sign & Close</a
+                      >
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td><strong>#DL-8904</strong></td>
+                    <td>Dr. Brandon Cole</td>
+                    <td>Mercedes-AMG GT 63 S</td>
+                    <td><strong>$175,900</strong></td>
+                    <td>Stackly AutoFinance</td>
+                    <td>
+                      <span class="badge-status badge-status-yellow"
+                        >Pending Trade-in Title</span
+                      >
+                    </td>
+                    <td>
+                      <a href="#" class="dash-btn-outline dash-btn-sm"
+                        >Review Docs</a
+                      >
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <!-- 6. DEALER SERVICE BAY OPERATIONS -->
+          <section class="dash-section" id="dealer-servicebay">
+            <div
+              class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2"
+            >
+              <div>
+                <h2 class="dash-welcome-title mb-1">
+                  Service Bay <span>Operations</span>
+                </h2>
+                <p class="dash-welcome-subtitle">
+                  Live bay status, master technicians on duty, and parts queue.
+                </p>
+              </div>
+            </div>
+
+            <div class="row g-3 mb-4">
+              <div class="col-12 col-md-4 col-xl-2">
+                <div class="health-item border-danger">
+                  <div class="health-item-icon text-danger">
+                    <i class="fa-solid fa-wrench"></i>
+                  </div>
+                  <div class="health-item-val" style="font-size: 1rem">
+                    Bay 1 (Active)
+                  </div>
+                  <div class="health-item-label">Porsche 911 GTS - PDI</div>
+                </div>
+              </div>
+
+              <div class="col-12 col-md-4 col-xl-2">
+                <div class="health-item">
+                  <div class="health-item-icon text-warning">
+                    <i class="fa-solid fa-paint-roller"></i>
+                  </div>
+                  <div class="health-item-val" style="font-size: 1rem">
+                    Bay 2 (Detail)
+                  </div>
+                  <div class="health-item-label">Audi RS7 Ceramic</div>
+                </div>
+              </div>
+
+              <div class="col-12 col-md-4 col-xl-2">
+                <div class="health-item">
+                  <div class="health-item-icon text-success">
+                    <i class="fa-solid fa-circle-check"></i>
+                  </div>
+                  <div class="health-item-val" style="font-size: 1rem">
+                    Bay 3 (Ready)
+                  </div>
+                  <div class="health-item-label">Open for Intake</div>
+                </div>
+              </div>
+
+              <div class="col-12 col-md-4 col-xl-2">
+                <div class="health-item">
+                  <div class="health-item-icon text-info">
+                    <i class="fa-solid fa-gears"></i>
+                  </div>
+                  <div class="health-item-val" style="font-size: 1rem">
+                    Bay 4 (Tuning)
+                  </div>
+                  <div class="health-item-label">BMW M4 Dyno Test</div>
+                </div>
+              </div>
+
+              <div class="col-12 col-md-4 col-xl-2">
+                <div class="health-item">
+                  <div class="health-item-icon text-success">
+                    <i class="fa-solid fa-circle-check"></i>
+                  </div>
+                  <div class="health-item-val" style="font-size: 1rem">
+                    Bay 5 (Ready)
+                  </div>
+                  <div class="health-item-label">Open for Intake</div>
+                </div>
+              </div>
+
+              <div class="col-12 col-md-4 col-xl-2">
+                <div class="health-item">
+                  <div class="health-item-icon text-danger">
+                    <i class="fa-solid fa-oil-can"></i>
+                  </div>
+                  <div class="health-item-val" style="font-size: 1rem">
+                    Bay 6 (Service)
+                  </div>
+                  <div class="health-item-label">Mustang Brake Fluid</div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 7. DEALER ANALYTICS & KPI -->
+          <section class="dash-section" id="dealer-analytics">
+            <div
+              class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2"
+            >
+              <div>
+                <h2 class="dash-welcome-title mb-1">
+                  Dealership <span>Analytics & KPI</span>
+                </h2>
+                <p class="dash-welcome-subtitle">
+                  Monthly performance benchmarks, sales consultant rankings, and
+                  turn rates.
+                </p>
+              </div>
+            </div>
+
+            <div class="row g-4">
+              <div class="col-12 col-lg-6">
+                <div class="dash-card h-100">
+                  <div class="dash-card-header">
+                    <h2 class="dash-card-title">
+                      <i class="fa-solid fa-ranking-star"></i> Top Sales
+                      Consultants
+                    </h2>
+                  </div>
+
+                  <div class="table-responsive">
+                    <table class="dash-table">
+                      <thead>
+                        <tr>
+                          <th>Consultant</th>
+                          <th>Units Closed</th>
+                          <th>Revenue</th>
+                          <th>Rating</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td><strong>Marcus Vance</strong></td>
+                          <td>14 Units</td>
+                          <td><strong>$680,000</strong></td>
+                          <td><span class="text-warning">★ 4.98</span></td>
+                        </tr>
+                        <tr>
+                          <td><strong>Elena Rostova</strong></td>
+                          <td>11 Units</td>
+                          <td><strong>$520,000</strong></td>
+                          <td><span class="text-warning">★ 4.95</span></td>
+                        </tr>
+                        <tr>
+                          <td><strong>David Keller</strong></td>
+                          <td>9 Units</td>
+                          <td><strong>$410,000</strong></td>
+                          <td><span class="text-warning">★ 4.91</span></td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-12 col-lg-6">
+                <div class="dash-card h-100">
+                  <div class="dash-card-header">
+                    <h2 class="dash-card-title">
+                      <i class="fa-solid fa-award"></i> Showroom Satisfaction
+                      Index
+                    </h2>
+                  </div>
+
+                  <div class="text-center py-3">
+                    <div
+                      style="
+                        font-size: 3rem;
+                        font-weight: 900;
+                        color: var(--dash-red);
+                      "
+                    >
+                      4.96
+                      <span style="font-size: 1.25rem; color: #94a3b8"
+                        >/ 5.0</span
+                      >
+                    </div>
+                    <div class="text-warning mb-2" style="font-size: 1.25rem">
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star"></i>
+                      <i class="fa-solid fa-star-half-stroke"></i>
+                    </div>
+                    <p
+                      class="text-muted"
+                      style="
+                        font-size: 0.88rem;
+                        max-width: 380px;
+                        margin: 0 auto;
+                      "
+                    >
+                      Based on 428 verified customer reviews across Google,
+                      DealerRater, and AutoDrive VIP post-purchase surveys.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 8. DEALER SETTINGS -->
+          <section class="dash-section" id="dealer-settings">
+            <div
+              class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2"
+            >
+              <div>
+                <h2 class="dash-welcome-title mb-1">
+                  Dealership <span>Configuration</span>
+                </h2>
+                <p class="dash-welcome-subtitle">
+                  Configure showroom operating hours, sales commission tiers,
+                  and staff permissions.
+                </p>
+              </div>
+            </div>
+
+            <div class="dash-card">
+              <div class="dash-card-header">
+                <h2 class="dash-card-title">
+                  <i class="fa-solid fa-store"></i> Showroom Facility Info
+                </h2>
+              </div>
+
+              <div class="row g-3">
+                <div class="col-12 col-md-6">
+                  <label class="dash-form-label">Dealership Name</label>
+                  <input
+                    type="text"
+                    class="dash-form-control"
+                    value="AutoDrive Beverly Hills Flagship"
+                  />
+                </div>
+                <div class="col-12 col-md-6">
+                  <label class="dash-form-label">Dealer License #</label>
+                  <input
+                    type="text"
+                    class="dash-form-control"
+                    value="CA-DLR-90210-ADV"
+                    readonly
+                  />
+                </div>
+                <div class="col-12 col-md-6">
+                  <label class="dash-form-label">Business Email</label>
+                  <input
+                    type="email"
+                    class="dash-form-control"
+                    value="beverlyhills@autodrive.com"
+                  />
+                </div>
+                <div class="col-12 col-md-6">
+                  <label class="dash-form-label">Direct Hotline</label>
+                  <input
+                    type="text"
+                    class="dash-form-control"
+                    value="+1 (310) 555-AUTO"
+                  />
+                </div>
+              </div>
+
+              <div class="d-flex justify-content-end mt-4">
+                <button
+                  type="button"
+                  class="dash-btn-primary"
+                  onclick="
+                    showDashboardToast(
+                      'success',
+                      'Dealership Settings Saved',
+                      'Showroom configuration updated successfully.',
+                    )
+                  "
+                >
+                  <i class="fa-solid fa-check"></i> Save Dealership Settings
+                </button>
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <!-- ====================================================================
+         MODALS (SCHEDULE TEST DRIVE, ADD VEHICLE, SERVICE BOOKING)
+         ==================================================================== -->
+
+    <!-- Schedule Test Drive Modal -->
+    <div
+      class="modal fade"
+      id="scheduleTestDriveModal"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content dash-modal-content">
+          <div class="dash-modal-header">
+            <h3 class="dash-modal-title">
+              <i class="fa-solid fa-car-side text-danger"></i> Schedule VIP Test
+              Drive
+            </h3>
+            <button
+              type="button"
+              class="dash-modal-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            >
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+          <div class="dash-modal-body">
+            <form id="scheduleTestDriveForm">
+              <div class="dash-form-group">
+                <label class="dash-form-label" for="testDriveVehicleSelect"
+                  >Select Vehicle</label
+                >
+                <select class="dash-form-control" id="testDriveVehicleSelect">
+                  <option value="Porsche 911 GT3 RS">
+                    Porsche 911 GT3 RS ($223,800)
+                  </option>
+                  <option value="Audi RS7 Sportback">
+                    Audi RS7 Sportback ($127,800)
+                  </option>
+                  <option value="BMW M4 Competition">
+                    BMW M4 Competition ($86,300)
+                  </option>
+                  <option value="Mercedes-AMG GT 63 S">
+                    Mercedes-AMG GT 63 S ($175,900)
+                  </option>
+                  <option value="Ford Mustang Dark Horse">
+                    Ford Mustang Dark Horse ($61,200)
+                  </option>
+                  <option value="Range Rover Sport SV">
+                    Range Rover Sport SV ($180,300)
+                  </option>
+                </select>
+              </div>
+
+              <div class="row g-3">
+                <div class="col-6">
+                  <div class="dash-form-group">
+                    <label class="dash-form-label">Preferred Date</label>
+                    <input
+                      type="date"
+                      class="dash-form-control"
+                      value="2026-09-15"
+                      required
+                    />
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="dash-form-group">
+                    <label class="dash-form-label">Time Slot</label>
+                    <select class="dash-form-control">
+                      <option>10:00 AM</option>
+                      <option selected>02:00 PM</option>
+                      <option>04:30 PM</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="dash-form-group">
+                <label class="dash-form-label">Showroom Location</label>
+                <select class="dash-form-control">
+                  <option>AutoDrive Beverly Hills Flagship</option>
+                  <option>AutoDrive Downtown Performance Center</option>
+                  <option>AutoDrive Metro Hub</option>
+                </select>
+              </div>
+
+              <div class="d-flex justify-content-end gap-2 mt-4">
+                <button
+                  type="button"
+                  class="dash-btn-outline"
+                  data-bs-dismiss="modal"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="button"
+                  class="dash-btn-primary"
+                  data-bs-dismiss="modal"
+                  onclick="
+                    showDashboardToast(
+                      'success',
+                      'Test Drive Scheduled',
+                      'Your VIP appointment has been booked. A confirmation SMS has been sent.',
+                    )
+                  "
+                >
+                  Confirm Booking
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Add Vehicle Modal (Dealer) -->
+    <div
+      class="modal fade"
+      id="addVehicleModal"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content dash-modal-content">
+          <div class="dash-modal-header">
+            <h3 class="dash-modal-title">
+              <i class="fa-solid fa-plus-circle text-danger"></i> Add Vehicle to
+              Inventory
+            </h3>
+            <button
+              type="button"
+              class="dash-modal-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            >
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+          <div class="dash-modal-body">
+            <form id="addNewCarForm">
+              <div class="row g-3">
+                <div class="col-12 col-md-6">
+                  <label class="dash-form-label">Vehicle Make</label>
+                  <input
+                    type="text"
+                    id="addCarMake"
+                    class="dash-form-control"
+                    placeholder="e.g. Porsche, BMW, Ferrari"
+                    required
+                  />
+                </div>
+                <div class="col-12 col-md-6">
+                  <label class="dash-form-label">Model Name</label>
+                  <input
+                    type="text"
+                    id="addCarModel"
+                    class="dash-form-control"
+                    placeholder="e.g. 911 GT3, M4 Competition"
+                    required
+                  />
+                </div>
+                <div class="col-12 col-md-6">
+                  <label class="dash-form-label">VIN Number (17 Digits)</label>
+                  <input
+                    type="text"
+                    class="dash-form-control"
+                    placeholder="e.g. WP0AB2A98NS289..."
+                    required
+                  />
+                </div>
+                <div class="col-12 col-md-6">
+                  <label class="dash-form-label">Showroom MSRP Price ($)</label>
+                  <input
+                    type="text"
+                    id="addCarPrice"
+                    class="dash-form-control"
+                    placeholder="e.g. $145,000"
+                    required
+                  />
+                </div>
+                <div class="col-12 col-md-6">
+                  <label class="dash-form-label">Category</label>
+                  <select class="dash-form-control">
+                    <option>Coupe / Track</option>
+                    <option>Luxury Sedan</option>
+                    <option>Sport SUV</option>
+                    <option>Convertible</option>
+                    <option>Hypercar</option>
+                  </select>
+                </div>
+                <div class="col-12 col-md-6">
+                  <label class="dash-form-label">Current Mileage</label>
+                  <input
+                    type="text"
+                    class="dash-form-control"
+                    placeholder="e.g. 250 mi"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="d-flex justify-content-end gap-2 mt-4">
+                <button
+                  type="button"
+                  class="dash-btn-outline"
+                  data-bs-dismiss="modal"
+                >
+                  Cancel
+                </button>
+                <button type="submit" class="dash-btn-primary">
+                  <i class="fa-solid fa-check"></i> Add to Active Stock
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Service Booking Modal -->
+    <div
+      class="modal fade"
+      id="serviceBookingModal"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content dash-modal-content">
+          <div class="dash-modal-header">
+            <h3 class="dash-modal-title">
+              <i class="fa-solid fa-wrench text-danger"></i> Book Service Bay
+            </h3>
+            <button
+              type="button"
+              class="dash-modal-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            >
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+          <div class="dash-modal-body">
+            <form>
+              <div class="dash-form-group">
+                <label class="dash-form-label">Service Package</label>
+                <select class="dash-form-control">
+                  <option>Annual Synthetic Oil & Multi-Point Inspection</option>
+                  <option>Brembo Brake Pad & Rotor Replacement</option>
+                  <option>Ceramic Coating 9H & Detailing</option>
+                  <option>Tire Balance, Rotation & Alignment</option>
+                </select>
+              </div>
+
+              <div class="dash-form-group">
+                <label class="dash-form-label">Preferred Date</label>
+                <input
+                  type="date"
+                  class="dash-form-control"
+                  value="2026-09-20"
+                />
+              </div>
+
+              <div class="d-flex justify-content-end gap-2 mt-4">
+                <button
+                  type="button"
+                  class="dash-btn-outline"
+                  data-bs-dismiss="modal"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="button"
+                  class="dash-btn-primary"
+                  data-bs-dismiss="modal"
+                  onclick="
+                    showDashboardToast(
+                      'success',
+                      'Service Bay Booked',
+                      'Your vehicle appointment has been assigned to Master Bay 3.',
+                    )
+                  "
+                >
+                  Book Service
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Dashboard Controller Script -->
+    <script src="../assets/js/dashboard.js"></script>
+  </body>
+</html>

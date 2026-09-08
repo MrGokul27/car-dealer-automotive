@@ -164,7 +164,7 @@ body.auth-page::before {
   display: grid;
   grid-template-columns: 1fr 1.05fr;
   gap: 3.5rem;
-  align-items: center;
+  align-items: start;
   min-height: calc(100vh - 120px);
 }
 

@@ -142,7 +142,7 @@ function adjustHeaderPaths(isPagesDir) {
     });
 
     if (outlineLogin) outlineLogin.href = "login.html";
-    if (primaryDrive) primaryDrive.href = "contact.html";
+    if (primaryDrive) primaryDrive.href = "register.html";
     if (wishlistBtn) wishlistBtn.href = "cars.html";
   } else {
     if (logoImg) logoImg.src = "assets/images/stackly-logo.webp";
@@ -158,7 +158,7 @@ function adjustHeaderPaths(isPagesDir) {
     });
 
     if (outlineLogin) outlineLogin.href = "pages/login.html";
-    if (primaryDrive) primaryDrive.href = "pages/contact.html";
+    if (primaryDrive) primaryDrive.href = "pages/register.html";
     if (wishlistBtn) wishlistBtn.href = "pages/cars.html";
   }
 }

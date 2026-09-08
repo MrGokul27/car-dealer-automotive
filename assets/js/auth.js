@@ -14,6 +14,7 @@ function initAuth() {
   setupFormSubmissions();
   setupSocialLogins();
   setupForgotPasswordModal();
+  setupQueryParamPrefill();
 }
 
 /**
@@ -29,7 +30,51 @@ function getHomeUrl() {
  */
 function getLoginUrl() {
   const isPagesDir = window.location.pathname.includes("/pages/");
-  return isPagesDir ? "login.html" : "login.html";
+  return isPagesDir ? "login.html" : "pages/login.html";
+}
+
+/**
+ * Determines the relative dashboard page URL depending on whether the page is inside /pages/ or at root
+ */
+function getDashboardUrl() {
+  const isPagesDir = window.location.pathname.includes("/pages/");
+  return isPagesDir ? "dashboard.html" : "pages/dashboard.html";
+}
+
+/**
+ * Checks query parameters for pre-filling email, role, or registered status
+ */
+function setupQueryParamPrefill() {
+  const params = new URLSearchParams(window.location.search);
+  const emailParam = params.get("email");
+  const roleParam = params.get("role");
+  const isRegistered = params.get("registered") === "true";
+
+  if (emailParam) {
+    const emailInput = document.getElementById("loginEmail");
+    if (emailInput) {
+      emailInput.value = emailParam;
+    }
+  }
+
+  if (roleParam) {
+    const roleRadio = document.querySelector(`input[name="loginRole"][value="${roleParam}"]`);
+    if (roleRadio) {
+      roleRadio.checked = true;
+      document.querySelectorAll(".auth-role-card").forEach(c => c.classList.remove("active"));
+      roleRadio.closest(".auth-role-card")?.classList.add("active");
+    }
+  }
+
+  if (isRegistered) {
+    setTimeout(() => {
+      showToast(
+        "success",
+        "Account Ready!",
+        "Registration complete! Please enter your password to sign in to your dashboard."
+      );
+    }, 300);
+  }
 }
 
 /**
@@ -532,6 +577,30 @@ function setupFormSubmissions() {
 
       if (!isValid) return;
 
+      // Selected Role
+      const roleRadio = document.querySelector('input[name="loginRole"]:checked');
+      const selectedRole = roleRadio ? roleRadio.value : "customer";
+      const email = emailInput.value.trim();
+
+      // Check if we have registered name for this email
+      let displayName = email.split("@")[0].replace(/[._-]/g, " ").replace(/\b\w/g, l => l.toUpperCase());
+      try {
+        const regUser = JSON.parse(localStorage.getItem("autoDrive_registered_user") || "{}");
+        if (regUser.email && regUser.email.toLowerCase() === email.toLowerCase() && regUser.name) {
+          displayName = regUser.name;
+        }
+      } catch (err) {}
+
+      const userSession = {
+        name: displayName,
+        email: email,
+        role: selectedRole,
+        loginTime: new Date().toISOString(),
+        rememberMe: document.getElementById("rememberMe")?.checked || false
+      };
+
+      localStorage.setItem("autoDrive_user", JSON.stringify(userSession));
+
       // Disable button & show loading state
       if (submitBtn) {
         submitBtn.disabled = true;
@@ -541,12 +610,12 @@ function setupFormSubmissions() {
       showToast(
         "success",
         "Sign In Successful!",
-        "Welcome back! Redirecting to home page...",
+        `Welcome ${displayName}! Redirecting to your ${selectedRole === "dealer" ? "Dealer" : "Customer"} Dashboard...`,
       );
 
       setTimeout(() => {
-        window.location.href = getHomeUrl();
-      }, 1200);
+        window.location.href = getDashboardUrl();
+      }, 1000);
     });
   }
 
@@ -656,6 +725,25 @@ function setupFormSubmissions() {
 
       if (!isValid) return;
 
+      const nameVal = nameInput ? nameInput.value.trim() : "AutoDrive Member";
+      const emailVal = emailInput ? emailInput.value.trim() : "";
+      const phoneVal = phoneInput ? phoneInput.value.trim() : "";
+      const cityVal = cityInput ? cityInput.value.trim() : "";
+      const roleRadio = document.querySelector('input[name="registerRole"]:checked');
+      const roleVal = roleRadio ? roleRadio.value : "customer";
+
+      const registeredUser = {
+        name: nameVal,
+        email: emailVal,
+        phone: phoneVal,
+        city: cityVal,
+        role: roleVal,
+        loginTime: new Date().toISOString()
+      };
+
+      localStorage.setItem("autoDrive_registered_user", JSON.stringify(registeredUser));
+      localStorage.setItem("autoDrive_user", JSON.stringify(registeredUser));
+
       // Disable button & show loading state
       if (submitBtn) {
         submitBtn.disabled = true;
@@ -668,9 +756,9 @@ function setupFormSubmissions() {
         "Account created! Redirecting to login page...",
       );
 
-      // Redirect to login page as requested
+      // Redirect to login page with prefill parameters
       setTimeout(() => {
-        window.location.href = getLoginUrl();
+        window.location.href = `login.html?registered=true&email=${encodeURIComponent(emailVal)}&role=${encodeURIComponent(roleVal)}`;
       }, 1200);
     });
   }
@@ -685,27 +773,49 @@ function setupSocialLogins() {
 
   googleBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
+      const roleRadio = document.querySelector('input[name="loginRole"]:checked, input[name="registerRole"]:checked');
+      const selectedRole = roleRadio ? roleRadio.value : "customer";
+
+      const socialUser = {
+        name: "Alex Morgan",
+        email: "alex.morgan@gmail.com",
+        role: selectedRole,
+        loginTime: new Date().toISOString()
+      };
+      localStorage.setItem("autoDrive_user", JSON.stringify(socialUser));
+
       showToast(
         "success",
         "Google Authentication",
-        "Connecting with Google... Redirecting to home page.",
+        `Signed in as Alex Morgan! Redirecting to ${selectedRole === "dealer" ? "Dealer" : "Customer"} Dashboard...`,
       );
       setTimeout(() => {
-        window.location.href = getHomeUrl();
-      }, 1200);
+        window.location.href = getDashboardUrl();
+      }, 1000);
     });
   });
 
   appleBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
+      const roleRadio = document.querySelector('input[name="loginRole"]:checked, input[name="registerRole"]:checked');
+      const selectedRole = roleRadio ? roleRadio.value : "customer";
+
+      const socialUser = {
+        name: "Alex Morgan",
+        email: "alex.morgan@icloud.com",
+        role: selectedRole,
+        loginTime: new Date().toISOString()
+      };
+      localStorage.setItem("autoDrive_user", JSON.stringify(socialUser));
+
       showToast(
         "success",
         "Apple Authentication",
-        "Connecting with Apple ID... Redirecting to home page.",
+        `Signed in with Apple ID! Redirecting to ${selectedRole === "dealer" ? "Dealer" : "Customer"} Dashboard...`,
       );
       setTimeout(() => {
-        window.location.href = getHomeUrl();
-      }, 1200);
+        window.location.href = getDashboardUrl();
+      }, 1000);
     });
   });
 }

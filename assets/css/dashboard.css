@@ -1,0 +1,1423 @@
+:root {
+  --dash-bg: #141824;
+  --dash-sidebar-bg: #191f2c;
+  --dash-card-bg: #1e2536;
+  --dash-card-bg-hover: #252d42;
+  --dash-border: rgba(255, 255, 255, 0.08);
+  --dash-border-hover: rgba(255, 0, 0, 0.4);
+  --dash-red: #ff0000;
+  --dash-red-hover: #e00000;
+  --dash-red-glow: rgba(255, 0, 0, 0.35);
+  --dash-red-subtle: rgba(255, 0, 0, 0.12);
+  --dash-text: #ffffff;
+  --dash-text-muted: #94a3b8;
+  --dash-text-dim: #64748b;
+  --dash-success: #10b981;
+  --dash-warning: #f59e0b;
+  --dash-info: #3b82f6;
+  --dash-purple: #8b5cf6;
+  --dash-sidebar-width: 280px;
+  --dash-header-height: 74px;
+  --dash-radius: 12px;
+  --dash-transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Base resets & typography for dashboard */
+body.dashboard-body {
+  background-color: var(--dash-bg);
+  color: var(--dash-text);
+  font-family:
+    "Inter",
+    system-ui,
+    -apple-system,
+    sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: var(--dash-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: #334155;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--dash-red);
+}
+
+/* --------------------------------------------------------------------------
+   DASHBOARD LAYOUT WRAPPER
+   -------------------------------------------------------------------------- */
+.dashboard-layout {
+  display: flex;
+  min-height: 100vh;
+  position: relative;
+  width: 100%;
+}
+
+/* --------------------------------------------------------------------------
+   SIDEBAR COMPONENT
+   -------------------------------------------------------------------------- */
+.dash-sidebar {
+  width: var(--dash-sidebar-width);
+  background-color: var(--dash-sidebar-bg);
+  border-right: 1px solid var(--dash-border);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1040;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.dash-sidebar-header {
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--dash-border);
+  min-height: var(--dash-header-height);
+}
+
+.dash-sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+}
+
+.dash-sidebar-logo img {
+  height: 38px;
+  width: auto;
+  object-fit: contain;
+}
+
+.dash-logo-text {
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: #ffffff;
+}
+
+.dash-logo-text span {
+  color: var(--dash-red);
+}
+
+.dash-sidebar-close {
+  display: none;
+  background: transparent;
+  border: none;
+  color: var(--dash-text-muted);
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: 0.25rem;
+}
+
+/* Role Identity Badge in Sidebar */
+.dash-user-role-card {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--dash-border);
+  background: rgba(0, 0, 0, 0.18);
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.dash-avatar-wrapper {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.dash-avatar-img {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--dash-red);
+  background: var(--dash-card-bg);
+}
+
+.dash-avatar-status {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--dash-success);
+  border: 2px solid var(--dash-sidebar-bg);
+}
+
+.dash-user-meta {
+  overflow: hidden;
+}
+
+.dash-user-meta-name {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #ffffff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 0.15rem;
+}
+
+.dash-user-meta-role {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 0.2rem 0.6rem;
+  border-radius: 20px;
+}
+
+.role-badge-customer {
+  background: rgba(59, 130, 246, 0.15);
+  color: #60a5fa;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.role-badge-dealer {
+  background: var(--dash-red-subtle);
+  color: #ff6b6b;
+  border: 1px solid rgba(255, 0, 0, 0.3);
+}
+
+/* Sidebar Navigation Menu */
+.dash-nav-section {
+  padding: 1.25rem 0.85rem;
+  flex: 1;
+}
+
+.dash-nav-title {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--dash-text-dim);
+  padding: 0 0.75rem 0.6rem 0.75rem;
+  margin-bottom: 0.25rem;
+}
+
+.dash-nav-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.dash-nav-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  color: var(--dash-text-muted);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: var(--dash-transition);
+  cursor: pointer;
+  position: relative;
+  user-select: none;
+}
+
+.dash-nav-link-left {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.dash-nav-link i {
+  font-size: 1.05rem;
+  width: 20px;
+  text-align: center;
+  color: var(--dash-text-dim);
+  transition: var(--dash-transition);
+}
+
+.dash-nav-badge {
+  font-size: 0.72rem;
+  padding: 0.15rem 0.5rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--dash-text-muted);
+  font-weight: 600;
+}
+
+.dash-nav-badge.badge-red {
+  background: var(--dash-red);
+  color: #ffffff;
+}
+
+.dash-nav-link:hover {
+  background: rgba(255, 255, 255, 0.04);
+  color: #ffffff;
+}
+
+.dash-nav-link:hover i {
+  color: var(--dash-red);
+}
+
+.dash-nav-link.active {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 0, 0, 0.15) 0%,
+    rgba(255, 0, 0, 0.02) 100%
+  );
+  color: #ffffff;
+  font-weight: 600;
+  border-left: 3px solid var(--dash-red);
+}
+
+.dash-nav-link.active i {
+  color: var(--dash-red);
+}
+
+.dash-sidebar-footer {
+  padding: 1rem 1.25rem;
+  border-top: 1px solid var(--dash-border);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.dash-logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  color: #f87171;
+  background: rgba(239, 68, 68, 0.08);
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  transition: var(--dash-transition);
+  cursor: pointer;
+  width: 100%;
+}
+
+.dash-logout-btn:hover {
+  background: #ef4444;
+  color: #ffffff;
+  border-color: #ef4444;
+}
+
+/* --------------------------------------------------------------------------
+   MAIN CONTENT AREA
+   -------------------------------------------------------------------------- */
+.dash-main {
+  margin-left: var(--dash-sidebar-width);
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* --------------------------------------------------------------------------
+   TOP HEADER BAR
+   -------------------------------------------------------------------------- */
+.dash-topbar {
+  height: var(--dash-header-height);
+  background-color: var(--dash-sidebar-bg);
+  border-bottom: 1px solid var(--dash-border);
+  padding: 0 1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 1030;
+  backdrop-filter: blur(10px);
+}
+
+.dash-topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.dash-mobile-toggle {
+  display: none;
+  background: transparent;
+  border: 1px solid var(--dash-border);
+  color: #ffffff;
+  padding: 0.5rem 0.75rem;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.dash-topbar-search {
+  position: relative;
+  width: 280px;
+}
+
+.dash-topbar-search input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--dash-border);
+  border-radius: 20px;
+  padding: 0.5rem 1rem 0.5rem 2.5rem;
+  font-size: 0.88rem;
+  color: #ffffff;
+  outline: none;
+  transition: var(--dash-transition);
+}
+
+.dash-topbar-search input:focus {
+  border-color: var(--dash-red);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 0 3px var(--dash-red-subtle);
+}
+
+.dash-topbar-search i {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--dash-text-dim);
+  font-size: 0.9rem;
+}
+
+/* Topbar Right Controls */
+.dash-topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+/* Live Role Switcher Pill in Header */
+.role-switcher-container {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 0.25rem;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--dash-border);
+}
+
+.role-switch-btn {
+  border: none;
+  background: transparent;
+  color: var(--dash-text-muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.4rem 0.9rem;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: var(--dash-transition);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.role-switch-btn.active {
+  background: var(--dash-red);
+  color: #ffffff;
+  box-shadow: 0 2px 8px var(--dash-red-glow);
+}
+
+.dash-action-icon-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--dash-border);
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--dash-text-muted);
+  position: relative;
+  cursor: pointer;
+  transition: var(--dash-transition);
+}
+
+.dash-action-icon-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.dash-action-badge {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--dash-red);
+  color: #ffffff;
+  font-size: 0.68rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid var(--dash-sidebar-bg);
+}
+
+.dash-topbar-profile {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-left: 0.75rem;
+  border-left: 1px solid var(--dash-border);
+  cursor: pointer;
+}
+
+.dash-topbar-profile-info {
+  text-align: right;
+  line-height: 1.2;
+}
+
+.dash-topbar-profile-name {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.dash-topbar-profile-email {
+  font-size: 0.75rem;
+  color: var(--dash-text-dim);
+}
+
+/* --------------------------------------------------------------------------
+   DASHBOARD BODY CONTAINER & SECTIONS
+   -------------------------------------------------------------------------- */
+.dash-content-container {
+  padding: 2rem 1.75rem 3rem 1.75rem;
+  flex: 1;
+}
+
+/* Tab Sections */
+.dash-section {
+  display: none;
+  opacity: 0;
+  transform: translateY(10px);
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
+}
+
+.dash-section.active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* --------------------------------------------------------------------------
+   HERO / BANNER CARDS
+   -------------------------------------------------------------------------- */
+.dash-welcome-banner {
+  background: linear-gradient(135deg, #1e2538 0%, #171c2b 100%);
+  border: 1px solid var(--dash-border);
+  border-radius: var(--dash-radius);
+  padding: 1.75rem 2rem;
+  margin-bottom: 2rem;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.25);
+}
+
+.dash-welcome-banner::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--dash-red) 0%, transparent 80%);
+}
+
+.dash-welcome-banner-bg {
+  position: absolute;
+  right: -20px;
+  bottom: -20px;
+  width: 320px;
+  opacity: 0.12;
+  pointer-events: none;
+  filter: grayscale(100%) brightness(150%);
+}
+
+.dash-welcome-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--dash-red);
+  letter-spacing: 0.75px;
+  margin-bottom: 0.5rem;
+}
+
+.dash-welcome-title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 0.4rem;
+  letter-spacing: -0.5px;
+}
+
+.dash-welcome-title span {
+  color: var(--dash-red);
+}
+
+.dash-welcome-subtitle {
+  color: var(--dash-text-muted);
+  font-size: 0.95rem;
+  margin-bottom: 0;
+  max-width: 650px;
+}
+
+/* --------------------------------------------------------------------------
+   STAT & KPI CARDS (EQUAL HEIGHT & PROPER ALIGNMENT)
+   -------------------------------------------------------------------------- */
+.dash-stat-card {
+  background-color: var(--dash-card-bg);
+  border: 1px solid var(--dash-border);
+  border-radius: var(--dash-radius);
+  padding: 1.5rem;
+  transition: var(--dash-transition);
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.dash-stat-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--dash-border-hover);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+  background-color: var(--dash-card-bg-hover);
+}
+
+.dash-stat-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+}
+
+.dash-stat-icon-wrapper {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+  flex-shrink: 0;
+}
+
+.icon-red {
+  background: var(--dash-red-subtle);
+  color: var(--dash-red);
+  border: 1px solid rgba(255, 0, 0, 0.25);
+}
+
+.icon-blue {
+  background: rgba(59, 130, 246, 0.12);
+  color: #3b82f6;
+  border: 1px solid rgba(59, 130, 246, 0.25);
+}
+
+.icon-green {
+  background: rgba(16, 185, 129, 0.12);
+  color: #10b981;
+  border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+.icon-amber {
+  background: rgba(245, 158, 11, 0.12);
+  color: #f59e0b;
+  border: 1px solid rgba(245, 158, 11, 0.25);
+}
+
+.icon-purple {
+  background: rgba(139, 92, 246, 0.12);
+  color: #8b5cf6;
+  border: 1px solid rgba(139, 92, 246, 0.25);
+}
+
+.dash-stat-badge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.25rem 0.6rem;
+  border-radius: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.badge-positive {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+}
+
+.badge-neutral {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--dash-text-muted);
+}
+
+.dash-stat-value {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.1;
+  margin-bottom: 0.25rem;
+  letter-spacing: -0.5px;
+}
+
+.dash-stat-label {
+  font-size: 0.88rem;
+  color: var(--dash-text-muted);
+  font-weight: 500;
+  margin-bottom: 0;
+}
+
+/* --------------------------------------------------------------------------
+   STANDARD DASHBOARD CARD BOXES
+   -------------------------------------------------------------------------- */
+.dash-card {
+  background-color: var(--dash-card-bg);
+  border: 1px solid var(--dash-border);
+  border-radius: var(--dash-radius);
+  padding: 1.5rem;
+  transition: var(--dash-transition);
+  position: relative;
+  height: 100%;
+}
+
+.dash-card:hover {
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.dash-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid var(--dash-border);
+}
+
+.dash-card-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dash-card-title i {
+  color: var(--dash-red);
+}
+
+.dash-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   VEHICLE INVENTORY & GARAGE CARDS
+   -------------------------------------------------------------------------- */
+.dash-car-card {
+  background-color: var(--dash-card-bg);
+  border: 1px solid var(--dash-border);
+  border-radius: var(--dash-radius);
+  overflow: hidden;
+  transition: var(--dash-transition);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.dash-car-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--dash-border-hover);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+}
+
+.dash-car-img-box {
+  position: relative;
+  height: 180px;
+  background: #0f131d;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dash-car-img-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.dash-car-card:hover .dash-car-img-box img {
+  transform: scale(1.05);
+}
+
+.dash-car-status-pill {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 0.25rem 0.65rem;
+  border-radius: 20px;
+  backdrop-filter: blur(8px);
+}
+
+.status-available {
+  background: rgba(16, 185, 129, 0.9);
+  color: #ffffff;
+}
+
+.status-reserved {
+  background: rgba(245, 158, 11, 0.9);
+  color: #ffffff;
+}
+
+.status-sold {
+  background: rgba(239, 68, 68, 0.9);
+  color: #ffffff;
+}
+
+.status-service {
+  background: rgba(139, 92, 246, 0.9);
+  color: #ffffff;
+}
+
+.dash-car-price-badge {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  background: rgba(20, 24, 36, 0.85);
+  backdrop-filter: blur(8px);
+  padding: 0.25rem 0.75rem;
+  border-radius: 8px;
+  font-weight: 800;
+  font-size: 1rem;
+  color: var(--dash-red);
+  border: 1px solid rgba(255, 0, 0, 0.3);
+}
+
+.dash-car-body {
+  padding: 1.25rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.dash-car-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.25rem;
+}
+
+.dash-car-subtitle {
+  font-size: 0.8rem;
+  color: var(--dash-text-muted);
+  margin-bottom: 1rem;
+}
+
+.dash-car-specs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 0.65rem;
+  border-radius: 8px;
+  margin-bottom: 1.25rem;
+  text-align: center;
+}
+
+.dash-spec-item {
+  font-size: 0.75rem;
+}
+
+.dash-spec-label {
+  color: var(--dash-text-dim);
+  display: block;
+  font-size: 0.7rem;
+  margin-bottom: 0.1rem;
+}
+
+.dash-spec-val {
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.dash-car-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   THEME BUTTONS
+   -------------------------------------------------------------------------- */
+.dash-btn-primary {
+  background: var(--dash-red);
+  color: #ffffff;
+  border: 1px solid var(--dash-red);
+  font-weight: 600;
+  font-size: 0.88rem;
+  padding: 0.55rem 1.15rem;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: var(--dash-transition);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.dash-btn-primary:hover {
+  background: var(--dash-red-hover);
+  border-color: var(--dash-red-hover);
+  color: #ffffff;
+  box-shadow: 0 4px 14px var(--dash-red-glow);
+}
+
+.dash-btn-outline {
+  background: transparent;
+  color: #ffffff;
+  border: 1px solid var(--dash-border);
+  font-weight: 600;
+  font-size: 0.88rem;
+  padding: 0.55rem 1.15rem;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: var(--dash-transition);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.dash-btn-outline:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
+
+.dash-btn-sm {
+  padding: 0.35rem 0.75rem;
+  font-size: 0.8rem;
+  border-radius: 6px;
+}
+
+/* --------------------------------------------------------------------------
+   RESPONSIVE TABLES (DARK AUTOMOTIVE THEME)
+   -------------------------------------------------------------------------- */
+.table-responsive {
+  border-radius: 8px;
+  border: 1px solid var(--dash-border);
+  background: var(--dash-card-bg);
+}
+
+.dash-table {
+  width: 100%;
+  margin-bottom: 0;
+  color: var(--dash-text);
+  border-collapse: separate;
+  border-spacing: 0;
+  vertical-align: middle;
+}
+
+.dash-table thead th {
+  background-color: rgba(0, 0, 0, 0.35);
+  color: var(--dash-text-muted);
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 0.95rem 1.25rem;
+  border-bottom: 1px solid var(--dash-border);
+  white-space: nowrap;
+}
+
+.dash-table tbody td {
+  padding: 1rem 1.25rem;
+  font-size: 0.88rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  vertical-align: middle;
+  color: #e2e8f0;
+}
+
+.dash-table tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+.dash-table tbody tr:hover {
+  background-color: rgba(255, 255, 255, 0.03);
+}
+
+.dash-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.table-vehicle-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.table-vehicle-thumb {
+  width: 52px;
+  height: 38px;
+  border-radius: 6px;
+  object-fit: cover;
+  background: #0f131d;
+}
+
+.table-vehicle-info {
+  line-height: 1.3;
+}
+
+.table-vehicle-name {
+  font-weight: 700;
+  color: #ffffff;
+  font-size: 0.9rem;
+}
+
+.table-vehicle-vin {
+  font-size: 0.75rem;
+  color: var(--dash-text-dim);
+  font-family: monospace;
+}
+
+/* Status Badges */
+.badge-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.65rem;
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.badge-status-green {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.badge-status-yellow {
+  background: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.badge-status-red {
+  background: rgba(239, 68, 68, 0.15);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.badge-status-blue {
+  background: rgba(59, 130, 246, 0.15);
+  color: #60a5fa;
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+/* --------------------------------------------------------------------------
+   TIMELINE / ORDER TRACKER (LIVE DELIVERY STAGES)
+   -------------------------------------------------------------------------- */
+.dash-order-tracker {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  margin: 1.75rem 0 1rem 0;
+  padding: 0 1rem;
+}
+
+.dash-order-tracker::before {
+  content: "";
+  position: absolute;
+  top: 20px;
+  left: 8%;
+  right: 8%;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.1);
+  z-index: 1;
+}
+
+.dash-tracker-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  flex: 1;
+}
+
+.dash-tracker-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--dash-card-bg);
+  border: 2px solid var(--dash-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: var(--dash-text-dim);
+  margin-bottom: 0.65rem;
+  transition: var(--dash-transition);
+}
+
+.dash-tracker-step.completed .dash-tracker-icon {
+  background: var(--dash-success);
+  border-color: var(--dash-success);
+  color: #ffffff;
+}
+
+.dash-tracker-step.active .dash-tracker-icon {
+  background: var(--dash-red);
+  border-color: var(--dash-red);
+  color: #ffffff;
+  box-shadow: 0 0 15px var(--dash-red-glow);
+}
+
+.dash-tracker-label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 0.15rem;
+}
+
+.dash-tracker-time {
+  font-size: 0.72rem;
+  color: var(--dash-text-dim);
+}
+
+/* --------------------------------------------------------------------------
+   VEHICLE HEALTH SCORECARD
+   -------------------------------------------------------------------------- */
+.health-scorecard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 1rem;
+}
+
+.health-item {
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--dash-border);
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+}
+
+.health-item-icon {
+  font-size: 1.5rem;
+  color: var(--dash-red);
+  margin-bottom: 0.5rem;
+}
+
+.health-item-val {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.health-item-label {
+  font-size: 0.75rem;
+  color: var(--dash-text-muted);
+}
+
+.progress.dash-progress {
+  height: 6px;
+  background-color: rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  margin-top: 0.5rem;
+  overflow: hidden;
+}
+
+/* --------------------------------------------------------------------------
+   FINANCE / EMI CALCULATOR
+   -------------------------------------------------------------------------- */
+.emi-calc-box {
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--dash-border);
+  border-radius: 10px;
+  padding: 1.5rem;
+}
+
+.emi-slider-group {
+  margin-bottom: 1.25rem;
+}
+
+.emi-slider-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.emi-slider-header label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--dash-text-muted);
+  margin: 0;
+}
+
+.emi-slider-val {
+  font-weight: 800;
+  color: var(--dash-red);
+  font-size: 1rem;
+}
+
+.dash-range-slider {
+  width: 100%;
+  accent-color: var(--dash-red);
+  height: 6px;
+  background: #334155;
+  border-radius: 5px;
+  outline: none;
+}
+
+.emi-result-card {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 0, 0, 0.15) 0%,
+    rgba(20, 24, 36, 0.8) 100%
+  );
+  border: 1px solid rgba(255, 0, 0, 0.3);
+  border-radius: 12px;
+  padding: 1.75rem;
+  text-align: center;
+}
+
+.emi-result-amount {
+  font-size: 2.25rem;
+  font-weight: 900;
+  color: #ffffff;
+  margin: 0.5rem 0;
+  letter-spacing: -0.5px;
+}
+
+.emi-result-amount span {
+  font-size: 1rem;
+  color: var(--dash-text-muted);
+  font-weight: 500;
+}
+
+/* --------------------------------------------------------------------------
+   FORMS & INPUTS (PROFILE, SETTINGS, MODALS)
+   -------------------------------------------------------------------------- */
+.dash-form-group {
+  margin-bottom: 1.25rem;
+}
+
+.dash-form-label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--dash-text-muted);
+  margin-bottom: 0.4rem;
+}
+
+.dash-form-control {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--dash-border);
+  border-radius: 8px;
+  padding: 0.65rem 1rem;
+  color: #ffffff;
+  font-size: 0.9rem;
+  outline: none;
+  transition: var(--dash-transition);
+}
+
+.dash-form-control:focus {
+  border-color: var(--dash-red);
+  box-shadow: 0 0 0 3px var(--dash-red-subtle);
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.dash-form-control:disabled,
+.dash-form-control[readonly] {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* --------------------------------------------------------------------------
+   MODAL DIALOGS (AUTOMOTIVE THEMED)
+   -------------------------------------------------------------------------- */
+.modal-content.dash-modal-content {
+  background-color: var(--dash-card-bg);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  color: var(--dash-text);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
+}
+
+.dash-modal-header {
+  border-bottom: 1px solid var(--dash-border);
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dash-modal-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dash-modal-close {
+  background: transparent;
+  border: none;
+  color: var(--dash-text-muted);
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: 0.25rem;
+  transition: var(--dash-transition);
+}
+
+.dash-modal-close:hover {
+  color: var(--dash-red);
+}
+
+.dash-modal-body {
+  padding: 1.5rem;
+}
+
+.dash-modal-footer {
+  border-top: 1px solid var(--dash-border);
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+}
+
+/* Sidebar Backdrop on Mobile */
+.dash-sidebar-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  z-index: 1035;
+}
+
+.dash-sidebar-backdrop.active {
+  display: block;
+}
+
+/* --------------------------------------------------------------------------
+   RESPONSIVE BREAKPOINTS (BOOTSTRAP ADAPTATION)
+   -------------------------------------------------------------------------- */
+@media (max-width: 991.98px) {
+  .dash-sidebar {
+    transform: translateX(-100%);
+  }
+
+  .dash-sidebar.active {
+    transform: translateX(0);
+    box-shadow: 10px 0 30px rgba(0, 0, 0, 0.5);
+  }
+
+  .dash-sidebar-close {
+    display: block;
+  }
+
+  .dash-main {
+    margin-left: 0;
+  }
+
+  .dash-mobile-toggle {
+    display: block;
+  }
+
+  .dash-topbar-search {
+    width: 200px;
+  }
+
+  .dash-topbar-profile-info {
+    display: none;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .dash-topbar {
+    padding: 0 1rem;
+  }
+
+  .dash-content-container {
+    padding: 1.25rem 1rem 2rem 1rem;
+  }
+
+  .dash-topbar-search {
+    display: none;
+  }
+
+  .dash-welcome-banner {
+    padding: 1.25rem;
+  }
+
+  .dash-welcome-title {
+    font-size: 1.35rem;
+  }
+
+  .dash-order-tracker {
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .dash-order-tracker::before {
+    display: none;
+  }
+
+  .dash-tracker-step {
+    flex-direction: row;
+    gap: 1rem;
+    text-align: left;
+  }
+
+  .dash-tracker-icon {
+    margin-bottom: 0;
+  }
+}
