@@ -1,0 +1,358 @@
+:root {
+  --error-bg: #ffffff;
+  --error-bg-subtle: #f8fafc;
+  --error-text-dark: #0f172a;
+  --error-text-title: #0a0f1d;
+  --error-text-muted: #475569;
+  --error-red: #ff0000;
+  --error-red-hover: #e00000;
+  --error-red-glow: rgba(255, 0, 0, 0.25);
+  --error-border: #e2e8f0;
+  --error-border-hover: #cbd5e1;
+  --error-btn-secondary-bg: #ffffff;
+  --error-btn-secondary-hover: #f1f5f9;
+}
+
+/* Page base overrides for 404 */
+body.error-page {
+  background-color: #fff;
+  color: var(--error-text-dark);
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  position: relative;
+  font-family:
+    "Inter",
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+}
+
+/* --------------------------------------------------------------------------
+   HEADER NAVIGATION FOR 404 PAGE
+   -------------------------------------------------------------------------- */
+.error-header {
+  position: relative;
+  z-index: 50;
+  width: 100%;
+  background: transparent;
+  padding: 1.25rem 2rem;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+}
+
+.error-header-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.error-logo-link {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  transition:
+    transform 0.25s ease,
+    opacity 0.25s ease;
+}
+
+.error-logo-link:hover {
+  transform: scale(1.02);
+  opacity: 0.95;
+}
+
+.error-logo-img {
+  height: 42px;
+  width: auto;
+  object-fit: contain;
+}
+
+.error-header-nav {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.error-nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #334155;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.error-nav-link:hover {
+  color: var(--error-red);
+  background-color: rgba(255, 0, 0, 0.05);
+}
+
+/* --------------------------------------------------------------------------
+   MAIN 404 LAYOUT
+   -------------------------------------------------------------------------- */
+.error-main-wrapper {
+  flex: 1 0 auto;
+  display: flex;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  max-width: 1540px;
+  margin: 0 auto;
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.error-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  align-items: center;
+  width: 100%;
+  gap: 2rem;
+  position: relative;
+}
+
+/* --------------------------------------------------------------------------
+   LEFT / CENTER CONTENT AREA
+   -------------------------------------------------------------------------- */
+.error-content-col {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding-left: clamp(1rem, 4vw, 4rem);
+  z-index: 10;
+  max-width: 620px;
+}
+
+/* 3D 404 Badge */
+.error-badge-wrapper {
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.error-badge-img {
+  width: 100%;
+  max-width: 250px;
+  height: auto;
+  object-fit: contain;
+  animation: floatBadge 4s ease-in-out infinite alternate;
+}
+
+@keyframes floatBadge {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-8px);
+  }
+}
+
+/* Error Typography */
+.error-heading {
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 1.15;
+  color: var(--error-text-title);
+  margin: 0 0 1rem;
+  letter-spacing: -0.025em;
+}
+
+.error-description {
+  font-size: clamp(0.95rem, 1.25vw, 1.1rem);
+  line-height: 1.65;
+  color: var(--error-text-muted);
+  margin: 0 0 2rem;
+  max-width: 480px;
+  font-weight: 400;
+}
+
+/* Action Buttons */
+.error-actions-group {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  width: 100%;
+}
+
+.btn-error-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  background-color: var(--error-red);
+  color: #ffffff !important;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.9rem 1.85rem;
+  border-radius: 10px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 14px var(--error-red-glow);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-error-primary:hover {
+  background-color: var(--error-red-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 22px rgba(255, 0, 0, 0.35);
+  color: #ffffff !important;
+}
+
+.btn-error-primary:active {
+  transform: translateY(0);
+}
+
+.btn-error-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  background-color: var(--error-btn-secondary-bg);
+  color: #1e293b !important;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.9rem 1.85rem;
+  border-radius: 10px;
+  text-decoration: none;
+  border: 1.5px solid var(--error-border);
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-error-secondary:hover {
+  background-color: var(--error-btn-secondary-hover);
+  border-color: var(--error-border-hover);
+  color: #0f172a !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.07);
+}
+
+.btn-error-secondary:active {
+  transform: translateY(0);
+}
+
+/* --------------------------------------------------------------------------
+   RIGHT CAR IMAGE COLUMN
+   -------------------------------------------------------------------------- */
+.error-car-col {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  height: 100%;
+  position: relative;
+}
+
+.error-car-img {
+  width: 100%;
+  max-width: 520px;
+  max-height: 80vh;
+  object-fit: contain;
+  object-position: right bottom;
+  filter: drop-shadow(-10px 15px 30px rgba(0, 0, 0, 0.12));
+  transform: translateX(10px);
+  transition: transform 0.3s ease;
+}
+
+.error-car-img:hover {
+  transform: translateX(0) scale(1.01);
+}
+
+/* --------------------------------------------------------------------------
+   RESPONSIVE BREAKPOINTS
+   -------------------------------------------------------------------------- */
+@media (max-width: 1200px) {
+  .error-car-img {
+    max-width: 440px;
+  }
+}
+
+@media (max-width: 992px) {
+  .error-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    text-align: center;
+  }
+
+  .error-content-col {
+    align-items: center;
+    padding-left: 0;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  .error-badge-wrapper {
+    justify-content: center;
+  }
+
+  .error-description {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .error-actions-group {
+    justify-content: center;
+  }
+
+  .error-car-col {
+    justify-content: center;
+    align-items: center;
+  }
+
+  .error-car-img {
+    max-width: 380px;
+    transform: none;
+  }
+}
+
+@media (max-width: 576px) {
+  .error-header {
+    padding: 1rem 1.25rem;
+  }
+
+  .error-logo-img {
+    height: 34px;
+  }
+
+  .error-badge-img {
+    max-width: 200px;
+  }
+
+  .error-heading {
+    font-size: 2.15rem;
+  }
+
+  .error-description {
+    font-size: 0.92rem;
+  }
+
+  .error-actions-group {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btn-error-primary,
+  .btn-error-secondary {
+    width: 100%;
+    padding: 0.85rem 1.5rem;
+  }
+
+  .error-car-img {
+    max-width: 290px;
+  }
+}

@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>404 - Page Not Found | AutoDrive</title>
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/webp"
+      href="../assets/images/stackly-logo.webp"
+    />
+    <!-- Google Fonts (Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../assets/css/styles.css" />
+    <link rel="stylesheet" href="../assets/css/404.css" />
+  </head>
+  <body class="error-page" data-page="404">
+    <!-- Main 404 Content -->
+    <main class="error-main-wrapper">
+      <div class="error-grid">
+        <!-- Left / Center Content Column -->
+        <div class="error-content-col">
+          <!-- 3D 404 Warning Badge -->
+          <div class="error-badge-wrapper">
+            <img
+              src="../assets/images/404-image.webp"
+              alt="404 Page Not Found"
+              class="error-badge-img"
+            />
+          </div>
+
+          <!-- Title -->
+          <h1 class="error-heading">
+            Opps! Page<br />
+            Not Found
+          </h1>
+
+          <!-- Description -->
+          <p class="error-description">
+            The page you're looking for doesn't exist,<br />
+            has been moved, or the URL may be<br />
+            incorrect. Let's get you back on track
+          </p>
+
+          <!-- Action Buttons -->
+          <div class="error-actions-group">
+            <a
+              href="../index.html"
+              class="btn-error-primary"
+              id="homeRedirectionBtn"
+            >
+              <i class="fa-solid fa-house"></i>
+              <span>Back to Home</span>
+            </a>
+            <button
+              type="button"
+              class="btn-error-secondary"
+              id="goBackBtn"
+              aria-label="Go to previous page"
+            >
+              <i class="fa-solid fa-arrow-left"></i>
+              <span>Go Back</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Right Side: Black Supercar Graphic -->
+        <div class="error-car-col">
+          <img
+            src="../assets/images/car-side-image-404.webp"
+            alt="Supercar Display"
+            class="error-car-img"
+          />
+        </div>
+      </div>
+    </main>
+
+    <!-- Interactive Script for Go Back Button -->
+    <script>
+      document
+        .getElementById("goBackBtn")
+        ?.addEventListener("click", function (e) {
+          e.preventDefault();
+          if (window.history.length > 1 && document.referrer) {
+            window.history.back();
+          } else {
+            window.location.href = "../index.html";
+          }
+        });
+    </script>
+    <script src="../assets/js/script.js"></script>
+  </body>
+</html>

@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 function initApp() {
   setupFavicon();
+  setupEmptyLinks404Redirect();
   loadHeaderComponent();
   loadFooterComponent();
   initializeScrollToTop();
@@ -795,4 +796,51 @@ function initializeContactForm() {
       }, 7000);
     });
   }
+}
+
+/**
+ * Intercepts clicks on empty links, '#', or placeholder links across the entire project
+ * and redirects the user to the 404 Not Found page.
+ */
+function setupEmptyLinks404Redirect() {
+  document.addEventListener("click", (event) => {
+    const anchor = event.target.closest("a");
+    if (!anchor) return;
+
+    // Ignore if on the 404 page itself and clicking 'Back to Home' or Go Back
+    if (anchor.id === "homeRedirectionBtn" || anchor.id === "goBackBtn") return;
+
+    // Allow modal toggles or specific interaction components
+    if (
+      anchor.hasAttribute("data-bs-toggle") ||
+      anchor.hasAttribute("data-modal") ||
+      anchor.classList.contains("modal-trigger") ||
+      anchor.classList.contains("wishlist-toggle-btn")
+    ) {
+      return;
+    }
+
+    const href = anchor.getAttribute("href");
+
+    // Detect empty href, '#', '#!', or 'javascript:void(0)' or whitespace
+    const isEmptyOrHash =
+      href === null ||
+      href === "" ||
+      href === "#" ||
+      href === "#!" ||
+      href.trim() === "" ||
+      href.trim() === "#" ||
+      href.toLowerCase() === "javascript:void(0)" ||
+      href.toLowerCase() === "javascript:void(0);" ||
+      href.toLowerCase() === "javascript:;";
+
+    if (isEmptyOrHash) {
+      event.preventDefault();
+      event.stopPropagation();
+
+      const isPagesDir = window.location.pathname.includes("/pages/");
+      const target404 = isPagesDir ? "404.html" : "pages/404.html";
+      window.location.href = target404;
+    }
+  });
 }
