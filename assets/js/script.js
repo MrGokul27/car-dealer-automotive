@@ -412,12 +412,6 @@ function initializeFinanceCalculator() {
       calculateEMI();
     });
   }
-
-  [priceInput, downPaymentInput, interestInput, tenureInput].forEach(
-    (input) => {
-      input.addEventListener("input", calculateEMI);
-    },
-  );
 }
 
 /**
@@ -633,9 +627,14 @@ function initializeContactForm() {
       // Allow Ctrl/Command shortcuts (Ctrl+A, Ctrl+C, Ctrl+V, Ctrl+X, Ctrl+Z)
       if (e.ctrlKey || e.metaKey || e.altKey) return;
 
-      // Only allow letters and single space
+      // Only allow letters and single space (block space if last char is already a space)
       if (e.key.length === 1) {
         if (!/^[a-zA-Z\s]$/.test(e.key)) {
+          e.preventDefault();
+        } else if (
+          e.key === " " &&
+          (nameInput.value.length === 0 || nameInput.value.slice(-1) === " ")
+        ) {
           e.preventDefault();
         }
       }
@@ -650,7 +649,9 @@ function initializeContactForm() {
 
     // 3. Fallback sanitizer on input event
     nameInput.addEventListener("input", (e) => {
-      const sanitized = e.target.value.replace(/[^a-zA-Z\s]/g, "");
+      let sanitized = e.target.value.replace(/[^a-zA-Z\s]/g, "");
+      // Prevent leading space and multiple consecutive spaces
+      sanitized = sanitized.replace(/^ +/, "").replace(/ {2,}/g, " ");
       if (e.target.value !== sanitized) {
         e.target.value = sanitized;
       }
@@ -779,7 +780,7 @@ function initializeContactForm() {
         if (emailInput) emailInput.classList.add("input-error");
         isValid = false;
       }
-      if (!phoneVal || phoneVal.length < 7) {
+      if (!phoneVal || phoneVal.length !== 10) {
         if (phoneInput) phoneInput.classList.add("input-error");
         isValid = false;
       }
