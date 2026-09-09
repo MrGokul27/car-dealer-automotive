@@ -148,9 +148,10 @@ function adjustHeaderPaths(isPagesDir) {
   const logoImg = header.querySelector(".logo-img");
   const logoLink = header.querySelector(".header-logo");
   const navLinks = header.querySelectorAll(".nav-link");
-  const outlineLogin = header.querySelector(".btn-outline-login");
-  const primaryDrive = header.querySelector(".btn-primary-drive");
   const wishlistBtn = header.querySelector(".wishlist-btn");
+
+  const allLoginBtns = header.querySelectorAll(".btn-outline-login");
+  const allRegisterBtns = header.querySelectorAll(".btn-primary-drive");
 
   if (isPagesDir) {
     if (logoImg) logoImg.src = "../assets/images/stackly-logo.webp";
@@ -165,8 +166,12 @@ function adjustHeaderPaths(isPagesDir) {
       }
     });
 
-    if (outlineLogin) outlineLogin.href = "login.html";
-    if (primaryDrive) primaryDrive.href = "register.html";
+    allLoginBtns.forEach((btn) => {
+      btn.href = "login.html";
+    });
+    allRegisterBtns.forEach((btn) => {
+      btn.href = "register.html";
+    });
     if (wishlistBtn) wishlistBtn.href = "cars.html";
   } else {
     if (logoImg) logoImg.src = "assets/images/stackly-logo.webp";
@@ -181,8 +186,12 @@ function adjustHeaderPaths(isPagesDir) {
       }
     });
 
-    if (outlineLogin) outlineLogin.href = "pages/login.html";
-    if (primaryDrive) primaryDrive.href = "pages/register.html";
+    allLoginBtns.forEach((btn) => {
+      btn.href = "pages/login.html";
+    });
+    allRegisterBtns.forEach((btn) => {
+      btn.href = "pages/register.html";
+    });
     if (wishlistBtn) wishlistBtn.href = "pages/cars.html";
   }
 }
