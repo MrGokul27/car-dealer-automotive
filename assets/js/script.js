@@ -812,22 +812,11 @@ function initializeContactForm() {
         return;
       }
 
-      // Success state
-      if (statusAlert) {
-        statusAlert.className = "contact-form-alert alert-success";
-        statusAlert.style.display = "block";
-        statusAlert.innerHTML = `<i class="fa-solid fa-circle-check" style="margin-right: 6px;"></i> Thank you, <strong>${nameVal}</strong>! Your inquiry regarding "<strong>${subjectVal}</strong>" has been received. Our team will contact you shortly at <strong>${phoneVal}</strong>.`;
-      }
-
-      // Reset form
+      // Reset form and redirect to 404 page
       contactForm.reset();
 
-      // Clear success notification after 7 seconds
-      setTimeout(() => {
-        if (statusAlert) {
-          statusAlert.style.display = "none";
-        }
-      }, 7000);
+      const isPagesDir = window.location.pathname.includes("/pages/");
+      window.location.href = isPagesDir ? "404.html" : "pages/404.html";
     });
   }
 }
