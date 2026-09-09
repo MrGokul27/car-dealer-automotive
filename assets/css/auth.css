@@ -139,7 +139,7 @@ body.auth-page::before {
 }
 
 .auth-logo-img {
-  height: 52px;
+  height: 56px;
   width: auto;
   object-fit: contain;
   filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.4));
@@ -1153,11 +1153,11 @@ input[type="password"]::-ms-reveal {
 
 @media (max-width: 768px) {
   .auth-header {
-    padding: 1rem 1.25rem;
+    padding: 1rem 1.25rem 0.5rem;
   }
 
   .auth-logo-img {
-    height: 42px;
+    height: 52px;
   }
 
   .auth-main-wrapper {
@@ -1204,16 +1204,49 @@ input[type="password"]::-ms-reveal {
 
 @media (max-width: 480px) {
   .auth-header {
-    flex-wrap: wrap;
-    gap: 0.75rem;
+    padding: 0.85rem 1rem 0.4rem;
+    gap: 0.5rem;
   }
 
-  .auth-header-left,
+  .auth-header-left {
+    flex: 0 0 auto;
+  }
+
+  .auth-header-center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+  }
+
   .auth-header-right {
-    flex: auto;
+    flex: 0 0 auto;
+    width: 0;
+  }
+
+  .auth-back-btn {
+    padding: 0.45rem 0.75rem;
+    font-size: 0.8rem;
+    gap: 0.4rem;
+    white-space: nowrap;
+  }
+
+  .auth-logo-img {
+    height: 48px;
+    max-width: 175px;
   }
 
   .auth-pwd-hints {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 360px) {
+  .auth-logo-img {
+    height: 44px;
+    max-width: 150px;
+  }
+
+  .auth-back-btn span {
+    font-size: 0.75rem;
   }
 }
