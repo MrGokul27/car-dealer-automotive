@@ -329,7 +329,12 @@ function setupNameInputRestriction() {
     // 3. Real-time sanitization on input event (handles paste, auto-fill, drag-and-drop)
     input.addEventListener("input", () => {
       const original = input.value;
-      const clean = original.replace(/[^a-zA-Z\s]/g, "");
+      // Strip non-letters/spaces, then collapse multiple spaces (allow single space between words)
+      let clean = original.replace(/[^a-zA-Z\s]/g, "");
+      // Prevent more than one consecutive space
+      clean = clean.replace(/  +/g, " ");
+      // Prevent leading space
+      if (clean.startsWith(" ")) clean = clean.trimStart();
       if (original !== clean) {
         input.value = clean;
       }
@@ -343,7 +348,10 @@ function setupNameInputRestriction() {
       e.preventDefault();
       const pasteText =
         (e.clipboardData || window.clipboardData)?.getData("text") || "";
-      const cleanText = pasteText.replace(/[^a-zA-Z\s]/g, "");
+      const cleanText = pasteText
+        .replace(/[^a-zA-Z\s]/g, "")
+        .replace(/\s+/g, " ")
+        .trim();
       const start = input.selectionStart || 0;
       const end = input.selectionEnd || 0;
       const current = input.value;
@@ -571,13 +579,24 @@ function setupFormSubmissions() {
         isValid = false;
       } else {
         const { score } = evaluatePasswordStrength(pwdInput.value);
-        if (score < 2) {
+        if (score < 3) {
           showFieldError(
             pwdInput,
-            "Password is too weak. Please enter at least 8 characters with letters & numbers.",
+            "Password is too weak. Use 8+ characters with uppercase, lowercase, numbers & special characters.",
           );
           isValid = false;
         }
+      }
+
+      // Validate Remember Me
+      const rememberMe = document.getElementById("rememberMe");
+      if (!rememberMe?.checked) {
+        showToast(
+          "error",
+          "Remember Me Required",
+          "Please check 'Remember Me' to continue.",
+        );
+        isValid = false;
       }
 
       if (!isValid) return;
@@ -657,7 +676,8 @@ function setupFormSubmissions() {
 
       // Validate Full Name / Username
       if (nameInput) {
-        const nameVal = nameInput.value.trim();
+        const nameVal = nameInput.value.trim().replace(/\s+/g, " ");
+        nameInput.value = nameVal;
         if (!nameVal) {
           showFieldError(nameInput, "Full name is required.");
           isValid = false;
@@ -666,6 +686,9 @@ function setupFormSubmissions() {
             nameInput,
             "Name cannot contain numbers or special characters.",
           );
+          isValid = false;
+        } else if (nameVal.split(" ").some((w) => w.length < 1)) {
+          showFieldError(nameInput, "Please enter a valid full name.");
           isValid = false;
         }
       }
