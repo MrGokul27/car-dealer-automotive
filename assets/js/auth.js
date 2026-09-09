@@ -311,9 +311,9 @@ function setupNameInputRestriction() {
       // Allow Ctrl/Cmd shortcuts like Ctrl+A, Ctrl+C, Ctrl+V, Ctrl+X, Ctrl+Z
       if (e.ctrlKey || e.metaKey) return;
 
-      // Check single printable character: allow ONLY letters (a-z, A-Z) and spaces
+      // Check single printable character: allow ONLY letters (a-z, A-Z), no spaces
       if (e.key.length === 1) {
-        if (!/^[a-zA-Z\s]$/.test(e.key)) {
+        if (!/^[a-zA-Z]$/.test(e.key)) {
           e.preventDefault();
         }
       }
@@ -321,7 +321,7 @@ function setupNameInputRestriction() {
 
     // 2. Prevent invalid characters from beforeinput (mobile keyboards, composition)
     input.addEventListener("beforeinput", (e) => {
-      if (e.data && /[^a-zA-Z\s]/.test(e.data)) {
+      if (e.data && /[^a-zA-Z]/.test(e.data)) {
         e.preventDefault();
       }
     });
@@ -329,12 +329,7 @@ function setupNameInputRestriction() {
     // 3. Real-time sanitization on input event (handles paste, auto-fill, drag-and-drop)
     input.addEventListener("input", () => {
       const original = input.value;
-      // Strip non-letters/spaces, then collapse multiple spaces (allow single space between words)
-      let clean = original.replace(/[^a-zA-Z\s]/g, "");
-      // Prevent more than one consecutive space
-      clean = clean.replace(/  +/g, " ");
-      // Prevent leading space
-      if (clean.startsWith(" ")) clean = clean.trimStart();
+      const clean = original.replace(/[^a-zA-Z]/g, "");
       if (original !== clean) {
         input.value = clean;
       }
@@ -348,10 +343,7 @@ function setupNameInputRestriction() {
       e.preventDefault();
       const pasteText =
         (e.clipboardData || window.clipboardData)?.getData("text") || "";
-      const cleanText = pasteText
-        .replace(/[^a-zA-Z\s]/g, "")
-        .replace(/\s+/g, " ")
-        .trim();
+      const cleanText = pasteText.replace(/[^a-zA-Z]/g, "");
       const start = input.selectionStart || 0;
       const end = input.selectionEnd || 0;
       const current = input.value;

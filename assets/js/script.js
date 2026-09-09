@@ -636,14 +636,9 @@ function initializeContactForm() {
       // Allow Ctrl/Command shortcuts (Ctrl+A, Ctrl+C, Ctrl+V, Ctrl+X, Ctrl+Z)
       if (e.ctrlKey || e.metaKey || e.altKey) return;
 
-      // Only allow letters and single space (block space if last char is already a space)
+      // Only allow letters (block space and all non-alpha characters)
       if (e.key.length === 1) {
-        if (!/^[a-zA-Z\s]$/.test(e.key)) {
-          e.preventDefault();
-        } else if (
-          e.key === " " &&
-          (nameInput.value.length === 0 || nameInput.value.slice(-1) === " ")
-        ) {
+        if (!/^[a-zA-Z]$/.test(e.key)) {
           e.preventDefault();
         }
       }
@@ -651,16 +646,14 @@ function initializeContactForm() {
 
     // 2. Prevent invalid input for mobile / virtual keyboards / IME
     nameInput.addEventListener("beforeinput", (e) => {
-      if (e.data && !/^[a-zA-Z\s]+$/.test(e.data)) {
+      if (e.data && !/^[a-zA-Z]+$/.test(e.data)) {
         e.preventDefault();
       }
     });
 
     // 3. Fallback sanitizer on input event
     nameInput.addEventListener("input", (e) => {
-      let sanitized = e.target.value.replace(/[^a-zA-Z\s]/g, "");
-      // Prevent leading space and multiple consecutive spaces
-      sanitized = sanitized.replace(/^ +/, "").replace(/ {2,}/g, " ");
+      const sanitized = e.target.value.replace(/[^a-zA-Z]/g, "");
       if (e.target.value !== sanitized) {
         e.target.value = sanitized;
       }
@@ -673,7 +666,7 @@ function initializeContactForm() {
       const clipboardText = (e.clipboardData || window.clipboardData).getData(
         "text",
       );
-      const cleanText = clipboardText.replace(/[^a-zA-Z\s]/g, "");
+      const cleanText = clipboardText.replace(/[^a-zA-Z]/g, "");
       if (cleanText) {
         const start = nameInput.selectionStart || 0;
         const end = nameInput.selectionEnd || 0;
